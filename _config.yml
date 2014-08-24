@@ -1,0 +1,6 @@
+name: Vaphana Solution
+description: Something here
+markdown: redcarpet
+redcarpet:
+  extensions: ["tables"]
+pygments: false
