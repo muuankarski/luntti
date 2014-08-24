@@ -38,4 +38,10 @@ df$f <- factor(df$f)
 df$f.num <- as.numeric(levels(df$f))[df$f]
 ```
 
+## Satunnaisia linkkejä
+
+- [tidy data and tidy tools](http://vita.had.co.nz/papers/tidy-data-pres.pdf)
+- [Lists and data cleaning](https://dl.dropbox.com/u/7710864/courseraPublic/otherResources/lecture3/index.html#1)
+- [Hadley Wickham on regular expressions](http://stat405.had.co.nz/lectures/14-reg-exp.pdf)
+
 
