@@ -1,6 +1,7 @@
-name: Vaphana Solution
+name: Avoimien menetelmien lunttisivusto
 description: Something here
 markdown: redcarpet
 redcarpet:
   extensions: ["tables"]
 pygments: false
+baseurl: http://muuankarski.github.io/luntti/
