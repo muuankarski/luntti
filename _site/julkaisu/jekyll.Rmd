@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Blog archive</title>
+        <title>jekyll</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -92,29 +92,23 @@
 
     <div class="container">
 
-          <h1>Blog archive</h1>
+          ```{r, echo=FALSE}
+opts_chunk$set(list(echo=TRUE,eval=FALSE,cache=TRUE,warning=FALSE,message=FALSE))
+```
 
-<h2>Archive <small>all posts</small></h2>
+Asetukset ko. dokkariin
 
-<div id="posts">
+```{r}
+jekyll serve --watch --baseurl''
 
+# tai
 
-    <div style="border-bottom: 1px solid gray; padding: 5px 0;">
-    <small style="color: #999;">Jan 14, 2014</small> 
-    <a href="/aleksanteri/2014/01/14/hot-soup-cold-war.html">Hot soup, Cold War</a>
-    <br />
-    
-    </div>
+jekyll serve --watch
 
-    <div style="border-bottom: 1px solid gray; padding: 5px 0;">
-    <small style="color: #999;">Jan 14, 2014</small> 
-    <a href="/jekyll/update/2014/01/14/welcome-to-jekyll.html">Welcome to Jekyll!</a>
-    <br />
-    
-    </div>
+```
 
 
-</div>
+
 
 
       <footer>

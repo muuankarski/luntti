@@ -1,4 +1,3 @@
-##
 
 library(knitr)
 
@@ -12,4 +11,3 @@ for (dir in dirlist) {
                 paste0(dir,paste0(i,".md")))
   }  
 }
-
