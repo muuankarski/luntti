@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Etusivu - Markus Kainu avoimien menetelmien lunttisaitti
+title: Avoimien menetelmien lunttisaitti - Markus Kainu
 ---
 
 </br>
