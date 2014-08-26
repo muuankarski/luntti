@@ -26,5 +26,23 @@ Pushaa masteri sekä maste että gh-pages brancheihin
 	merge = refs/heads/master
 ```
 
+Vedä tietty branch ([lähde](http://stackoverflow.com/questions/1709177/git-pull-certain-branch-from-github))
+
+
+```r
+git pull origin other-branch
+```
+
+
+Resettaa .gitignore ([lähde](http://stackoverflow.com/questions/1139762/ignore-files-that-have-already-been-committed-to-a-git-repository))
+
+
+```r
+git rm -r --cached .
+
+git add .
+
+git commit -m ".gitignore toimii taas"
+```
 
 
