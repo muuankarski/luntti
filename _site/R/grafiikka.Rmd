@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Lue data</title>
+        <title>Grafiikka</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -97,23 +97,151 @@
 
     <div class="container">
 
-          <p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com">http://rmarkdown.rstudio.com</a>.</p>
+          # Graphics using with ggplot2
 
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<div class="highlight"><pre><code class="language-r" data-lang="r">summary<span class="p">(</span>cars<span class="p">)</span>
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##      speed           dist    
-##  Min.   : 4.0   Min.   :  2  
-##  1st Qu.:12.0   1st Qu.: 26  
-##  Median :15.0   Median : 36  
-##  Mean   :15.4   Mean   : 43  
-##  3rd Qu.:19.0   3rd Qu.: 56  
-##  Max.   :25.0   Max.   :120
-</code></pre></div>
-<p>You can also embed plots, for example:</p>
 
-<p><img src="figure/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2"> </p>
+## Obtaining the data and defining the colors
+```{r paletit}
+library(ggplot2)
+library(laeken)
+data(eusilc)
+df <- eusilc
+head(df)
+manual.color <- scale_color_manual(values=c("#CC79A7","#E69F00",
+                                       "#56B4E9","#000000",
+                                       "#009E73","#D55E00",
+                                       "#0072B2","#999999",
+                                       "#00FF00","Dim Grey",
+                                       "#56B4E9","#000000",
+                                       "#009E73","#D55E00",
+                                       "#0072B2","#999999"))
 
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+manual.fill <- scale_fill_manual(values=c("#CC79A7","#E69F00",
+                                       "#56B4E9","#000000",
+                                       "#009E73","#D55E00",
+                                       "#0072B2","#999999",
+                                       "#00FF00","Dim Grey",
+                                       "#56B4E9","#000000",
+                                       "#009E73","#D55E00",
+                                       "#0072B2","#999999"))
+```
+
+
+## Bar plot
+
+### Proportions of female and male headed households by region
+```{r tolppa1}
+library(ggplot2)
+library(grid)
+tbl <- data.frame(prop.table(table(df$db040,df$rb090),1) * 100)
+tbl$Freq <- round(tbl$Freq, 1)
+# ordering the levels of rdb040 by femla share
+df.order <- subset(tbl, Var2 == 'female')
+df.order <- df.order[order(df.order$Freq),]
+tbl$Var1 <- factor(tbl$Var1, levels = df.order$Var1)
+  # bar plot
+ggplot(tbl, aes(x=Var2,y=Freq,label=Freq,fill=Var1)) +
+  geom_bar(position="dodge", stat="identity") +
+  geom_text(position = position_dodge(width=1), vjust=-0.5, size=3) +
+  labs(x="xlab",y="ylab") +
+  labs(title="plot title") +
+  theme(axis.text.x  = element_text(angle=90, vjust= 0.5)) +
+  coord_cartesian(ylim=c(0,75)) + 
+  annotate("text", x = 1.5, y = 65, label = "Some text here") +
+  theme(legend.title=element_blank()) +
+  theme(legend.key.size = unit(3, "mm")) +
+  theme(legend.position="top") +
+  manual.fill
+```
+
+## Line Plot
+
+```{r viiva1}
+df <- read.csv("http://vincentarelbundock.github.com/Rdatasets/csv/Ecdat/Cigarette.csv")
+df$year <- as.numeric(df$year)
+
+cnames <- subset(df, year == 1995)
+ggplot(df, 
+       aes(x=year,y=packpc,group=state,color=state)) +
+  geom_line() + 
+  geom_point() +
+  scale_x_continuous(breaks=1985:1995) +
+  geom_text(data=cnames, aes(x=year,y=packpc,label=state), 
+            size=4, hjust=-0.2) +
+  labs(x="year",y="number of packs per capita") +
+  labs(title="The Cigarette Consumption Panel Data Set") +
+  theme(legend.position="none")
+```
+
+## Scatter plots
+
+### Age vs. household income by region and sex
+```{r hajonta1}
+df <- eusilc
+# aggregate a table
+tbl <- aggregate(eqIncome~db040+rb090+age, 
+                            median,
+                            data=df)
+# subset to cover ages 18-75
+tbl <- subset(tbl, age > 17 & age < 76)
+# plot
+ggplot(tbl, aes(x=age,y=eqIncome,color=rb090)) +
+  geom_point() + 
+  facet_wrap(~db040) +
+  geom_smooth(method=lm, se=TRUE) +
+  labs(x="xlab",y="ylab") +
+  labs(title="plot title") +
+  theme(axis.text.x  = element_text(angle=90, vjust= 0.5)) +
+  theme(legend.title=element_blank()) +
+  theme(legend.key.size = unit(3, "mm")) +
+  theme(legend.position="top") +
+  manual.color
+```
+
+
+## Distributions by ageclass, region and gender
+
+### As a density plot
+
+```{r silc1}
+df <- eusilc
+df$age_class[df$age < 18] <- '0-17'
+df$age_class[df$age >= 18 & df$age < 25] <- '18-24'
+df$age_class[df$age >= 25 & df$age < 55] <- '26-54'
+df$age_class[df$age >= 55 & df$age < 65] <- '55-64'
+df$age_class[df$age >= 65] <- '65 <'
+
+ggplot(df, aes(x=eqIncome,fill=age_class)) +
+  geom_density(alpha=.4) +
+  facet_grid(rb090~db040) +
+  labs(x="xlab",y="ylab") +
+  labs(title="plot title") +
+  theme(axis.text.x  = element_text(angle=90, vjust= 0.5)) +
+  theme(legend.title=element_blank()) +
+  theme(legend.key.size = unit(3, "mm")) +
+  theme(legend.position="top") +
+  coord_cartesian(xlim=c(0,30000)) +
+  manual.fill
+```
+
+### As a box plot
+
+```{r silc2}
+ggplot(df, aes(x=age_class,y=eqIncome, fill=rb090)) +
+  geom_boxplot() +
+  facet_wrap(~db040) +
+  labs(x="xlab",y="ylab") +
+  labs(title="plot title") +
+  theme(axis.text.x  = element_text(angle=90, vjust= 0.5)) +
+  theme(legend.title=element_blank()) +
+  theme(legend.key.size = unit(3, "mm")) +
+  theme(legend.position="top") +
+  coord_cartesian(ylim=c(0,30000)) +
+  manual.fill
+
+```
+
+
 
 
       <footer>

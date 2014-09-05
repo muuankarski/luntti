@@ -47,6 +47,9 @@
               <ul class="dropdown-menu" aria-labelledby="R">
                 <li><a href="/R/lue.html">Datan lukeminen & kirjoittaminen</a></li>
                 <li><a href="/R/manipulointi.html">Manipuloiminen</a></li>
+                <li><a href="/R/funktiot.html">Funktiot</a></li>
+                <li><a href="/R/grafiikka.html">Grafiikka</a></li>
+                <li><a href="/R/survey.html">Survey</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav">
@@ -108,6 +111,16 @@
 <span class="p">[</span>branch <span class="s">&quot;master&quot;</span><span class="p">]</span>
     remote <span class="o">=</span> origin
     merge <span class="o">=</span> refs<span class="o">/</span>heads<span class="o">/</span>master
+</code></pre></div>
+<p>Vedä tietty branch (<a href="http://stackoverflow.com/questions/1709177/git-pull-certain-branch-from-github">lähde</a>)</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">git pull origin other<span class="o">-</span>branch
+</code></pre></div>
+<p>Resettaa .gitignore (<a href="http://stackoverflow.com/questions/1139762/ignore-files-that-have-already-been-committed-to-a-git-repository">lähde</a>)</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">git rm <span class="o">-</span>r <span class="o">--</span>cached .
+
+git add .
+
+git commit <span class="o">-</span>m <span class="s">&quot;.gitignore toimii taas&quot;</span>
 </code></pre></div>
 
       <footer>

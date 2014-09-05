@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Survey</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- change the folder below to switch themes -->
+    <link rel="stylesheet" href="/css/yeti/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="/css/assets/css/bootswatch.min.css"> 
+
+
+<!-- to quickly try out themes, activate this and tweak the url!
+    <link rel="stylesheet" href="./bootstrap.css" media="screen">
+-->
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/footer.css">
+
+        <!-- Font avesome -->
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+  </head>
+  <body>
+    <script src="http://bootswatch.com/assets/js/bsa.js"></script>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="" class="navbar-brand">Etusivu</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+                <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">R<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="R">
+                <li><a href="/R/lue.html">Datan lukeminen & kirjoittaminen</a></li>
+                <li><a href="/R/manipulointi.html">Manipuloiminen</a></li>
+                <li><a href="/R/funktiot.html">Funktiot</a></li>
+                <li><a href="/R/grafiikka.html">Grafiikka</a></li>
+                <li><a href="/R/survey.html">Survey</a></li>
+              </ul>         
+         </ul>
+         <ul class="nav navbar-nav">
+                <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Toistettava tutkimus<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="toistettava">
+                <li><a href="/toistettava/knitr.html">knitr</a></li>
+                <li><a href="/toistettava/kirjoita.html">Kirjoittaminen</a></li>
+              </ul>         
+         </ul>
+         <ul class="nav navbar-nav">
+                <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Versiohallinta<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="versio">
+                <li><a href="/versio/git.html">git</a></li>
+              </ul>         
+         </ul>
+         <ul class="nav navbar-nav">
+                <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Julkaiseminen<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="julkaisu">
+                <li><a href="/julkaisu/latex.html">latex</a></li>
+                <li><a href="/julkaisu/jekyll.html">jekyll</a></li>
+              </ul>         
+         </ul>
+
+
+
+         <ul class="nav navbar-nav navbar-right">
+<!--                        <li><a href="/feed.xml" title="Blog feed"><i class="fa fa-rss fa-2x"></i></a></li> -->
+            <li><a href="http://markuskainu.fi" title="Markus Kainu"><i class="fa fa-thumbs-o-up fa-2x"></i></a></li>
+
+            <li><a href="mailto:markuskainu@gmail.com?Subject=Lunttisivustosta!" title="Email!" target="_top"><i class="fa fa-envelope fa-2x"></i></a></li>                        
+
+                      <!--  <li><a href="https://github.com/vaphana" title="Github"><i class="fa fa-github fa-2x"></i></a></li>
+		        <li><a href="/index_en.html" title="In English"><i class="fa fa-language fa-2x"></i></a> -->
+            </li>
+
+                        
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+
+          <h1>Survey</h1>
+
+<p><strong>Resources</strong></p>
+
+<ul>
+<li><a href="http://cran.r-project.org/web/packages/survey/index.html">survey: analysis of complex survey samples in CRAN</a></li>
+<li><a href="http://faculty.washington.edu/tlumley/survey/">Thomas Lumley: Survey analysis in R</a></li>
+</ul>
+
+<p>These analysis have been made using <a href="http://www.ebrd.com/pages/research/publications/special/transitionII.shtml">Life in Transition Survey 2</a>. You can load the data in R with following line of code</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>foreign<span class="p">)</span>
+temp <span class="o">&lt;-</span> tempfile<span class="p">()</span>
+download.file<span class="p">(</span><span class="s">&quot;http://www.ebrd.com/downloads/research/surveys/lits2.dta&quot;</span><span class="p">,</span> temp<span class="p">)</span>
+lits2 <span class="o">&lt;-</span> read.dta<span class="p">(</span>temp<span class="p">)</span>
+</code></pre></div>
+<h2>Survey design</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>survey<span class="p">)</span>
+d.df <span class="o">&lt;-</span> svydesign<span class="p">(</span>id <span class="o">=</span> <span class="o">~</span>SerialID<span class="p">,</span> 
+                  weights <span class="o">=</span> <span class="o">~</span>weight<span class="p">,</span> 
+                  data <span class="o">=</span> lits2<span class="p">)</span>
+</code></pre></div>
+<h2>Plotting distributions</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">dpar <span class="o">&lt;-</span> par<span class="p">(</span>mfrow<span class="o">=</span>c<span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+svyhist<span class="p">(</span><span class="o">~</span>q104a_1<span class="p">,</span> design<span class="o">=</span>d.df<span class="p">,</span> 
+        main<span class="o">=</span><span class="s">&quot;Survey weighted&quot;</span><span class="p">,</span>
+        col<span class="o">=</span><span class="s">&quot;cadetblue&quot;</span><span class="p">)</span>
+lines<span class="p">(</span>svysmooth<span class="p">(</span><span class="o">~</span>q104a_1<span class="p">,</span> d.df<span class="p">,</span> bandwidth<span class="o">=</span><span class="m">5</span><span class="p">))</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">## Loading required package: KernSmooth
+## KernSmooth 2.23 loaded
+## Copyright M. P. Wand 1997-2009
+</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">hist<span class="p">(</span>lits2<span class="o">$</span>q104a_1<span class="p">,</span>  main<span class="o">=</span><span class="s">&quot;Sample unweighted&quot;</span><span class="p">,</span>
+     col<span class="o">=</span><span class="s">&quot;cadetblue&quot;</span><span class="p">,</span>prob<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+lines<span class="p">(</span>density<span class="p">(</span>lits2<span class="o">$</span>q104a_1<span class="p">,</span> adjust<span class="o">=</span><span class="m">2</span><span class="p">))</span>
+</code></pre></div>
+<p><img src="figure/plot_dist.png" alt="plot of chunk plot_dist"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">par<span class="p">(</span>dpar<span class="p">)</span>
+</code></pre></div>
+<h2>Statistical tables</h2>
+
+<h3>Mean Age by country with standard errors</h3>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Create a data.frame out of table</span>
+t <span class="o">&lt;-</span> data.frame<span class="p">(</span>svyby<span class="p">(</span><span class="o">~</span>q104a_1<span class="p">,</span> <span class="o">~</span>q102_1<span class="o">+</span>country<span class="p">,</span> design<span class="o">=</span>d.df<span class="p">,</span> svymean<span class="p">,</span> na.rm<span class="o">=</span><span class="k-Variable">T</span><span class="p">))</span>
+<span class="c1"># New names for data file</span>
+names<span class="p">(</span>t<span class="p">)</span> <span class="o">&lt;-</span> c<span class="p">(</span><span class="s">&quot;Sex&quot;</span><span class="p">,</span><span class="s">&quot;Country&quot;</span><span class="p">,</span><span class="s">&quot;mean_age&quot;</span><span class="p">,</span><span class="s">&quot;SE&quot;</span><span class="p">)</span>
+<span class="c1"># Reorder the columns</span>
+t <span class="o">&lt;-</span> t<span class="p">[</span>c<span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">)]</span>
+</code></pre></div>
+<h3>GRAPH with Errorbars</h3>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>ggplot2<span class="p">)</span>
+ggplot<span class="p">(</span>t<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>Country<span class="p">,</span> y<span class="o">=</span>mean_age<span class="p">,</span> fill<span class="o">=</span>Sex<span class="p">))</span> <span class="o">+</span>
+  geom_bar<span class="p">(</span>position<span class="o">=</span><span class="s">&quot;dodge&quot;</span><span class="p">,</span> stat<span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">)</span> <span class="o">+</span>
+  geom_errorbar<span class="p">(</span>aes<span class="p">(</span>ymin<span class="o">=</span>mean_age<span class="o">-</span>SE<span class="p">,</span> ymax<span class="o">=</span>mean_age<span class="o">+</span>SE<span class="p">),</span> width<span class="o">=</span><span class="m">.2</span><span class="p">,</span>
+                position<span class="o">=</span>position_dodge<span class="p">(</span><span class="m">.9</span><span class="p">))</span> <span class="o">+</span>
+  coord_cartesian<span class="p">(</span>ylim<span class="o">=</span>c<span class="p">(</span><span class="m">35</span><span class="p">,</span><span class="m">65</span><span class="p">))</span> <span class="o">+</span>
+  theme<span class="p">(</span>axis.text.x <span class="o">=</span> element_text<span class="p">(</span>angle <span class="o">=</span> <span class="m">90</span><span class="p">,</span> vjust <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</code></pre></div>
+<p><img src="figure/meanplot.png" alt="plot of chunk meanplot"> </p>
+
+<h2>Quantities by categorical variable</h2>
+
+<p>Let&#39;s use variable <strong>q301a</strong></p>
+
+<blockquote>
+<p>The economic situation in our country is better today than around 4 years ago</p>
+</blockquote>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># manipulate string</span>
+library<span class="p">(</span>stringr<span class="p">)</span>
+lits2<span class="o">$</span>q301a <span class="o">&lt;-</span> as.factor<span class="p">(</span>str_replace<span class="p">(</span>lits2<span class="o">$</span>q301a<span class="p">,</span> <span class="s">&quot;Don&#39;t know&quot;</span><span class="p">,</span> <span class="s">&quot;Dont know&quot;</span><span class="p">))</span>
+<span class="c1"># recode</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Strongly agree&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Agree&quot;</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Agree&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Agree&quot;</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Strongly disagree&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Disagree&quot;</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Disagree&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Disagree&quot;</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Neither disagree nor agree&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Neither nor&quot;</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Dont know&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Dont know&quot;</span>
+<span class="c1"># set levels</span>
+lits2<span class="o">$</span>q301a_rec <span class="o">&lt;-</span> factor<span class="p">(</span>lits2<span class="o">$</span>q301a_rec<span class="p">,</span> levels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Agree&quot;</span><span class="p">,</span><span class="s">&quot;Neither nor&quot;</span><span class="p">,</span><span class="s">&quot;Disagree&quot;</span><span class="p">,</span><span class="s">&quot;Dont know&quot;</span><span class="p">))</span>
+<span class="c1">######</span>
+<span class="c1"># Re-set the survey design</span>
+d.df <span class="o">&lt;-</span> svydesign<span class="p">(</span>id <span class="o">=</span> <span class="o">~</span>SerialID<span class="p">,</span> 
+                  weights <span class="o">=</span> <span class="o">~</span>weight<span class="p">,</span> 
+                  data <span class="o">=</span> lits2<span class="p">)</span>
+<span class="c1">##</span>
+t2 <span class="o">&lt;-</span> data.frame<span class="p">(</span>prop.table<span class="p">(</span>svytable<span class="p">(</span><span class="o">~</span>q301a_rec<span class="o">+</span>country<span class="p">,</span> d.df<span class="p">),</span><span class="m">2</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">)</span>
+t2 <span class="o">&lt;-</span> t2<span class="p">[</span><span class="o">!</span>is.na<span class="p">(</span>t2<span class="o">$</span>Freq<span class="p">),</span> <span class="p">]</span>
+<span class="c1">##</span>
+ggplot<span class="p">(</span>t2<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>country<span class="p">,</span> y<span class="o">=</span>Freq<span class="p">,</span> fill<span class="o">=</span>q301a_rec<span class="p">))</span> <span class="o">+</span> 
+  geom_bar<span class="p">(</span>stat<span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">)</span> <span class="o">+</span> 
+  theme<span class="p">(</span>legend.position<span class="o">=</span><span class="s">&quot;top&quot;</span><span class="p">)</span> <span class="o">+</span> 
+  theme<span class="p">(</span>axis.text.x <span class="o">=</span> element_text<span class="p">(</span>angle <span class="o">=</span> <span class="m">90</span><span class="p">,</span> vjust <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</code></pre></div>
+<p><img src="figure/quant_plot.png" alt="plot of chunk quant_plot"> </p>
+
+<h3>Share agreeing</h3>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Freq table</span>
+<span class="c1">## as data.frame of relative shares</span>
+t3 <span class="o">&lt;-</span> subset<span class="p">(</span>t2<span class="p">,</span> q301a_rec <span class="o">%in%</span> <span class="s">&#39;Agree&#39;</span><span class="p">)</span>
+t3<span class="o">$</span>Freq <span class="o">&lt;-</span> round<span class="p">(</span>t3<span class="o">$</span>Freq<span class="p">,</span><span class="m">1</span><span class="p">)</span>
+<span class="c1"># plot</span>
+ggplot<span class="p">(</span>t3<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>reorder<span class="p">(</span>country<span class="p">,</span> Freq<span class="p">),</span> y<span class="o">=</span>Freq<span class="p">,</span>label<span class="o">=</span>Freq<span class="p">))</span> <span class="o">+</span> 
+  geom_bar<span class="p">(</span>stat<span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">,</span> position<span class="o">=</span><span class="s">&quot;dodge&quot;</span><span class="p">,</span> fill<span class="o">=</span><span class="s">&quot;cadetblue&quot;</span><span class="p">)</span> <span class="o">+</span> 
+  coord_flip<span class="p">(</span>ylim<span class="o">=</span>c<span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">100</span><span class="p">))</span> <span class="o">+</span> geom_text<span class="p">(</span>posistion<span class="o">=</span>position_dodge<span class="p">(),</span> hjust<span class="o">=</span><span class="m">-0.1</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="figure/shareplot.png" alt="plot of chunk shareplot"> </p>
+
+
+      <footer>
+
+        <div class="row">
+          <div class="col-lg-12">
+
+            <ul class="list-unstyled">
+              <li class="pull-right"><a href="#top">Back to top</a></li>     
+            </ul>
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons -käyttölupa" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Tämä teos on lisensoitu <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Nimeä 4.0 Kansainvälinen -käyttöluvalla</a>.
+
+
+
+            
+
+            <p>Theme by <a href="http://thomaspark.me" rel="nofollow">Thomas Park</a>
+            <p>Code released under the <a href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
+            <p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+
+        </div>
+
+<!--
+<blockquote class="pull-left">
+  <p>Give a man a fish and you feed him for a day; teach a man to fish and you feed him for a lifetime</p>
+  <small>Anne Isabella Thackeray Ritchie <cite title="Source Title">Mrs. Dymond (1885)</cite></small>
+</blockquote>
+-->
+      </footer>
+
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="http://bootswatch.com/assets/js/bootswatch.js"></script>
+  </body>
+</html>
+
+

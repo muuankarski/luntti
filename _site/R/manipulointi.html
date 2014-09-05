@@ -47,6 +47,9 @@
               <ul class="dropdown-menu" aria-labelledby="R">
                 <li><a href="/R/lue.html">Datan lukeminen & kirjoittaminen</a></li>
                 <li><a href="/R/manipulointi.html">Manipuloiminen</a></li>
+                <li><a href="/R/funktiot.html">Funktiot</a></li>
+                <li><a href="/R/grafiikka.html">Grafiikka</a></li>
+                <li><a href="/R/survey.html">Survey</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav">
@@ -98,18 +101,18 @@
 
 <h2>Datan kääntäminen</h2>
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># pitkästä leveään</span>
-<span class="kn">library</span><span class="p">(</span>reshape2<span class="p">)</span>
+library<span class="p">(</span>reshape2<span class="p">)</span>
 df.wide <span class="o">&lt;-</span> dcast<span class="p">(</span>df.long<span class="p">,</span> region <span class="o">+</span> cntry <span class="o">~</span> year<span class="p">,</span> value.var<span class="o">=</span><span class="s">&quot;value&quot;</span><span class="p">)</span>
 <span class="c1"># leveästä to pitkään</span>
-<span class="kn">library</span><span class="p">(</span>reshape2<span class="p">)</span>
-df.long <span class="o">&lt;-</span> melt<span class="p">(</span>df.wide<span class="p">,</span> id.vars<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;region&quot;</span><span class="p">,</span><span class="s">&quot;cntry&quot;</span><span class="p">))</span>
+library<span class="p">(</span>reshape2<span class="p">)</span>
+df.long <span class="o">&lt;-</span> melt<span class="p">(</span>df.wide<span class="p">,</span> id.vars<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;region&quot;</span><span class="p">,</span><span class="s">&quot;cntry&quot;</span><span class="p">))</span>
 </code></pre></div>
 <h2>Na solujen poistaminen</h2>
-<div class="highlight"><pre><code class="language-r" data-lang="r">df <span class="o">&lt;-</span> df<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>df<span class="o">$</span>Var1<span class="p">),]</span>
+<div class="highlight"><pre><code class="language-r" data-lang="r">df <span class="o">&lt;-</span> df<span class="p">[</span><span class="o">!</span>is.na<span class="p">(</span>df<span class="o">$</span>Var1<span class="p">),]</span>
 </code></pre></div>
 <h2>Faktorit numeerisiksi</h2>
-<div class="highlight"><pre><code class="language-r" data-lang="r">df<span class="o">$</span>f <span class="o">&lt;-</span> <span class="kp">factor</span><span class="p">(</span>df<span class="o">$</span>f<span class="p">)</span>
-df<span class="o">$</span>f.num <span class="o">&lt;-</span> <span class="kp">as.numeric</span><span class="p">(</span><span class="kp">levels</span><span class="p">(</span>df<span class="o">$</span>f<span class="p">))[</span>df<span class="o">$</span>f<span class="p">]</span>
+<div class="highlight"><pre><code class="language-r" data-lang="r">df<span class="o">$</span>f <span class="o">&lt;-</span> factor<span class="p">(</span>df<span class="o">$</span>f<span class="p">)</span>
+df<span class="o">$</span>f.num <span class="o">&lt;-</span> as.numeric<span class="p">(</span>levels<span class="p">(</span>df<span class="o">$</span>f<span class="p">))[</span>df<span class="o">$</span>f<span class="p">]</span>
 </code></pre></div>
 <h2>Satunnaisia linkkejä</h2>
 

@@ -47,6 +47,9 @@
               <ul class="dropdown-menu" aria-labelledby="R">
                 <li><a href="/R/lue.html">Datan lukeminen & kirjoittaminen</a></li>
                 <li><a href="/R/manipulointi.html">Manipuloiminen</a></li>
+                <li><a href="/R/funktiot.html">Funktiot</a></li>
+                <li><a href="/R/grafiikka.html">Grafiikka</a></li>
+                <li><a href="/R/survey.html">Survey</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav">

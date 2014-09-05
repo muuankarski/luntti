@@ -47,6 +47,9 @@
               <ul class="dropdown-menu" aria-labelledby="R">
                 <li><a href="/R/lue.html">Datan lukeminen & kirjoittaminen</a></li>
                 <li><a href="/R/manipulointi.html">Manipuloiminen</a></li>
+                <li><a href="/R/funktiot.html">Funktiot</a></li>
+                <li><a href="/R/grafiikka.html">Grafiikka</a></li>
+                <li><a href="/R/survey.html">Survey</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav">
@@ -117,6 +120,22 @@ Pushaa masteri sekä maste että gh-pages brancheihin
 
 ```
 
+Vedä tietty branch ([lähde](http://stackoverflow.com/questions/1709177/git-pull-certain-branch-from-github))
+
+```{r}
+git pull origin other-branch
+```
+
+
+Resettaa .gitignore ([lähde](http://stackoverflow.com/questions/1139762/ignore-files-that-have-already-been-committed-to-a-git-repository))
+
+```{r}
+git rm -r --cached .
+
+git add .
+
+git commit -m ".gitignore toimii taas"
+```
 
 
 
