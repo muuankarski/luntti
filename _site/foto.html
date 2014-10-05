@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Lue data</title>
+        <title>Valokuvaus</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -100,21 +100,14 @@
 
     <div class="container">
 
-          This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+          <h1>Päätekomentoja valokuvien editoimiseen</h1>
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+<h2>Kuvien muokkausta</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">find . <span class="o">-</span>iname <span class="s">&#39;*.JPG&#39;</span> <span class="o">-</span>execdir mogrify <span class="o">-</span>verbose <span class="o">-</span>resize <span class="m">1200</span> <span class="o">-</span>quality <span class="m">95</span> <span class="p">{}</span> \<span class="p">;</span>
 
-```{r}
-summary(cars)
-```
-
-You can also embed plots, for example:
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+mogrify <span class="o">-</span>verbose <span class="o">-</span>brightness<span class="o">-</span>contrast <span class="m">1</span>x1 <span class="o">-</span>resize <span class="m">1200</span> <span class="o">-</span>quality <span class="m">95</span> <span class="o">*</span>.jpg
+</code></pre></div>
+<h2>Gallerioiden tekemistä</h2>
 
 
       <footer>

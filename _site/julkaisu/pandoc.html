@@ -33,7 +33,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="" class="navbar-brand">Etusivu</a>
+          <a href="/" class="navbar-brand">Etusivu</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -41,8 +41,7 @@
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-                <li class="dropdown">
+          <ul class="nav navbar-nav"><li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">R<span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="R">
                 <li><a href="/R/lue.html">Datan lukeminen & kirjoittaminen</a></li>
@@ -52,28 +51,31 @@
                 <li><a href="/R/survey.html">Survey</a></li>
               </ul>         
          </ul>
-         <ul class="nav navbar-nav">
-                <li class="dropdown">
+         <ul class="nav navbar-nav"><li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Toistettava tutkimus<span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="toistettava">
                 <li><a href="/toistettava/knitr.html">knitr</a></li>
                 <li><a href="/toistettava/kirjoita.html">Kirjoittaminen</a></li>
               </ul>         
          </ul>
-         <ul class="nav navbar-nav">
-                <li class="dropdown">
+         <ul class="nav navbar-nav"><li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Versiohallinta<span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="versio">
                 <li><a href="/versio/git.html">git</a></li>
               </ul>         
          </ul>
-         <ul class="nav navbar-nav">
-                <li class="dropdown">
+         <ul class="nav navbar-nav"><li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Julkaiseminen<span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="julkaisu">
                 <li><a href="/julkaisu/latex.html">latex</a></li>
                 <li><a href="/julkaisu/jekyll.html">jekyll</a></li>
                 <li><a href="/julkaisu/pandoc.html">Pandoc</a></li>
+              </ul>         
+         </ul>
+            <ul class="nav navbar-nav"><li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">misc<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="misc">
+                <li><a href="/misc/foto.html">foto</a></li>
               </ul>         
          </ul>
 
@@ -98,17 +100,16 @@
 
     <div class="container">
 
-          <p><code>r
-pandoc -s -S --number-section --toc --from=markdown+yaml_metadata_block -H koko_css_mukaan.css source.md -o output.html
-#
-pandoc -s -S --number-section --toc --from=markdown+yaml_metadata_block --css css_mukana_hakemistossa.css source.md -o output.html
-# pdf
-pandoc --toc --number-section --latex-engine=xelatex -V lang=english -V papersize:a4paper -V documentclass=scrartcl input.md -o article_demokr.pdf
-# word
-pandoc --toc --number-section input.md -o article_demokr.docx
-</code></p>
+          <div class="highlight"><pre><code class="language-r" data-lang="r">pandoc <span class="o">-</span>s <span class="o">-</span>S <span class="o">--</span>number<span class="o">-</span>section <span class="o">--</span>toc <span class="o">--</span>from<span class="o">=</span>markdown<span class="o">+</span>yaml_metadata_block <span class="o">-</span>H koko_css_mukaan.css source.md <span class="o">-</span>o output.html
+<span class="c1">#</span>
+pandoc <span class="o">-</span>s <span class="o">-</span>S <span class="o">--</span>number<span class="o">-</span>section <span class="o">--</span>toc <span class="o">--</span>from<span class="o">=</span>markdown<span class="o">+</span>yaml_metadata_block <span class="o">--</span>css css_mukana_hakemistossa.css source.md <span class="o">-</span>o output.html
+<span class="c1"># pdf</span>
+pandoc <span class="o">--</span>toc <span class="o">--</span>number<span class="o">-</span>section <span class="o">--</span>latex<span class="o">-</span>engine<span class="o">=</span>xelatex <span class="o">-</span>V lang<span class="o">=</span>english <span class="o">-</span>V papersize<span class="o">:</span>a4paper <span class="o">-</span>V documentclass<span class="o">=</span>scrartcl input.md <span class="o">-</span>o article_demokr.pdf
+<span class="c1"># word</span>
+pandoc <span class="o">--</span>toc <span class="o">--</span>number<span class="o">-</span>section input.md <span class="o">-</span>o article_demokr.docx
 
-
+pandoc <span class="o">--</span>toc <span class="o">--</span>number<span class="o">-</span>section <span class="o">-</span>s <span class="o">-</span>S <span class="o">-</span>H <span class="o">/</span>home<span class="o">/</span>aurelius<span class="o">/</span>web<span class="o">/</span>css<span class="o">/</span>rmarkdown.css <span class="o">-</span>r markdown<span class="o">+</span>grid_tables<span class="o">+</span>table_captions<span class="o">+</span>yaml_metadata_block paperi<span class="o">-</span>gaudeamus.md <span class="o">-</span>o index.html
+</code></pre></div>
 
       <footer>
 

@@ -33,7 +33,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="" class="navbar-brand">Etusivu</a>
+          <a href="/" class="navbar-brand">Etusivu</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -41,8 +41,7 @@
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-                <li class="dropdown">
+          <ul class="nav navbar-nav"><li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">R<span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="R">
                 <li><a href="/R/lue.html">Datan lukeminen & kirjoittaminen</a></li>
@@ -52,28 +51,31 @@
                 <li><a href="/R/survey.html">Survey</a></li>
               </ul>         
          </ul>
-         <ul class="nav navbar-nav">
-                <li class="dropdown">
+         <ul class="nav navbar-nav"><li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Toistettava tutkimus<span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="toistettava">
                 <li><a href="/toistettava/knitr.html">knitr</a></li>
                 <li><a href="/toistettava/kirjoita.html">Kirjoittaminen</a></li>
               </ul>         
          </ul>
-         <ul class="nav navbar-nav">
-                <li class="dropdown">
+         <ul class="nav navbar-nav"><li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Versiohallinta<span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="versio">
                 <li><a href="/versio/git.html">git</a></li>
               </ul>         
          </ul>
-         <ul class="nav navbar-nav">
-                <li class="dropdown">
+         <ul class="nav navbar-nav"><li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Julkaiseminen<span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="julkaisu">
                 <li><a href="/julkaisu/latex.html">latex</a></li>
                 <li><a href="/julkaisu/jekyll.html">jekyll</a></li>
                 <li><a href="/julkaisu/pandoc.html">Pandoc</a></li>
+              </ul>         
+         </ul>
+            <ul class="nav navbar-nav"><li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">misc<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="misc">
+                <li><a href="/misc/foto.html">foto</a></li>
               </ul>         
          </ul>
 
@@ -98,40 +100,30 @@
 
     <div class="container">
 
-          <h1 id="datan-manipuloimista">Datan manipuloimista</h1>
+          <h1>Datan manipuloimista</h1>
 
-<h2 id="datan-kntminen">Datan kääntäminen</h2>
-
-<p><code>r
-# pitkästä leveään
-library(reshape2)
-df.wide &lt;- dcast(df.long, region + cntry ~ year, value.var="value")
-# leveästä to pitkään
-library(reshape2)
-df.long &lt;- melt(df.wide, id.vars=c("region","cntry"))
-</code></p>
-
-<h2 id="na-solujen-poistaminen">Na solujen poistaminen</h2>
-
-<p><code>r
-df &lt;- df[!is.na(df$Var1),]
-</code></p>
-
-<h2 id="faktorit-numeerisiksi">Faktorit numeerisiksi</h2>
-
-<p><code>r
-df$f &lt;- factor(df$f)
-df$f.num &lt;- as.numeric(levels(df$f))[df$f]
-</code></p>
-
-<h2 id="satunnaisia-linkkej">Satunnaisia linkkejä</h2>
+<h2>Datan kääntäminen</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># pitkästä leveään</span>
+library<span class="p">(</span>reshape2<span class="p">)</span>
+df.wide <span class="o">&lt;-</span> dcast<span class="p">(</span>df.long<span class="p">,</span> region <span class="o">+</span> cntry <span class="o">~</span> year<span class="p">,</span> value.var<span class="o">=</span><span class="s">&quot;value&quot;</span><span class="p">)</span>
+<span class="c1"># leveästä to pitkään</span>
+library<span class="p">(</span>reshape2<span class="p">)</span>
+df.long <span class="o">&lt;-</span> melt<span class="p">(</span>df.wide<span class="p">,</span> id.vars<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;region&quot;</span><span class="p">,</span><span class="s">&quot;cntry&quot;</span><span class="p">))</span>
+</code></pre></div>
+<h2>Na solujen poistaminen</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">df <span class="o">&lt;-</span> df<span class="p">[</span><span class="o">!</span>is.na<span class="p">(</span>df<span class="o">$</span>Var1<span class="p">),]</span>
+</code></pre></div>
+<h2>Faktorit numeerisiksi</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">df<span class="o">$</span>f <span class="o">&lt;-</span> factor<span class="p">(</span>df<span class="o">$</span>f<span class="p">)</span>
+df<span class="o">$</span>f.num <span class="o">&lt;-</span> as.numeric<span class="p">(</span>levels<span class="p">(</span>df<span class="o">$</span>f<span class="p">))[</span>df<span class="o">$</span>f<span class="p">]</span>
+</code></pre></div>
+<h2>Satunnaisia linkkejä</h2>
 
 <ul>
-  <li><a href="http://vita.had.co.nz/papers/tidy-data-pres.pdf">tidy data and tidy tools</a></li>
-  <li><a href="https://dl.dropbox.com/u/7710864/courseraPublic/otherResources/lecture3/index.html#1">Lists and data cleaning</a></li>
-  <li><a href="http://stat405.had.co.nz/lectures/14-reg-exp.pdf">Hadley Wickham on regular expressions</a></li>
+<li><a href="http://vita.had.co.nz/papers/tidy-data-pres.pdf">tidy data and tidy tools</a></li>
+<li><a href="https://dl.dropbox.com/u/7710864/courseraPublic/otherResources/lecture3/index.html#1">Lists and data cleaning</a></li>
+<li><a href="http://stat405.had.co.nz/lectures/14-reg-exp.pdf">Hadley Wickham on regular expressions</a></li>
 </ul>
-
 
 
       <footer>

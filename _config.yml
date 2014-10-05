@@ -1,5 +1,7 @@
 name: Avoimien menetelmien lunttisivusto
 description: Something here
-markdown: kramdown
-highlighter: rouge
+markdown: redcarpet
+redcarpet:
+   extensions: ["tables"]
+pygments: false
 baseurl: http://muuankarski.github.io/luntti

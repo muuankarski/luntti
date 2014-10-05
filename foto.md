@@ -10,7 +10,7 @@ date: "24.08.2014"
 ## Kuvien muokkausta
 
 
-```{r, eval=FALSE}
+```r
 find . -iname '*.JPG' -execdir mogrify -verbose -resize 1200 -quality 95 {} \;
 
 mogrify -verbose -brightness-contrast 1x1 -resize 1200 -quality 95 *.jpg
