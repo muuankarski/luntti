@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- change the folder below to switch themes -->
-    <link rel="stylesheet" href="/css/yeti/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="/css/lumen/bootstrap.css" media="screen">
     <link rel="stylesheet" href="/css/assets/css/bootswatch.min.css"> 
 
 
@@ -73,6 +73,7 @@
               <ul class="dropdown-menu" aria-labelledby="julkaisu">
                 <li><a href="/julkaisu/latex.html">latex</a></li>
                 <li><a href="/julkaisu/jekyll.html">jekyll</a></li>
+                <li><a href="/julkaisu/pandoc.html">Pandoc</a></li>
               </ul>         
          </ul>
 

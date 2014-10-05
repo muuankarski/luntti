@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>knitr</title>
+        <title>Pandoc</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -98,17 +98,15 @@
 
     <div class="container">
 
-          <p>Asetukset ko. dokkariin</p>
-
-<p>```r
-library(knitr)
-opts_chunk$set(list(echo=FALSE,eval=TRUE,cache=TRUE,warning=FALSE,message=FALSE))</p>
-
-<h1 id="tai">tai</h1>
-
-<p>library(knitr)
-opts_chunk$set(list(echo=FALSE,eval=TRUE,cache=TRUE,warning=FALSE,message=FALSE,fig.height=4,dev=”pdf”,opts_chunk$set(fig.path = paste(‘figure/my-prefix-‘, org, sep = ‘’))))
-```</p>
+          <p><code>r
+pandoc -s -S --number-section --toc --from=markdown+yaml_metadata_block -H koko_css_mukaan.css source.md -o output.html
+#
+pandoc -s -S --number-section --toc --from=markdown+yaml_metadata_block --css css_mukana_hakemistossa.css source.md -o output.html
+# pdf
+pandoc --toc --number-section --latex-engine=xelatex -V lang=english -V papersize:a4paper -V documentclass=scrartcl input.md -o article_demokr.pdf
+# word
+pandoc --toc --number-section input.md -o article_demokr.docx
+</code></p>
 
 
 

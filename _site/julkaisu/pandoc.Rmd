@@ -3,12 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Welcome to Jekyll!</title>
+        <title>Pandoc</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- change the folder below to switch themes -->
-    <link rel="stylesheet" href="/css/yeti/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="/css/lumen/bootstrap.css" media="screen">
     <link rel="stylesheet" href="/css/assets/css/bootswatch.min.css"> 
 
 
@@ -73,6 +73,7 @@
               <ul class="dropdown-menu" aria-labelledby="julkaisu">
                 <li><a href="/julkaisu/latex.html">latex</a></li>
                 <li><a href="/julkaisu/jekyll.html">jekyll</a></li>
+                <li><a href="/julkaisu/pandoc.html">Pandoc</a></li>
               </ul>         
          </ul>
 
@@ -97,24 +98,21 @@
 
     <div class="container">
 
-          <h2>Welcome to Jekyll!</h2>
-<p class="meta">14 Jan 2014</p>
+          ```{r, eval=FALSE}
+pandoc -s -S --number-section --toc --from=markdown+yaml_metadata_block -H koko_css_mukaan.css source.md -o output.html
+#
+pandoc -s -S --number-section --toc --from=markdown+yaml_metadata_block --css css_mukana_hakemistossa.css source.md -o output.html
+# pdf
+pandoc --toc --number-section --latex-engine=xelatex -V lang=english -V papersize:a4paper -V documentclass=scrartcl input.md -o article_demokr.pdf
+# word
+pandoc --toc --number-section input.md -o article_demokr.docx
 
-<div class="post">
-<p>You&#39;ll find this post in your <code>_posts</code> directory - edit this post and re-build (or run with the <code>-w</code> switch) to see your changes!
-To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention: YYYY-MM-DD-name-of-post.ext.</p>
+pandoc --toc --number-section -s -S -H /home/aurelius/web/css/rmarkdown.css -r markdown+grid_tables+table_captions+yaml_metadata_block paperi-gaudeamus.md -o index.html
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+```
 
-<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">&quot;Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">)</span>
-<span class="c1">#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.</span></code></pre></div>
 
-<p>Check out the <a href="http://jekyllrb.com">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/mojombo/jekyll">Jekyll&#39;s GitHub repo</a>.</p>
 
-</div>
 
 
       <footer>

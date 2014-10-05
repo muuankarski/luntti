@@ -14,6 +14,8 @@ pandoc --toc --number-section --latex-engine=xelatex -V lang=english -V papersiz
 # word
 pandoc --toc --number-section input.md -o article_demokr.docx
 
+pandoc --toc --number-section -s -S -H /home/aurelius/web/css/rmarkdown.css -r markdown+grid_tables+table_captions+yaml_metadata_block paperi-gaudeamus.md -o index.html
+
 ```
 
 
