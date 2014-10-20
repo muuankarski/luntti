@@ -27,7 +27,10 @@ df.long <- melt(df.wide, id.vars=c("region","cntry"))
 ## Na solujen poistaminen
 
 ```{r}
+# yksi muuttuja
 df <- df[!is.na(df$Var1),]
+# kaikki rivit joilla na
+df2 <- na.omit(df) 
 ```
 
 ## Faktorit numeerisiksi
