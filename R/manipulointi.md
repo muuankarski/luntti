@@ -38,6 +38,15 @@ df$f <- factor(df$f)
 df$f.num <- as.numeric(levels(df$f))[df$f]
 ```
 
+## Removing duplicats
+
+
+
+```r
+df <- df[!duplicated(dat[c("var1","var2","var3")]),]
+```
+
+
 ## Satunnaisia linkkejä
 
 - [tidy data and tidy tools](http://vita.had.co.nz/papers/tidy-data-pres.pdf)

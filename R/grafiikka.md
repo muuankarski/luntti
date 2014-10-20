@@ -96,7 +96,7 @@ ggplot(tbl, aes(x=Var2,y=Freq,label=Freq,fill=Var1)) +
 ## ymax not defined: adjusting position using y instead
 ```
 
-![plot of chunk tolppa1](figure/tolppa1.png) 
+![plot of chunk tolppa1](figure/tolppa1-1.png) 
 
 ## Line Plot
 
@@ -118,7 +118,7 @@ ggplot(df,
   theme(legend.position="none")
 ```
 
-![plot of chunk viiva1](figure/viiva1.png) 
+![plot of chunk viiva1](figure/viiva1-1.png) 
 
 ## Scatter plots
 
@@ -146,7 +146,7 @@ ggplot(tbl, aes(x=age,y=eqIncome,color=rb090)) +
   manual.color
 ```
 
-![plot of chunk hajonta1](figure/hajonta1.png) 
+![plot of chunk hajonta1](figure/hajonta1-1.png) 
 
 
 ## Distributions by ageclass, region and gender
@@ -175,7 +175,7 @@ ggplot(df, aes(x=eqIncome,fill=age_class)) +
   manual.fill
 ```
 
-![plot of chunk silc1](figure/silc1.png) 
+![plot of chunk silc1](figure/silc1-1.png) 
 
 ### As a box plot
 
@@ -194,6 +194,6 @@ ggplot(df, aes(x=age_class,y=eqIncome, fill=rb090)) +
   manual.fill
 ```
 
-![plot of chunk silc2](figure/silc2.png) 
+![plot of chunk silc2](figure/silc2-1.png) 
 
 
