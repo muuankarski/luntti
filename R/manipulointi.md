@@ -60,6 +60,15 @@ names(df)[names(df)=="oldName"] <- "newName"
 rename(df, c("oldName1"="newName2", "oldName2"="newName2"))
 ```
 
+## Subset data
+
+
+```r
+# based on regexpr in string
+df <- df[ with(df, grepl("phrase", var1), ]
+```
+
+
 
 
 ## Satunnaisia linkkejä
