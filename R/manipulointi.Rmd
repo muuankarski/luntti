@@ -48,6 +48,17 @@ df <- df[!duplicated(dat[c("var1","var2","var3")]),]
 ```
 
 
+## Renaming variables
+
+```{r}
+# built-in
+names(df)[names(df)=="oldName"] <- "newName"
+# using plyr
+rename(df, c("oldName1"="newName2", "oldName2"="newName2"))
+```
+
+
+
 ## Satunnaisia linkkejä
 
 - [tidy data and tidy tools](http://vita.had.co.nz/papers/tidy-data-pres.pdf)

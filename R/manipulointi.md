@@ -27,7 +27,10 @@ df.long <- melt(df.wide, id.vars=c("region","cntry"))
 
 
 ```r
+# yksi muuttuja
 df <- df[!is.na(df$Var1),]
+# kaikki rivit joilla na
+df2 <- na.omit(df) 
 ```
 
 ## Faktorit numeerisiksi
@@ -45,6 +48,18 @@ df$f.num <- as.numeric(levels(df$f))[df$f]
 ```r
 df <- df[!duplicated(dat[c("var1","var2","var3")]),]
 ```
+
+
+## Renaming variables
+
+
+```r
+# built-in
+names(df)[names(df)=="oldName"] <- "newName"
+# using plyr
+rename(df, c("oldName1"="newName2", "oldName2"="newName2"))
+```
+
 
 
 ## Satunnaisia linkkejä
