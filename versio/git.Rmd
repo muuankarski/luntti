@@ -46,3 +46,10 @@ git commit -m ".gitignore toimii taas"
 ```
 
 
+vaihda github remote toiseen ([lähde](https://help.github.com/articles/changing-a-remote-s-url/))
+
+```{r}
+git remote set-url origin https://github.com/USERNAME/REPOSITORY_2.git
+
+```
+
