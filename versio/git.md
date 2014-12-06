@@ -7,6 +7,28 @@ date: "24.08.2014"
 
 
 
+
+```r
+git init
+git add .
+git commit -am "message here"
+
+# branchit
+git branch xyz # uusi branchi, jossa nykyisen branchin sisalto
+git checkout xyz # vaihda branchiin
+git branch -D xyz # poist branchi
+
+# orphan branch - tyhja haara
+git checkout --orphan gh-pages
+git rm -rf . # tuhoa kaikki ennen committausta
+# lisää haluamasi tiedostot (jekyll saitti esim.)
+git add .
+git commit -am "uus gh-pages haara"
+git push origin gh-pages
+```
+
+
+
 Pushaa masteri sekä maste että gh-pages brancheihin
 
 
@@ -45,4 +67,11 @@ git add .
 git commit -m ".gitignore toimii taas"
 ```
 
+
+vaihda github remote toiseen ([lähde](https://help.github.com/articles/changing-a-remote-s-url/))
+
+
+```r
+git remote set-url origin https://github.com/USERNAME/REPOSITORY_2.git
+```
 

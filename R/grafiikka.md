@@ -8,6 +8,57 @@ date: "05.09.2014"
 
 # Graphics using with ggplot2
 
+- [Beautiful plotting in R: A ggplot2 cheatsheet](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/)
+
+
+## Moniulotteinen hajontakuvio
+
+
+
+```r
+library(grid)
+library(ggplot2)
+mtcars$brands <- row.names(mtcars)     
+
+mtcars$am_c[mtcars$am == 0] <- "automatic"
+mtcars$am_c[mtcars$am == 1] <- "manual"
+mtcars$am_c <- factor(mtcars$am_c)
+# keskiarvoviivat
+h.lines <- data.frame(am_c=levels(mtcars$am_c), xval=c(mean(mtcars[mtcars$am_c == "automatic",]$qsec),
+                                                         mean(mtcars[mtcars$am_c == "manual",]$qsec)))
+v.lines <- data.frame(am_c=levels(mtcars$am_c), xval=c(mean(mtcars[mtcars$am_c == "automatic",]$mpg),
+                                                         mean(mtcars[mtcars$am_c == "manual",]$mpg)))
+
+plot <- ggplot(mtcars, aes(x=mpg,y=qsec,label=brands,color=factor(carb)))
+plot <- plot + geom_point(shape = 1, size = 3)
+plot <- plot + facet_grid(.~am_c) 
+plot <- plot + geom_vline(aes(xintercept=xval), data=v.lines, linetype = "dashed", color = "grey70")
+plot <- plot + geom_hline(aes(yintercept=xval), data=h.lines, linetype = "dashed", color = "grey70")
+plot <- plot + geom_text(family="Open Sans", size=3.5, hjust=-.2, show_guide  = F)
+plot <- plot +  labs(x="Miles/(US) gallon",
+                     y="1/4 mile time")
+plot <- plot + theme_minimal() + 
+               theme(legend.position = "top") + 
+               theme(text = element_text(family = "Open Sans", size= 12)) +
+               theme(legend.title = element_text(size = 12, face = "bold")) +
+               theme(axis.text= element_text(size = 10)) +
+               theme(axis.title = element_text(size = 12, face = "bold")) +
+               theme(legend.text= element_text(size = 12)) +
+               theme(strip.text = element_text(size = 14)) +
+               guides(colour = guide_legend(override.aes = list(size=4)))  +
+               theme(panel.border = element_rect(fill=NA,color="grey70", size=0.5, 
+                                     linetype="solid"))
+plot <- plot + coord_cartesian(xlim=c(9,40),ylim=c(15,23))
+plot <- plot + scale_color_manual(values = c("#000000", "#E69F00", "#D55E00", "#009E73","#0072B2","#D55E00"))
+plot <- plot + guides(color = guide_legend(title = "Number of carburetors", title.position = "top", title.hjust=0))
+plot <- plot + theme(panel.margin = unit(2, "lines"))
+plot
+```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png) 
+
+
+
 
 ## Obtaining the data and defining the colors
 

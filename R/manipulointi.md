@@ -68,7 +68,14 @@ rename(df, c("oldName1"="newName2", "oldName2"="newName2"))
 df <- df[ with(df, grepl("phrase", var1), ]
 ```
 
+## Remove all objects but
 
+
+```r
+rm(list=setdiff(ls(), "x"))
+```
+
+[source](http://stackoverflow.com/questions/6190051/how-can-i-remove-all-objects-but-one-from-the-workspace-in-r)
 
 
 ## Satunnaisia linkkejä
