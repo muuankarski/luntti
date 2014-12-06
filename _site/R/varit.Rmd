@@ -103,7 +103,7 @@
     <div class="container">
 
           ```{r, echo=FALSE}
-opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,fig.path= "../figure/"))
+opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,fig.path= "figure/"))
 ```
 
 
@@ -113,14 +113,13 @@ opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,
 
 [Cindy Brewer: helping you choose better color scales for maps](http://blog.revolutionanalytics.com/2014/12/cindy-brewer-helping-you-choose-better-color-scales-for-maps.html)
 
-```{r, fig.height=10}
+```{r vari1, fig.height=10}
 library(RColorBrewer)
 display.brewer.all()
 ```
 
 
-
-```{r}
+```{r vari2}
 library(ggplot2)
 mtcars$brands <- row.names(mtcars)     
 df <- mtcars[1:10,]
@@ -131,7 +130,7 @@ plot
 ```
 
 
-```{r, warning=FALSE}
+```{r vari3, warning=FALSE}
 library(ggplot2)
 mtcars$brands <- row.names(mtcars)     
 df <- mtcars[1:8,]
@@ -150,14 +149,17 @@ plot
 - [Wes Anderson Palettes.](http://wesandersonpalettes.tumblr.com/)
 
 
-```{r}
+**script copy pasted from <https://github.com/karthik/wesanderson/blob/master/README.Rmd>**
+
+
+```{r vari4}
 library(knitr)
 library(wesanderson)
 kable(namelist)
 ```
 
 
-```{r, lifeaquatic, fig.height = 3}
+```{r lifeaquatic, fig.height = 3}
 display.wes.palette(4, "GrandBudapest")
 display.wes.palette(4, "GrandBudapest2")
 display.wes.palette(4, "Moonrise1")
@@ -175,7 +177,7 @@ display.wes.palette(4, "Rushmore")
 
 ```
 
-```{r, ggplot2, tidy = FALSE}
+```{r ggplot2, tidy = FALSE}
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) + 
 geom_point(size = 3) + 
 scale_color_manual(values = wes.palette(3, "GrandBudapest")) + 
@@ -183,13 +185,13 @@ theme_gray()
 ```
 
 
-```{r, ggplot1, tidy = FALSE}
+```{r ggplot1, tidy = FALSE}
 qplot(factor(cyl), data=mtcars, geom="bar", fill=factor(vs)) + 
 scale_fill_manual(values = wes.palette(2, "Royal1"))
 ```
 
 
-```{r, zissou_heatmap, tidy = FALSE}
+```{r zissou_heatmap, tidy = FALSE}
 library(wesanderson)
 pal <- wes.palette(name = "Zissou", type = "continuous")
 # heatmap is a local dataset

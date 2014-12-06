@@ -110,7 +110,7 @@
 <div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>RColorBrewer<span class="p">)</span>
 display.brewer.all<span class="p">()</span>
 </code></pre></div>
-<p><img src="../figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+<p><img src="figure/vari1-1.png" alt="plot of chunk vari1"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>ggplot2<span class="p">)</span>
 mtcars<span class="o">$</span>brands <span class="o">&lt;-</span> row.names<span class="p">(</span>mtcars<span class="p">)</span>     
 df <span class="o">&lt;-</span> mtcars<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,]</span>
@@ -119,7 +119,7 @@ plot <span class="o">&lt;-</span> plot <span class="o">+</span> geom_bar<span cl
 plot <span class="o">&lt;-</span> plot <span class="o">+</span> scale_fill_brewer<span class="p">(</span>palette<span class="o">=</span><span class="s">&quot;Set1&quot;</span><span class="p">)</span>
 plot
 </code></pre></div>
-<p><img src="../figure/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+<p><img src="figure/vari2-1.png" alt="plot of chunk vari2"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>ggplot2<span class="p">)</span>
 mtcars<span class="o">$</span>brands <span class="o">&lt;-</span> row.names<span class="p">(</span>mtcars<span class="p">)</span>     
 df <span class="o">&lt;-</span> mtcars<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">8</span><span class="p">,]</span>
@@ -130,7 +130,7 @@ plot <span class="o">&lt;-</span> plot <span class="o">+</span> scale_color_brew
 plot <span class="o">&lt;-</span> plot <span class="o">+</span> theme<span class="p">(</span>legend.position <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">)</span>
 plot
 </code></pre></div>
-<p><img src="../figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+<p><img src="figure/vari3-1.png" alt="plot of chunk vari3"> </p>
 
 <h2>WesAnderson paletters</h2>
 
@@ -138,6 +138,8 @@ plot
 <li><a href="https://github.com/karthik/wesanderson">A Wes Anderson color palette for R</a></li>
 <li><a href="http://wesandersonpalettes.tumblr.com/">Wes Anderson Palettes.</a></li>
 </ul>
+
+<p><strong>script copy pasted from <a href="https://github.com/karthik/wesanderson/blob/master/README.Rmd">https://github.com/karthik/wesanderson/blob/master/README.Rmd</a></strong></p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>knitr<span class="p">)</span>
 library<span class="p">(</span>wesanderson<span class="p">)</span>
 kable<span class="p">(</span>namelist<span class="p">)</span>
@@ -203,54 +205,54 @@ kable<span class="p">(</span>namelist<span class="p">)</span>
 </tbody></table>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;GrandBudapest&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-1.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-1.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;GrandBudapest2&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-2.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-2.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;Moonrise1&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-3.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-3.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;Moonrise2&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-4.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-4.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;Moonrise3&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-5.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-5.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;Royal1&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-6.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-6.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;Royal2&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-7.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-7.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;Chevalier&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-8.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-8.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;Cavalcanti&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-9.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-9.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;Zissou&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-10.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-10.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;Darjeeling&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-11.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-11.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">#display.wes.palette(5, &quot;Darjeeling2&quot;)</span>
 display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;FantasticFox&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-12.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-12.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;Rushmore&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="../figure/lifeaquatic-13.png" alt="plot of chunk lifeaquatic"> </p>
+<p><img src="figure/lifeaquatic-13.png" alt="plot of chunk lifeaquatic"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">ggplot<span class="p">(</span>iris<span class="p">,</span> aes<span class="p">(</span>Sepal.Length<span class="p">,</span> Sepal.Width<span class="p">,</span> color <span class="o">=</span> Species<span class="p">))</span> <span class="o">+</span> 
 geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span> <span class="o">+</span> 
 scale_color_manual<span class="p">(</span>values <span class="o">=</span> wes.palette<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s">&quot;GrandBudapest&quot;</span><span class="p">))</span> <span class="o">+</span> 
 theme_gray<span class="p">()</span>
 </code></pre></div>
-<p><img src="../figure/ggplot2-1.png" alt="plot of chunk ggplot2"> </p>
+<p><img src="figure/ggplot2-1.png" alt="plot of chunk ggplot2"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">qplot<span class="p">(</span>factor<span class="p">(</span>cyl<span class="p">),</span> data<span class="o">=</span>mtcars<span class="p">,</span> geom<span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="p">,</span> fill<span class="o">=</span>factor<span class="p">(</span>vs<span class="p">))</span> <span class="o">+</span> 
 scale_fill_manual<span class="p">(</span>values <span class="o">=</span> wes.palette<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="s">&quot;Royal1&quot;</span><span class="p">))</span>
 </code></pre></div>
-<p><img src="../figure/ggplot1-1.png" alt="plot of chunk ggplot1"> </p>
+<p><img src="figure/ggplot1-1.png" alt="plot of chunk ggplot1"> </p>
 <div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>wesanderson<span class="p">)</span>
 pal <span class="o">&lt;-</span> wes.palette<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;Zissou&quot;</span><span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;continuous&quot;</span><span class="p">)</span>
 <span class="c1"># heatmap is a local dataset</span>
@@ -260,7 +262,7 @@ ggplot<span class="p">(</span>heatmap<span class="p">,</span> aes<span class="p"
 scale_x_discrete<span class="p">(</span>expand <span class="o">=</span> c<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="o">+</span>
 scale_y_discrete<span class="p">(</span>expand <span class="o">=</span> c<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="o">+</span> coord_equal<span class="p">()</span> 
 </code></pre></div>
-<p><img src="../figure/zissou_heatmap-1.png" alt="plot of chunk zissou_heatmap"> </p>
+<p><img src="figure/zissou_heatmap-1.png" alt="plot of chunk zissou_heatmap"> </p>
 
 
       <footer>

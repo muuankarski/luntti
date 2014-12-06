@@ -20,8 +20,7 @@ library(RColorBrewer)
 display.brewer.all()
 ```
 
-![plot of chunk unnamed-chunk-2](../figure/unnamed-chunk-2-1.png) 
-
+![plot of chunk vari1](figure/vari1-1.png) 
 
 
 
@@ -35,7 +34,7 @@ plot <- plot + scale_fill_brewer(palette="Set1")
 plot
 ```
 
-![plot of chunk unnamed-chunk-3](../figure/unnamed-chunk-3-1.png) 
+![plot of chunk vari2](figure/vari2-1.png) 
 
 
 
@@ -51,13 +50,16 @@ plot <- plot + theme(legend.position = "none")
 plot
 ```
 
-![plot of chunk unnamed-chunk-4](../figure/unnamed-chunk-4-1.png) 
+![plot of chunk vari3](figure/vari3-1.png) 
 
 
 ## WesAnderson paletters
 
 - [A Wes Anderson color palette for R](https://github.com/karthik/wesanderson)
 - [Wes Anderson Palettes.](http://wesandersonpalettes.tumblr.com/)
+
+
+**script copy pasted from <https://github.com/karthik/wesanderson/blob/master/README.Rmd>**
 
 
 
@@ -91,80 +93,80 @@ kable(namelist)
 display.wes.palette(4, "GrandBudapest")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-1.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-1.png) 
 
 ```r
 display.wes.palette(4, "GrandBudapest2")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-2.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-2.png) 
 
 ```r
 display.wes.palette(4, "Moonrise1")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-3.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-3.png) 
 
 ```r
 display.wes.palette(4, "Moonrise2")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-4.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-4.png) 
 
 ```r
 display.wes.palette(5, "Moonrise3")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-5.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-5.png) 
 
 ```r
 display.wes.palette(4, "Royal1")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-6.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-6.png) 
 
 ```r
 display.wes.palette(5, "Royal2")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-7.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-7.png) 
 
 ```r
 display.wes.palette(4, "Chevalier")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-8.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-8.png) 
 
 ```r
 display.wes.palette(5, "Cavalcanti")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-9.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-9.png) 
 
 ```r
 display.wes.palette(5, "Zissou")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-10.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-10.png) 
 
 ```r
 display.wes.palette(5, "Darjeeling")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-11.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-11.png) 
 
 ```r
 #display.wes.palette(5, "Darjeeling2")
 display.wes.palette(4, "FantasticFox")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-12.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-12.png) 
 
 ```r
 display.wes.palette(4, "Rushmore")
 ```
 
-![plot of chunk lifeaquatic](../figure/lifeaquatic-13.png) 
+![plot of chunk lifeaquatic](figure/lifeaquatic-13.png) 
 
 
 ```r
@@ -174,7 +176,7 @@ scale_color_manual(values = wes.palette(3, "GrandBudapest")) +
 theme_gray()
 ```
 
-![plot of chunk ggplot2](../figure/ggplot2-1.png) 
+![plot of chunk ggplot2](figure/ggplot2-1.png) 
 
 
 
@@ -183,7 +185,7 @@ qplot(factor(cyl), data=mtcars, geom="bar", fill=factor(vs)) +
 scale_fill_manual(values = wes.palette(2, "Royal1"))
 ```
 
-![plot of chunk ggplot1](../figure/ggplot1-1.png) 
+![plot of chunk ggplot1](figure/ggplot1-1.png) 
 
 
 
@@ -198,7 +200,7 @@ scale_x_discrete(expand = c(0, 0)) +
 scale_y_discrete(expand = c(0, 0)) + coord_equal() 
 ```
 
-![plot of chunk zissou_heatmap](../figure/zissou_heatmap-1.png) 
+![plot of chunk zissou_heatmap](figure/zissou_heatmap-1.png) 
 
 
 
