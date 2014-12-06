@@ -49,6 +49,8 @@
                 <li><a href="/R/funktiot.html">Funktiot</a></li>
                 <li><a href="/R/grafiikka.html">Grafiikka</a></li>
                 <li><a href="/R/survey.html">Survey</a></li>
+                <li><a href="/R/raavinta.html">Webin raapimista</a></li>
+                <li><a href="/R/varit.html">Värit</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav"><li class="dropdown">
@@ -101,18 +103,14 @@
     <div class="container">
 
           <p>Asetukset ko. dokkariin</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>knitr<span class="p">)</span>
+opts_chunk<span class="o">$</span>set<span class="p">(</span>list<span class="p">(</span>echo<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>eval<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>cache<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>warning<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>message<span class="o">=</span><span class="kc">FALSE</span><span class="p">))</span>
 
-<p>```r
-library(knitr)
-opts_chunk$set(list(echo=FALSE,eval=TRUE,cache=TRUE,warning=FALSE,message=FALSE))</p>
+<span class="c1"># tai </span>
 
-<h1 id="tai">tai</h1>
-
-<p>library(knitr)
-opts_chunk$set(list(echo=FALSE,eval=TRUE,cache=TRUE,warning=FALSE,message=FALSE,fig.height=4,dev=”pdf”,opts_chunk$set(fig.path = paste(‘figure/my-prefix-‘, org, sep = ‘’))))
-```</p>
-
-
+library<span class="p">(</span>knitr<span class="p">)</span>
+opts_chunk<span class="o">$</span>set<span class="p">(</span>list<span class="p">(</span>echo<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>eval<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>cache<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>warning<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>message<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>fig.height<span class="o">=</span><span class="m">4</span><span class="p">,</span>dev<span class="o">=</span><span class="s">&quot;pdf&quot;</span><span class="p">,</span>opts_chunk<span class="o">$</span>set<span class="p">(</span>fig.path <span class="o">=</span> paste<span class="p">(</span><span class="s">&#39;figure/my-prefix-&#39;</span><span class="p">,</span> org<span class="p">,</span> sep <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">))))</span>
+</code></pre></div>
 
       <footer>
 

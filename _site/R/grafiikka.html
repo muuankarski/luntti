@@ -49,6 +49,8 @@
                 <li><a href="/R/funktiot.html">Funktiot</a></li>
                 <li><a href="/R/grafiikka.html">Grafiikka</a></li>
                 <li><a href="/R/survey.html">Survey</a></li>
+                <li><a href="/R/raavinta.html">Webin raapimista</a></li>
+                <li><a href="/R/varit.html">Värit</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav"><li class="dropdown">
@@ -100,20 +102,60 @@
 
     <div class="container">
 
-          <h1 id="graphics-using-with-ggplot2">Graphics using with ggplot2</h1>
+          <h1>Graphics using with ggplot2</h1>
 
-<h2 id="obtaining-the-data-and-defining-the-colors">Obtaining the data and defining the colors</h2>
+<ul>
+<li><a href="http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/">Beautiful plotting in R: A ggplot2 cheatsheet</a></li>
+</ul>
 
-<p><code>r
-library(ggplot2)
-library(laeken)
-data(eusilc)
-df &lt;- eusilc
-head(df)
-</code></p>
+<h2>Moniulotteinen hajontakuvio</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>grid<span class="p">)</span>
+library<span class="p">(</span>ggplot2<span class="p">)</span>
+mtcars<span class="o">$</span>brands <span class="o">&lt;-</span> row.names<span class="p">(</span>mtcars<span class="p">)</span>     
 
-<p><code>
-##   db030 hsize db040 rb030 age  rb090 pl030 pb220a   py010n py050n py090n
+mtcars<span class="o">$</span>am_c<span class="p">[</span>mtcars<span class="o">$</span>am <span class="o">==</span> <span class="m">0</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;automatic&quot;</span>
+mtcars<span class="o">$</span>am_c<span class="p">[</span>mtcars<span class="o">$</span>am <span class="o">==</span> <span class="m">1</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;manual&quot;</span>
+mtcars<span class="o">$</span>am_c <span class="o">&lt;-</span> factor<span class="p">(</span>mtcars<span class="o">$</span>am_c<span class="p">)</span>
+<span class="c1"># keskiarvoviivat</span>
+h.lines <span class="o">&lt;-</span> data.frame<span class="p">(</span>am_c<span class="o">=</span>levels<span class="p">(</span>mtcars<span class="o">$</span>am_c<span class="p">),</span> xval<span class="o">=</span>c<span class="p">(</span>mean<span class="p">(</span>mtcars<span class="p">[</span>mtcars<span class="o">$</span>am_c <span class="o">==</span> <span class="s">&quot;automatic&quot;</span><span class="p">,]</span><span class="o">$</span>qsec<span class="p">),</span>
+                                                         mean<span class="p">(</span>mtcars<span class="p">[</span>mtcars<span class="o">$</span>am_c <span class="o">==</span> <span class="s">&quot;manual&quot;</span><span class="p">,]</span><span class="o">$</span>qsec<span class="p">)))</span>
+v.lines <span class="o">&lt;-</span> data.frame<span class="p">(</span>am_c<span class="o">=</span>levels<span class="p">(</span>mtcars<span class="o">$</span>am_c<span class="p">),</span> xval<span class="o">=</span>c<span class="p">(</span>mean<span class="p">(</span>mtcars<span class="p">[</span>mtcars<span class="o">$</span>am_c <span class="o">==</span> <span class="s">&quot;automatic&quot;</span><span class="p">,]</span><span class="o">$</span>mpg<span class="p">),</span>
+                                                         mean<span class="p">(</span>mtcars<span class="p">[</span>mtcars<span class="o">$</span>am_c <span class="o">==</span> <span class="s">&quot;manual&quot;</span><span class="p">,]</span><span class="o">$</span>mpg<span class="p">)))</span>
+
+plot <span class="o">&lt;-</span> ggplot<span class="p">(</span>mtcars<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>mpg<span class="p">,</span>y<span class="o">=</span>qsec<span class="p">,</span>label<span class="o">=</span>brands<span class="p">,</span>color<span class="o">=</span>factor<span class="p">(</span>carb<span class="p">)))</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> facet_grid<span class="p">(</span>.<span class="o">~</span>am_c<span class="p">)</span> 
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> geom_vline<span class="p">(</span>aes<span class="p">(</span>xintercept<span class="o">=</span>xval<span class="p">),</span> data<span class="o">=</span>v.lines<span class="p">,</span> linetype <span class="o">=</span> <span class="s">&quot;dashed&quot;</span><span class="p">,</span> color <span class="o">=</span> <span class="s">&quot;grey70&quot;</span><span class="p">)</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> geom_hline<span class="p">(</span>aes<span class="p">(</span>yintercept<span class="o">=</span>xval<span class="p">),</span> data<span class="o">=</span>h.lines<span class="p">,</span> linetype <span class="o">=</span> <span class="s">&quot;dashed&quot;</span><span class="p">,</span> color <span class="o">=</span> <span class="s">&quot;grey70&quot;</span><span class="p">)</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> geom_text<span class="p">(</span>family<span class="o">=</span><span class="s">&quot;Open Sans&quot;</span><span class="p">,</span> size<span class="o">=</span><span class="m">3.5</span><span class="p">,</span> hjust<span class="o">=</span><span class="m">-.2</span><span class="p">,</span> show_guide  <span class="o">=</span> <span class="k-Variable">F</span><span class="p">)</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span>  labs<span class="p">(</span>x<span class="o">=</span><span class="s">&quot;Miles/(US) gallon&quot;</span><span class="p">,</span>
+                     y<span class="o">=</span><span class="s">&quot;1/4 mile time&quot;</span><span class="p">)</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> theme_minimal<span class="p">()</span> <span class="o">+</span> 
+               theme<span class="p">(</span>legend.position <span class="o">=</span> <span class="s">&quot;top&quot;</span><span class="p">)</span> <span class="o">+</span> 
+               theme<span class="p">(</span>text <span class="o">=</span> element_text<span class="p">(</span>family <span class="o">=</span> <span class="s">&quot;Open Sans&quot;</span><span class="p">,</span> size<span class="o">=</span> <span class="m">12</span><span class="p">))</span> <span class="o">+</span>
+               theme<span class="p">(</span>legend.title <span class="o">=</span> element_text<span class="p">(</span>size <span class="o">=</span> <span class="m">12</span><span class="p">,</span> face <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">))</span> <span class="o">+</span>
+               theme<span class="p">(</span>axis.text<span class="o">=</span> element_text<span class="p">(</span>size <span class="o">=</span> <span class="m">10</span><span class="p">))</span> <span class="o">+</span>
+               theme<span class="p">(</span>axis.title <span class="o">=</span> element_text<span class="p">(</span>size <span class="o">=</span> <span class="m">12</span><span class="p">,</span> face <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">))</span> <span class="o">+</span>
+               theme<span class="p">(</span>legend.text<span class="o">=</span> element_text<span class="p">(</span>size <span class="o">=</span> <span class="m">12</span><span class="p">))</span> <span class="o">+</span>
+               theme<span class="p">(</span>strip.text <span class="o">=</span> element_text<span class="p">(</span>size <span class="o">=</span> <span class="m">14</span><span class="p">,</span> face<span class="o">=</span><span class="s">&quot;bold&quot;</span><span class="p">))</span> <span class="o">+</span>
+               guides<span class="p">(</span>colour <span class="o">=</span> guide_legend<span class="p">(</span>override.aes <span class="o">=</span> list<span class="p">(</span>size<span class="o">=</span><span class="m">4</span><span class="p">)))</span>  <span class="o">+</span>
+               theme<span class="p">(</span>panel.border <span class="o">=</span> element_rect<span class="p">(</span>fill<span class="o">=</span><span class="kc">NA</span><span class="p">,</span>color<span class="o">=</span><span class="s">&quot;grey70&quot;</span><span class="p">,</span> size<span class="o">=</span><span class="m">0.5</span><span class="p">,</span> 
+                                     linetype<span class="o">=</span><span class="s">&quot;solid&quot;</span><span class="p">))</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> coord_cartesian<span class="p">(</span>xlim<span class="o">=</span>c<span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="m">40</span><span class="p">),</span>ylim<span class="o">=</span>c<span class="p">(</span><span class="m">15</span><span class="p">,</span><span class="m">23</span><span class="p">))</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> scale_color_manual<span class="p">(</span>values <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;#000000&quot;</span><span class="p">,</span> <span class="s">&quot;#E69F00&quot;</span><span class="p">,</span> <span class="s">&quot;#D55E00&quot;</span><span class="p">,</span> <span class="s">&quot;#009E73&quot;</span><span class="p">,</span><span class="s">&quot;#0072B2&quot;</span><span class="p">,</span><span class="s">&quot;#D55E00&quot;</span><span class="p">))</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> guides<span class="p">(</span>color <span class="o">=</span> guide_legend<span class="p">(</span>title <span class="o">=</span> <span class="s">&quot;Number of carburetors&quot;</span><span class="p">,</span> title.position <span class="o">=</span> <span class="s">&quot;top&quot;</span><span class="p">,</span> title.hjust<span class="o">=</span><span class="m">.5</span><span class="p">))</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> theme<span class="p">(</span>panel.margin <span class="o">=</span> unit<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="s">&quot;lines&quot;</span><span class="p">))</span>
+plot
+</code></pre></div>
+<p><img src="figure/multiscatterplot-1.png" alt="plot of chunk multiscatterplot"> </p>
+
+<h2>Obtaining the data and defining the colors</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>ggplot2<span class="p">)</span>
+library<span class="p">(</span>laeken<span class="p">)</span>
+data<span class="p">(</span>eusilc<span class="p">)</span>
+df <span class="o">&lt;-</span> eusilc
+head<span class="p">(</span>df<span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##   db030 hsize db040 rb030 age  rb090 pl030 pb220a   py010n py050n py090n
 ## 1     1     3 Tyrol   101  34 female     2     AT  9756.25      0      0
 ## 2     1     3 Tyrol   102  39   male     1  Other 12471.60      0      0
 ## 3     1     3 Tyrol   103   2   male  &lt;NA&gt;   &lt;NA&gt;       NA     NA     NA
@@ -134,156 +176,132 @@ head(df)
 ## 4      0      0      0  2.1 27076.24 493.3824 493.3824
 ## 5      0      0      0  2.1 27076.24 493.3824 493.3824
 ## 6      0      0      0  2.1 27076.24 493.3824 493.3824
-</code></p>
+</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">manual.color <span class="o">&lt;-</span> scale_color_manual<span class="p">(</span>values<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;#CC79A7&quot;</span><span class="p">,</span><span class="s">&quot;#E69F00&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#56B4E9&quot;</span><span class="p">,</span><span class="s">&quot;#000000&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#009E73&quot;</span><span class="p">,</span><span class="s">&quot;#D55E00&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#0072B2&quot;</span><span class="p">,</span><span class="s">&quot;#999999&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#00FF00&quot;</span><span class="p">,</span><span class="s">&quot;Dim Grey&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#56B4E9&quot;</span><span class="p">,</span><span class="s">&quot;#000000&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#009E73&quot;</span><span class="p">,</span><span class="s">&quot;#D55E00&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#0072B2&quot;</span><span class="p">,</span><span class="s">&quot;#999999&quot;</span><span class="p">))</span>
 
-<p>```r
-manual.color &lt;- scale_color_manual(values=c(“#CC79A7”,”#E69F00”,
-                                       “#56B4E9”,”#000000”,
-                                       “#009E73”,”#D55E00”,
-                                       “#0072B2”,”#999999”,
-                                       “#00FF00”,”Dim Grey”,
-                                       “#56B4E9”,”#000000”,
-                                       “#009E73”,”#D55E00”,
-                                       “#0072B2”,”#999999”))</p>
+manual.fill <span class="o">&lt;-</span> scale_fill_manual<span class="p">(</span>values<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;#CC79A7&quot;</span><span class="p">,</span><span class="s">&quot;#E69F00&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#56B4E9&quot;</span><span class="p">,</span><span class="s">&quot;#000000&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#009E73&quot;</span><span class="p">,</span><span class="s">&quot;#D55E00&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#0072B2&quot;</span><span class="p">,</span><span class="s">&quot;#999999&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#00FF00&quot;</span><span class="p">,</span><span class="s">&quot;Dim Grey&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#56B4E9&quot;</span><span class="p">,</span><span class="s">&quot;#000000&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#009E73&quot;</span><span class="p">,</span><span class="s">&quot;#D55E00&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;#0072B2&quot;</span><span class="p">,</span><span class="s">&quot;#999999&quot;</span><span class="p">))</span>
+</code></pre></div>
+<h2>Bar plot</h2>
 
-<p>manual.fill &lt;- scale_fill_manual(values=c(“#CC79A7”,”#E69F00”,
-                                       “#56B4E9”,”#000000”,
-                                       “#009E73”,”#D55E00”,
-                                       “#0072B2”,”#999999”,
-                                       “#00FF00”,”Dim Grey”,
-                                       “#56B4E9”,”#000000”,
-                                       “#009E73”,”#D55E00”,
-                                       “#0072B2”,”#999999”))
-```</p>
-
-<h2 id="bar-plot">Bar plot</h2>
-
-<h3 id="proportions-of-female-and-male-headed-households-by-region">Proportions of female and male headed households by region</h3>
-
-<p><code>r
-library(ggplot2)
-library(grid)
-tbl &lt;- data.frame(prop.table(table(df$db040,df$rb090),1) * 100)
-tbl$Freq &lt;- round(tbl$Freq, 1)
-# ordering the levels of rdb040 by femla share
-df.order &lt;- subset(tbl, Var2 == 'female')
-df.order &lt;- df.order[order(df.order$Freq),]
-tbl$Var1 &lt;- factor(tbl$Var1, levels = df.order$Var1)
-  # bar plot
-ggplot(tbl, aes(x=Var2,y=Freq,label=Freq,fill=Var1)) +
-  geom_bar(position="dodge", stat="identity") +
-  geom_text(position = position_dodge(width=1), vjust=-0.5, size=3) +
-  labs(x="xlab",y="ylab") +
-  labs(title="plot title") +
-  theme(axis.text.x  = element_text(angle=90, vjust= 0.5)) +
-  coord_cartesian(ylim=c(0,75)) + 
-  annotate("text", x = 1.5, y = 65, label = "Some text here") +
-  theme(legend.title=element_blank()) +
-  theme(legend.key.size = unit(3, "mm")) +
-  theme(legend.position="top") +
+<h3>Proportions of female and male headed households by region</h3>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>ggplot2<span class="p">)</span>
+library<span class="p">(</span>grid<span class="p">)</span>
+tbl <span class="o">&lt;-</span> data.frame<span class="p">(</span>prop.table<span class="p">(</span>table<span class="p">(</span>df<span class="o">$</span>db040<span class="p">,</span>df<span class="o">$</span>rb090<span class="p">),</span><span class="m">1</span><span class="p">)</span> <span class="o">*</span> <span class="m">100</span><span class="p">)</span>
+tbl<span class="o">$</span>Freq <span class="o">&lt;-</span> round<span class="p">(</span>tbl<span class="o">$</span>Freq<span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+<span class="c1"># ordering the levels of rdb040 by femla share</span>
+df.order <span class="o">&lt;-</span> subset<span class="p">(</span>tbl<span class="p">,</span> Var2 <span class="o">==</span> <span class="s">&#39;female&#39;</span><span class="p">)</span>
+df.order <span class="o">&lt;-</span> df.order<span class="p">[</span>order<span class="p">(</span>df.order<span class="o">$</span>Freq<span class="p">),]</span>
+tbl<span class="o">$</span>Var1 <span class="o">&lt;-</span> factor<span class="p">(</span>tbl<span class="o">$</span>Var1<span class="p">,</span> levels <span class="o">=</span> df.order<span class="o">$</span>Var1<span class="p">)</span>
+  <span class="c1"># bar plot</span>
+ggplot<span class="p">(</span>tbl<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>Var2<span class="p">,</span>y<span class="o">=</span>Freq<span class="p">,</span>label<span class="o">=</span>Freq<span class="p">,</span>fill<span class="o">=</span>Var1<span class="p">))</span> <span class="o">+</span>
+  geom_bar<span class="p">(</span>position<span class="o">=</span><span class="s">&quot;dodge&quot;</span><span class="p">,</span> stat<span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">)</span> <span class="o">+</span>
+  geom_text<span class="p">(</span>position <span class="o">=</span> position_dodge<span class="p">(</span>width<span class="o">=</span><span class="m">1</span><span class="p">),</span> vjust<span class="o">=</span><span class="m">-0.5</span><span class="p">,</span> size<span class="o">=</span><span class="m">3</span><span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>x<span class="o">=</span><span class="s">&quot;xlab&quot;</span><span class="p">,</span>y<span class="o">=</span><span class="s">&quot;ylab&quot;</span><span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>title<span class="o">=</span><span class="s">&quot;plot title&quot;</span><span class="p">)</span> <span class="o">+</span>
+  theme<span class="p">(</span>axis.text.x  <span class="o">=</span> element_text<span class="p">(</span>angle<span class="o">=</span><span class="m">90</span><span class="p">,</span> vjust<span class="o">=</span> <span class="m">0.5</span><span class="p">))</span> <span class="o">+</span>
+  coord_cartesian<span class="p">(</span>ylim<span class="o">=</span>c<span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">75</span><span class="p">))</span> <span class="o">+</span> 
+  annotate<span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span> x <span class="o">=</span> <span class="m">1.5</span><span class="p">,</span> y <span class="o">=</span> <span class="m">65</span><span class="p">,</span> label <span class="o">=</span> <span class="s">&quot;Some text here&quot;</span><span class="p">)</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.title<span class="o">=</span>element_blank<span class="p">())</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.key.size <span class="o">=</span> unit<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s">&quot;mm&quot;</span><span class="p">))</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.position<span class="o">=</span><span class="s">&quot;top&quot;</span><span class="p">)</span> <span class="o">+</span>
   manual.fill
-</code></p>
+</code></pre></div>
+<p><img src="figure/tolppa1-1.png" alt="plot of chunk tolppa1"> </p>
 
-<p><code>
-## ymax not defined: adjusting position using y instead
-</code></p>
+<h2>Line Plot</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">df <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;http://vincentarelbundock.github.com/Rdatasets/csv/Ecdat/Cigarette.csv&quot;</span><span class="p">)</span>
+df<span class="o">$</span>year <span class="o">&lt;-</span> as.numeric<span class="p">(</span>df<span class="o">$</span>year<span class="p">)</span>
 
-<p><img src="figure/tolppa1.png" alt="plot of chunk tolppa1" /> </p>
+cnames <span class="o">&lt;-</span> subset<span class="p">(</span>df<span class="p">,</span> year <span class="o">==</span> <span class="m">1995</span><span class="p">)</span>
+ggplot<span class="p">(</span>df<span class="p">,</span> 
+       aes<span class="p">(</span>x<span class="o">=</span>year<span class="p">,</span>y<span class="o">=</span>packpc<span class="p">,</span>group<span class="o">=</span>state<span class="p">,</span>color<span class="o">=</span>state<span class="p">))</span> <span class="o">+</span>
+  geom_line<span class="p">()</span> <span class="o">+</span> 
+  geom_point<span class="p">()</span> <span class="o">+</span>
+  scale_x_continuous<span class="p">(</span>breaks<span class="o">=</span><span class="m">1985</span><span class="o">:</span><span class="m">1995</span><span class="p">)</span> <span class="o">+</span>
+  geom_text<span class="p">(</span>data<span class="o">=</span>cnames<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>year<span class="p">,</span>y<span class="o">=</span>packpc<span class="p">,</span>label<span class="o">=</span>state<span class="p">),</span> 
+            size<span class="o">=</span><span class="m">4</span><span class="p">,</span> hjust<span class="o">=</span><span class="m">-0.2</span><span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>x<span class="o">=</span><span class="s">&quot;year&quot;</span><span class="p">,</span>y<span class="o">=</span><span class="s">&quot;number of packs per capita&quot;</span><span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>title<span class="o">=</span><span class="s">&quot;The Cigarette Consumption Panel Data Set&quot;</span><span class="p">)</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.position<span class="o">=</span><span class="s">&quot;none&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="figure/viiva1-1.png" alt="plot of chunk viiva1"> </p>
 
-<h2 id="line-plot">Line Plot</h2>
+<h2>Scatter plots</h2>
 
-<p>```r
-df &lt;- read.csv(“http://vincentarelbundock.github.com/Rdatasets/csv/Ecdat/Cigarette.csv”)
-df$year &lt;- as.numeric(df$year)</p>
-
-<p>cnames &lt;- subset(df, year == 1995)
-ggplot(df, 
-       aes(x=year,y=packpc,group=state,color=state)) +
-  geom_line() + 
-  geom_point() +
-  scale_x_continuous(breaks=1985:1995) +
-  geom_text(data=cnames, aes(x=year,y=packpc,label=state), 
-            size=4, hjust=-0.2) +
-  labs(x=”year”,y=”number of packs per capita”) +
-  labs(title=”The Cigarette Consumption Panel Data Set”) +
-  theme(legend.position=”none”)
-```</p>
-
-<p><img src="figure/viiva1.png" alt="plot of chunk viiva1" /> </p>
-
-<h2 id="scatter-plots">Scatter plots</h2>
-
-<h3 id="age-vs-household-income-by-region-and-sex">Age vs. household income by region and sex</h3>
-
-<p><code>r
-df &lt;- eusilc
-# aggregate a table
-tbl &lt;- aggregate(eqIncome~db040+rb090+age, 
-                            median,
-                            data=df)
-# subset to cover ages 18-75
-tbl &lt;- subset(tbl, age &gt; 17 &amp; age &lt; 76)
-# plot
-ggplot(tbl, aes(x=age,y=eqIncome,color=rb090)) +
-  geom_point() + 
-  facet_wrap(~db040) +
-  geom_smooth(method=lm, se=TRUE) +
-  labs(x="xlab",y="ylab") +
-  labs(title="plot title") +
-  theme(axis.text.x  = element_text(angle=90, vjust= 0.5)) +
-  theme(legend.title=element_blank()) +
-  theme(legend.key.size = unit(3, "mm")) +
-  theme(legend.position="top") +
+<h3>Age vs. household income by region and sex</h3>
+<div class="highlight"><pre><code class="language-r" data-lang="r">df <span class="o">&lt;-</span> eusilc
+<span class="c1"># aggregate a table</span>
+tbl <span class="o">&lt;-</span> aggregate<span class="p">(</span>eqIncome<span class="o">~</span>db040<span class="o">+</span>rb090<span class="o">+</span>age<span class="p">,</span> 
+                            median<span class="p">,</span>
+                            data<span class="o">=</span>df<span class="p">)</span>
+<span class="c1"># subset to cover ages 18-75</span>
+tbl <span class="o">&lt;-</span> subset<span class="p">(</span>tbl<span class="p">,</span> age <span class="o">&gt;</span> <span class="m">17</span> <span class="o">&amp;</span> age <span class="o">&lt;</span> <span class="m">76</span><span class="p">)</span>
+<span class="c1"># plot</span>
+ggplot<span class="p">(</span>tbl<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>age<span class="p">,</span>y<span class="o">=</span>eqIncome<span class="p">,</span>color<span class="o">=</span>rb090<span class="p">))</span> <span class="o">+</span>
+  geom_point<span class="p">()</span> <span class="o">+</span> 
+  facet_wrap<span class="p">(</span><span class="o">~</span>db040<span class="p">)</span> <span class="o">+</span>
+  geom_smooth<span class="p">(</span>method<span class="o">=</span>lm<span class="p">,</span> se<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>x<span class="o">=</span><span class="s">&quot;xlab&quot;</span><span class="p">,</span>y<span class="o">=</span><span class="s">&quot;ylab&quot;</span><span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>title<span class="o">=</span><span class="s">&quot;plot title&quot;</span><span class="p">)</span> <span class="o">+</span>
+  theme<span class="p">(</span>axis.text.x  <span class="o">=</span> element_text<span class="p">(</span>angle<span class="o">=</span><span class="m">90</span><span class="p">,</span> vjust<span class="o">=</span> <span class="m">0.5</span><span class="p">))</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.title<span class="o">=</span>element_blank<span class="p">())</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.key.size <span class="o">=</span> unit<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s">&quot;mm&quot;</span><span class="p">))</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.position<span class="o">=</span><span class="s">&quot;top&quot;</span><span class="p">)</span> <span class="o">+</span>
   manual.color
-</code></p>
+</code></pre></div>
+<p><img src="figure/hajonta1-1.png" alt="plot of chunk hajonta1"> </p>
 
-<p><img src="figure/hajonta1.png" alt="plot of chunk hajonta1" /> </p>
+<h2>Distributions by ageclass, region and gender</h2>
 
-<h2 id="distributions-by-ageclass-region-and-gender">Distributions by ageclass, region and gender</h2>
+<h3>As a density plot</h3>
+<div class="highlight"><pre><code class="language-r" data-lang="r">df <span class="o">&lt;-</span> eusilc
+df<span class="o">$</span>age_class<span class="p">[</span>df<span class="o">$</span>age <span class="o">&lt;</span> <span class="m">18</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&#39;0-17&#39;</span>
+df<span class="o">$</span>age_class<span class="p">[</span>df<span class="o">$</span>age <span class="o">&gt;=</span> <span class="m">18</span> <span class="o">&amp;</span> df<span class="o">$</span>age <span class="o">&lt;</span> <span class="m">25</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&#39;18-24&#39;</span>
+df<span class="o">$</span>age_class<span class="p">[</span>df<span class="o">$</span>age <span class="o">&gt;=</span> <span class="m">25</span> <span class="o">&amp;</span> df<span class="o">$</span>age <span class="o">&lt;</span> <span class="m">55</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&#39;26-54&#39;</span>
+df<span class="o">$</span>age_class<span class="p">[</span>df<span class="o">$</span>age <span class="o">&gt;=</span> <span class="m">55</span> <span class="o">&amp;</span> df<span class="o">$</span>age <span class="o">&lt;</span> <span class="m">65</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&#39;55-64&#39;</span>
+df<span class="o">$</span>age_class<span class="p">[</span>df<span class="o">$</span>age <span class="o">&gt;=</span> <span class="m">65</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&#39;65 &lt;&#39;</span>
 
-<h3 id="as-a-density-plot">As a density plot</h3>
-
-<p>```r
-df &lt;- eusilc
-df$age_class[df$age &lt; 18] &lt;- ‘0-17’
-df$age_class[df$age &gt;= 18 &amp; df$age &lt; 25] &lt;- ‘18-24’
-df$age_class[df$age &gt;= 25 &amp; df$age &lt; 55] &lt;- ‘26-54’
-df$age_class[df$age &gt;= 55 &amp; df$age &lt; 65] &lt;- ‘55-64’
-df$age_class[df$age &gt;= 65] &lt;- ‘65 &lt;’</p>
-
-<p>ggplot(df, aes(x=eqIncome,fill=age_class)) +
-  geom_density(alpha=.4) +
-  facet_grid(rb090~db040) +
-  labs(x=”xlab”,y=”ylab”) +
-  labs(title=”plot title”) +
-  theme(axis.text.x  = element_text(angle=90, vjust= 0.5)) +
-  theme(legend.title=element_blank()) +
-  theme(legend.key.size = unit(3, “mm”)) +
-  theme(legend.position=”top”) +
-  coord_cartesian(xlim=c(0,30000)) +
+ggplot<span class="p">(</span>df<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>eqIncome<span class="p">,</span>fill<span class="o">=</span>age_class<span class="p">))</span> <span class="o">+</span>
+  geom_density<span class="p">(</span>alpha<span class="o">=</span><span class="m">.4</span><span class="p">)</span> <span class="o">+</span>
+  facet_grid<span class="p">(</span>rb090<span class="o">~</span>db040<span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>x<span class="o">=</span><span class="s">&quot;xlab&quot;</span><span class="p">,</span>y<span class="o">=</span><span class="s">&quot;ylab&quot;</span><span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>title<span class="o">=</span><span class="s">&quot;plot title&quot;</span><span class="p">)</span> <span class="o">+</span>
+  theme<span class="p">(</span>axis.text.x  <span class="o">=</span> element_text<span class="p">(</span>angle<span class="o">=</span><span class="m">90</span><span class="p">,</span> vjust<span class="o">=</span> <span class="m">0.5</span><span class="p">))</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.title<span class="o">=</span>element_blank<span class="p">())</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.key.size <span class="o">=</span> unit<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s">&quot;mm&quot;</span><span class="p">))</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.position<span class="o">=</span><span class="s">&quot;top&quot;</span><span class="p">)</span> <span class="o">+</span>
+  coord_cartesian<span class="p">(</span>xlim<span class="o">=</span>c<span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">30000</span><span class="p">))</span> <span class="o">+</span>
   manual.fill
-```</p>
+</code></pre></div>
+<p><img src="figure/silc1-1.png" alt="plot of chunk silc1"> </p>
 
-<p><img src="figure/silc1.png" alt="plot of chunk silc1" /> </p>
-
-<h3 id="as-a-box-plot">As a box plot</h3>
-
-<p><code>r
-ggplot(df, aes(x=age_class,y=eqIncome, fill=rb090)) +
-  geom_boxplot() +
-  facet_wrap(~db040) +
-  labs(x="xlab",y="ylab") +
-  labs(title="plot title") +
-  theme(axis.text.x  = element_text(angle=90, vjust= 0.5)) +
-  theme(legend.title=element_blank()) +
-  theme(legend.key.size = unit(3, "mm")) +
-  theme(legend.position="top") +
-  coord_cartesian(ylim=c(0,30000)) +
+<h3>As a box plot</h3>
+<div class="highlight"><pre><code class="language-r" data-lang="r">ggplot<span class="p">(</span>df<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>age_class<span class="p">,</span>y<span class="o">=</span>eqIncome<span class="p">,</span> fill<span class="o">=</span>rb090<span class="p">))</span> <span class="o">+</span>
+  geom_boxplot<span class="p">()</span> <span class="o">+</span>
+  facet_wrap<span class="p">(</span><span class="o">~</span>db040<span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>x<span class="o">=</span><span class="s">&quot;xlab&quot;</span><span class="p">,</span>y<span class="o">=</span><span class="s">&quot;ylab&quot;</span><span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>title<span class="o">=</span><span class="s">&quot;plot title&quot;</span><span class="p">)</span> <span class="o">+</span>
+  theme<span class="p">(</span>axis.text.x  <span class="o">=</span> element_text<span class="p">(</span>angle<span class="o">=</span><span class="m">90</span><span class="p">,</span> vjust<span class="o">=</span> <span class="m">0.5</span><span class="p">))</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.title<span class="o">=</span>element_blank<span class="p">())</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.key.size <span class="o">=</span> unit<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s">&quot;mm&quot;</span><span class="p">))</span> <span class="o">+</span>
+  theme<span class="p">(</span>legend.position<span class="o">=</span><span class="s">&quot;top&quot;</span><span class="p">)</span> <span class="o">+</span>
+  coord_cartesian<span class="p">(</span>ylim<span class="o">=</span>c<span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">30000</span><span class="p">))</span> <span class="o">+</span>
   manual.fill
-</code></p>
-
-<p><img src="figure/silc2.png" alt="plot of chunk silc2" /> </p>
-
+</code></pre></div>
+<p><img src="figure/silc2-1.png" alt="plot of chunk silc2"> </p>
 
 
       <footer>

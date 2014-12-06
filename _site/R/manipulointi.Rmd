@@ -49,6 +49,8 @@
                 <li><a href="/R/funktiot.html">Funktiot</a></li>
                 <li><a href="/R/grafiikka.html">Grafiikka</a></li>
                 <li><a href="/R/survey.html">Survey</a></li>
+                <li><a href="/R/raavinta.html">Webin raapimista</a></li>
+                <li><a href="/R/varit.html">Värit</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav"><li class="dropdown">
@@ -101,7 +103,9 @@
     <div class="container">
 
           ```{r, echo=FALSE}
-opts_chunk$set(list(echo=TRUE,eval=FALSE,cache=TRUE,warning=FALSE,message=FALSE))
+library(knitr)
+setwd(paste0(base.dir,"R"))
+opts_chunk$set(list(echo=TRUE,eval=FALSE,cache=FALSE,warning=FALSE,message=FALSE,fig.dir= "figure/"))
 ```
 
 
@@ -122,7 +126,10 @@ df.long <- melt(df.wide, id.vars=c("region","cntry"))
 ## Na solujen poistaminen
 
 ```{r}
+# yksi muuttuja
 df <- df[!is.na(df$Var1),]
+# kaikki rivit joilla na
+df2 <- na.omit(df) 
 ```
 
 ## Faktorit numeerisiksi
@@ -131,6 +138,41 @@ df <- df[!is.na(df$Var1),]
 df$f <- factor(df$f)
 df$f.num <- as.numeric(levels(df$f))[df$f]
 ```
+
+## Removing duplicats
+
+
+```{r}
+df <- df[!duplicated(dat[c("var1","var2","var3")]),]
+```
+
+
+## Renaming variables
+
+```{r}
+# built-in
+names(df)[names(df)=="oldName"] <- "newName"
+# using plyr
+rename(df, c("oldName1"="newName2", "oldName2"="newName2"))
+```
+
+## Subset data
+
+```{r}
+# based on regexpr in string
+df <- df[ with(df, grepl("phrase", var1), ]
+
+
+```
+
+## Remove all objects but
+
+```{r}
+rm(list=setdiff(ls(), "x"))
+```
+
+[source](http://stackoverflow.com/questions/6190051/how-can-i-remove-all-objects-but-one-from-the-workspace-in-r)
+
 
 ## Satunnaisia linkkejä
 

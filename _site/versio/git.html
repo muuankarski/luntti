@@ -49,6 +49,8 @@
                 <li><a href="/R/funktiot.html">Funktiot</a></li>
                 <li><a href="/R/grafiikka.html">Grafiikka</a></li>
                 <li><a href="/R/survey.html">Survey</a></li>
+                <li><a href="/R/raavinta.html">Webin raapimista</a></li>
+                <li><a href="/R/varit.html">Värit</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav"><li class="dropdown">
@@ -100,41 +102,51 @@
 
     <div class="container">
 
-          <p>Pushaa masteri sekä maste että gh-pages brancheihin</p>
+          <div class="highlight"><pre><code class="language-r" data-lang="r">git init
+git add .
+git commit <span class="o">-</span>am <span class="s">&quot;message here&quot;</span>
 
-<p><code>r
-[core]
-  repositoryformatversion = 0
-	filemode = true
-	bare = false
-	logallrefupdates = true
-[remote "origin"]
-	url = git@github.com:muuankarski/luntti.git
-	fetch = +refs/heads/*:refs/remotes/origin/*
-	push = +refs/heads/master:refs/heads/gh-pages 
-	push = +refs/heads/master:refs/heads/master 
-[branch "master"]
-	remote = origin
-	merge = refs/heads/master
-</code></p>
+<span class="c1"># branchit</span>
+git branch xyz <span class="c1"># uusi branchi, jossa nykyisen branchin sisalto</span>
+git checkout xyz <span class="c1"># vaihda branchiin</span>
+git branch <span class="o">-</span>D xyz <span class="c1"># poist branchi</span>
 
+<span class="c1"># orphan branch - tyhja haara</span>
+git checkout <span class="o">--</span>orphan gh<span class="o">-</span>pages
+git rm <span class="o">-</span>rf . <span class="c1"># tuhoa kaikki ennen committausta</span>
+<span class="c1"># lisää haluamasi tiedostot (jekyll saitti esim.)</span>
+git add .
+git commit <span class="o">-</span>am <span class="s">&quot;uus gh-pages haara&quot;</span>
+git push origin gh<span class="o">-</span>pages
+</code></pre></div>
+<p>Pushaa masteri sekä maste että gh-pages brancheihin</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="p">[</span>core<span class="p">]</span>
+  repositoryformatversion <span class="o">=</span> <span class="m">0</span>
+    filemode <span class="o">=</span> true
+    bare <span class="o">=</span> false
+    logallrefupdates <span class="o">=</span> true
+<span class="p">[</span>remote <span class="s">&quot;origin&quot;</span><span class="p">]</span>
+    url <span class="o">=</span> git<span class="o">@</span>github.com<span class="o">:</span>muuankarski<span class="o">/</span>luntti.git
+    fetch <span class="o">=</span> <span class="o">+</span>refs<span class="o">/</span>heads<span class="o">/*:</span>refs<span class="o">/</span>remotes<span class="o">/</span>origin<span class="o">/*</span>
+    push <span class="o">=</span> <span class="o">+</span>refs<span class="o">/</span>heads<span class="o">/</span>master<span class="o">:</span>refs<span class="o">/</span>heads<span class="o">/</span>gh<span class="o">-</span>pages 
+    push <span class="o">=</span> <span class="o">+</span>refs<span class="o">/</span>heads<span class="o">/</span>master<span class="o">:</span>refs<span class="o">/</span>heads<span class="o">/</span>master 
+<span class="p">[</span>branch <span class="s">&quot;master&quot;</span><span class="p">]</span>
+    remote <span class="o">=</span> origin
+    merge <span class="o">=</span> refs<span class="o">/</span>heads<span class="o">/</span>master
+</code></pre></div>
 <p>Vedä tietty branch (<a href="http://stackoverflow.com/questions/1709177/git-pull-certain-branch-from-github">lähde</a>)</p>
-
-<p><code>r
-git pull origin other-branch
-</code></p>
-
+<div class="highlight"><pre><code class="language-r" data-lang="r">git pull origin other<span class="o">-</span>branch
+</code></pre></div>
 <p>Resettaa .gitignore (<a href="http://stackoverflow.com/questions/1139762/ignore-files-that-have-already-been-committed-to-a-git-repository">lähde</a>)</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">git rm <span class="o">-</span>r <span class="o">--</span>cached .
 
-<p>```r
-git rm -r –cached .</p>
+git add .
 
-<p>git add .</p>
-
-<p>git commit -m “.gitignore toimii taas”
-```</p>
-
-
+git commit <span class="o">-</span>m <span class="s">&quot;.gitignore toimii taas&quot;</span>
+</code></pre></div>
+<p>vaihda github remote toiseen (<a href="https://help.github.com/articles/changing-a-remote-s-url/">lähde</a>)</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">git remote set<span class="o">-</span>url origin https<span class="o">://</span>github.com<span class="o">/</span>USERNAME<span class="o">/</span>REPOSITORY_2.git
+</code></pre></div>
 
       <footer>
 

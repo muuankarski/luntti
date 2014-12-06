@@ -9,5 +9,13 @@ for (dir in dirlist) {
   for (i in files) {
     knit(paste0(dir,paste0(i,".Rmd")),
                 paste0(dir,paste0(i,".md")))
-  }  
+  }
+  # Kopioidaan kuvat kuhunkin kansioon (knitr hakki)
+  from = "figure"
+  to = paste0(dir,"figure")
+  dir.create(to, recursive = TRUE)
+  file.copy(list.files(from, full.names = T), to, recursive = TRUE)
 }
+
+
+

@@ -5,6 +5,11 @@ author: "Markus Kainu"
 date: "05.09.2014"
 ---
 
+```{r, echo=FALSE}
+library(knitr)
+opts_chunk$set(list(echo=TRUE,eval=FALSE,cache=FALSE,warning=FALSE,message=FALSE,fig.path= "../figure/"))
+```
+
 
 # Survey
 
@@ -16,11 +21,16 @@ date: "05.09.2014"
 
 These analysis have been made using [Life in Transition Survey 2](http://www.ebrd.com/pages/research/publications/special/transitionII.shtml). You can load the data in R with following line of code
 
-```{rload, cache=TRUE, warning=FALSE, message=FALSE}
+```{rload, eval=FALSE}
 library(foreign)
 temp <- tempfile()
 download.file("http://www.ebrd.com/downloads/research/surveys/lits2.dta", temp)
 lits2 <- read.dta(temp)
+```
+
+
+```{r load2, echo=FALSE, cache=TRUE}
+load("/home/aurelius/data/lits/lits2.RData")
 ```
 
 

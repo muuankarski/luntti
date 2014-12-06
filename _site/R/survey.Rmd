@@ -49,6 +49,8 @@
                 <li><a href="/R/funktiot.html">Funktiot</a></li>
                 <li><a href="/R/grafiikka.html">Grafiikka</a></li>
                 <li><a href="/R/survey.html">Survey</a></li>
+                <li><a href="/R/raavinta.html">Webin raapimista</a></li>
+                <li><a href="/R/varit.html">Värit</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav"><li class="dropdown">
@@ -100,7 +102,13 @@
 
     <div class="container">
 
-          # Survey
+          ```{r, echo=FALSE}
+library(knitr)
+opts_chunk$set(list(echo=TRUE,eval=FALSE,cache=FALSE,warning=FALSE,message=FALSE,fig.path= "../figure/"))
+```
+
+
+# Survey
 
 **Resources**
 
@@ -110,11 +118,16 @@
 
 These analysis have been made using [Life in Transition Survey 2](http://www.ebrd.com/pages/research/publications/special/transitionII.shtml). You can load the data in R with following line of code
 
-```{rload, cache=TRUE, warning=FALSE, message=FALSE}
+```{rload, eval=FALSE}
 library(foreign)
 temp <- tempfile()
 download.file("http://www.ebrd.com/downloads/research/surveys/lits2.dta", temp)
 lits2 <- read.dta(temp)
+```
+
+
+```{r load2, echo=FALSE, cache=TRUE}
+load("/home/aurelius/data/lits/lits2.RData")
 ```
 
 

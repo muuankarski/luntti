@@ -49,6 +49,8 @@
                 <li><a href="/R/funktiot.html">Funktiot</a></li>
                 <li><a href="/R/grafiikka.html">Grafiikka</a></li>
                 <li><a href="/R/survey.html">Survey</a></li>
+                <li><a href="/R/raavinta.html">Webin raapimista</a></li>
+                <li><a href="/R/varit.html">Värit</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav"><li class="dropdown">
@@ -100,18 +102,14 @@
 
     <div class="container">
 
-          <h1 id="ptekomentoja-valokuvien-editoimiseen">Päätekomentoja valokuvien editoimiseen</h1>
+          <h1>Päätekomentoja valokuvien editoimiseen</h1>
 
-<h2 id="kuvien-muokkausta">Kuvien muokkausta</h2>
+<h2>Kuvien muokkausta</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">find . <span class="o">-</span>iname <span class="s">&#39;*.JPG&#39;</span> <span class="o">-</span>execdir mogrify <span class="o">-</span>verbose <span class="o">-</span>resize <span class="m">1200</span> <span class="o">-</span>quality <span class="m">95</span> <span class="p">{}</span> \<span class="p">;</span>
 
-<p>```r
-find . -iname ‘*.JPG’ -execdir mogrify -verbose -resize 1200 -quality 95 {} \;</p>
-
-<p>mogrify -verbose -brightness-contrast 1x1 -resize 1200 -quality 95 *.jpg
-```</p>
-
-<h2 id="gallerioiden-tekemist">Gallerioiden tekemistä</h2>
-
+mogrify <span class="o">-</span>verbose <span class="o">-</span>brightness<span class="o">-</span>contrast <span class="m">1</span>x1 <span class="o">-</span>resize <span class="m">1200</span> <span class="o">-</span>quality <span class="m">95</span> <span class="o">*</span>.jpg
+</code></pre></div>
+<h2>Gallerioiden tekemistä</h2>
 
 
       <footer>

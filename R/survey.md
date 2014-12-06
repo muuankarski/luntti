@@ -6,6 +6,8 @@ date: "05.09.2014"
 ---
 
 
+
+
 # Survey
 
 **Resources**
@@ -23,6 +25,9 @@ temp <- tempfile()
 download.file("http://www.ebrd.com/downloads/research/surveys/lits2.dta", temp)
 lits2 <- read.dta(temp)
 ```
+
+
+
 
 
 
@@ -46,23 +51,9 @@ svyhist(~q104a_1, design=d.df,
         main="Survey weighted",
         col="cadetblue")
 lines(svysmooth(~q104a_1, d.df, bandwidth=5))
-```
-
-```
-## Loading required package: KernSmooth
-## KernSmooth 2.23 loaded
-## Copyright M. P. Wand 1997-2009
-```
-
-```r
 hist(lits2$q104a_1,  main="Sample unweighted",
      col="cadetblue",prob=TRUE)
 lines(density(lits2$q104a_1, adjust=2))
-```
-
-![plot of chunk plot_dist](figure/plot_dist.png) 
-
-```r
 par(dpar)
 ```
 
@@ -92,8 +83,6 @@ ggplot(t, aes(x=Country, y=mean_age, fill=Sex)) +
   coord_cartesian(ylim=c(35,65)) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 ```
-
-![plot of chunk meanplot](figure/meanplot.png) 
 
 
 ## Quantities by categorical variable
@@ -131,8 +120,6 @@ ggplot(t2, aes(x=country, y=Freq, fill=q301a_rec)) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 ```
 
-![plot of chunk quant_plot](figure/quant_plot.png) 
-
 ### Share agreeing
 
 
@@ -146,5 +133,3 @@ ggplot(t3, aes(x=reorder(country, Freq), y=Freq,label=Freq)) +
   geom_bar(stat="identity", position="dodge", fill="cadetblue") + 
   coord_flip(ylim=c(0,100)) + geom_text(posistion=position_dodge(), hjust=-0.1)
 ```
-
-![plot of chunk shareplot](figure/shareplot.png) 

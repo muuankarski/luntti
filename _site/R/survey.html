@@ -49,6 +49,8 @@
                 <li><a href="/R/funktiot.html">Funktiot</a></li>
                 <li><a href="/R/grafiikka.html">Grafiikka</a></li>
                 <li><a href="/R/survey.html">Survey</a></li>
+                <li><a href="/R/raavinta.html">Webin raapimista</a></li>
+                <li><a href="/R/varit.html">Värit</a></li>
               </ul>         
          </ul>
          <ul class="nav navbar-nav"><li class="dropdown">
@@ -100,141 +102,100 @@
 
     <div class="container">
 
-          <h1 id="survey">Survey</h1>
+          <h1>Survey</h1>
 
 <p><strong>Resources</strong></p>
 
 <ul>
-  <li><a href="http://cran.r-project.org/web/packages/survey/index.html">survey: analysis of complex survey samples in CRAN</a></li>
-  <li><a href="http://faculty.washington.edu/tlumley/survey/">Thomas Lumley: Survey analysis in R</a></li>
+<li><a href="http://cran.r-project.org/web/packages/survey/index.html">survey: analysis of complex survey samples in CRAN</a></li>
+<li><a href="http://faculty.washington.edu/tlumley/survey/">Thomas Lumley: Survey analysis in R</a></li>
 </ul>
 
 <p>These analysis have been made using <a href="http://www.ebrd.com/pages/research/publications/special/transitionII.shtml">Life in Transition Survey 2</a>. You can load the data in R with following line of code</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>foreign<span class="p">)</span>
+temp <span class="o">&lt;-</span> tempfile<span class="p">()</span>
+download.file<span class="p">(</span><span class="s">&quot;http://www.ebrd.com/downloads/research/surveys/lits2.dta&quot;</span><span class="p">,</span> temp<span class="p">)</span>
+lits2 <span class="o">&lt;-</span> read.dta<span class="p">(</span>temp<span class="p">)</span>
+</code></pre></div>
+<h2>Survey design</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>survey<span class="p">)</span>
+d.df <span class="o">&lt;-</span> svydesign<span class="p">(</span>id <span class="o">=</span> <span class="o">~</span>SerialID<span class="p">,</span> 
+                  weights <span class="o">=</span> <span class="o">~</span>weight<span class="p">,</span> 
+                  data <span class="o">=</span> lits2<span class="p">)</span>
+</code></pre></div>
+<h2>Plotting distributions</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">dpar <span class="o">&lt;-</span> par<span class="p">(</span>mfrow<span class="o">=</span>c<span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+svyhist<span class="p">(</span><span class="o">~</span>q104a_1<span class="p">,</span> design<span class="o">=</span>d.df<span class="p">,</span> 
+        main<span class="o">=</span><span class="s">&quot;Survey weighted&quot;</span><span class="p">,</span>
+        col<span class="o">=</span><span class="s">&quot;cadetblue&quot;</span><span class="p">)</span>
+lines<span class="p">(</span>svysmooth<span class="p">(</span><span class="o">~</span>q104a_1<span class="p">,</span> d.df<span class="p">,</span> bandwidth<span class="o">=</span><span class="m">5</span><span class="p">))</span>
+hist<span class="p">(</span>lits2<span class="o">$</span>q104a_1<span class="p">,</span>  main<span class="o">=</span><span class="s">&quot;Sample unweighted&quot;</span><span class="p">,</span>
+     col<span class="o">=</span><span class="s">&quot;cadetblue&quot;</span><span class="p">,</span>prob<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+lines<span class="p">(</span>density<span class="p">(</span>lits2<span class="o">$</span>q104a_1<span class="p">,</span> adjust<span class="o">=</span><span class="m">2</span><span class="p">))</span>
+par<span class="p">(</span>dpar<span class="p">)</span>
+</code></pre></div>
+<h2>Statistical tables</h2>
 
-<p><code>r
-library(foreign)
-temp &lt;- tempfile()
-download.file("http://www.ebrd.com/downloads/research/surveys/lits2.dta", temp)
-lits2 &lt;- read.dta(temp)
-</code></p>
+<h3>Mean Age by country with standard errors</h3>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Create a data.frame out of table</span>
+t <span class="o">&lt;-</span> data.frame<span class="p">(</span>svyby<span class="p">(</span><span class="o">~</span>q104a_1<span class="p">,</span> <span class="o">~</span>q102_1<span class="o">+</span>country<span class="p">,</span> design<span class="o">=</span>d.df<span class="p">,</span> svymean<span class="p">,</span> na.rm<span class="o">=</span><span class="k-Variable">T</span><span class="p">))</span>
+<span class="c1"># New names for data file</span>
+names<span class="p">(</span>t<span class="p">)</span> <span class="o">&lt;-</span> c<span class="p">(</span><span class="s">&quot;Sex&quot;</span><span class="p">,</span><span class="s">&quot;Country&quot;</span><span class="p">,</span><span class="s">&quot;mean_age&quot;</span><span class="p">,</span><span class="s">&quot;SE&quot;</span><span class="p">)</span>
+<span class="c1"># Reorder the columns</span>
+t <span class="o">&lt;-</span> t<span class="p">[</span>c<span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">)]</span>
+</code></pre></div>
+<h3>GRAPH with Errorbars</h3>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>ggplot2<span class="p">)</span>
+ggplot<span class="p">(</span>t<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>Country<span class="p">,</span> y<span class="o">=</span>mean_age<span class="p">,</span> fill<span class="o">=</span>Sex<span class="p">))</span> <span class="o">+</span>
+  geom_bar<span class="p">(</span>position<span class="o">=</span><span class="s">&quot;dodge&quot;</span><span class="p">,</span> stat<span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">)</span> <span class="o">+</span>
+  geom_errorbar<span class="p">(</span>aes<span class="p">(</span>ymin<span class="o">=</span>mean_age<span class="o">-</span>SE<span class="p">,</span> ymax<span class="o">=</span>mean_age<span class="o">+</span>SE<span class="p">),</span> width<span class="o">=</span><span class="m">.2</span><span class="p">,</span>
+                position<span class="o">=</span>position_dodge<span class="p">(</span><span class="m">.9</span><span class="p">))</span> <span class="o">+</span>
+  coord_cartesian<span class="p">(</span>ylim<span class="o">=</span>c<span class="p">(</span><span class="m">35</span><span class="p">,</span><span class="m">65</span><span class="p">))</span> <span class="o">+</span>
+  theme<span class="p">(</span>axis.text.x <span class="o">=</span> element_text<span class="p">(</span>angle <span class="o">=</span> <span class="m">90</span><span class="p">,</span> vjust <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</code></pre></div>
+<h2>Quantities by categorical variable</h2>
 
-<h2 id="survey-design">Survey design</h2>
-
-<p><code>r
-library(survey)
-d.df &lt;- svydesign(id = ~SerialID, 
-                  weights = ~weight, 
-                  data = lits2)
-</code></p>
-
-<h2 id="plotting-distributions">Plotting distributions</h2>
-
-<p><code>r
-dpar &lt;- par(mfrow=c(1,2))
-svyhist(~q104a_1, design=d.df, 
-        main="Survey weighted",
-        col="cadetblue")
-lines(svysmooth(~q104a_1, d.df, bandwidth=5))
-</code></p>
-
-<p><code>
-## Loading required package: KernSmooth
-## KernSmooth 2.23 loaded
-## Copyright M. P. Wand 1997-2009
-</code></p>
-
-<p><code>r
-hist(lits2$q104a_1,  main="Sample unweighted",
-     col="cadetblue",prob=TRUE)
-lines(density(lits2$q104a_1, adjust=2))
-</code></p>
-
-<p><img src="figure/plot_dist.png" alt="plot of chunk plot_dist" /> </p>
-
-<p><code>r
-par(dpar)
-</code></p>
-
-<h2 id="statistical-tables">Statistical tables</h2>
-
-<h3 id="mean-age-by-country-with-standard-errors">Mean Age by country with standard errors</h3>
-
-<p><code>r
-# Create a data.frame out of table
-t &lt;- data.frame(svyby(~q104a_1, ~q102_1+country, design=d.df, svymean, na.rm=T))
-# New names for data file
-names(t) &lt;- c("Sex","Country","mean_age","SE")
-# Reorder the columns
-t &lt;- t[c(2,1,3,4)]
-</code></p>
-
-<h3 id="graph-with-errorbars">GRAPH with Errorbars</h3>
-
-<p><code>r
-library(ggplot2)
-ggplot(t, aes(x=Country, y=mean_age, fill=Sex)) +
-  geom_bar(position="dodge", stat="identity") +
-  geom_errorbar(aes(ymin=mean_age-SE, ymax=mean_age+SE), width=.2,
-                position=position_dodge(.9)) +
-  coord_cartesian(ylim=c(35,65)) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
-</code></p>
-
-<p><img src="figure/meanplot.png" alt="plot of chunk meanplot" /> </p>
-
-<h2 id="quantities-by-categorical-variable">Quantities by categorical variable</h2>
-
-<p>Let’s use variable <strong>q301a</strong></p>
+<p>Let&#39;s use variable <strong>q301a</strong></p>
 
 <blockquote>
-  <p>The economic situation in our country is better today than around 4 years ago</p>
+<p>The economic situation in our country is better today than around 4 years ago</p>
 </blockquote>
-
-<p><code>r
-# manipulate string
-library(stringr)
-lits2$q301a &lt;- as.factor(str_replace(lits2$q301a, "Don't know", "Dont know"))
-# recode
-lits2$q301a_rec[lits2$q301a == "Strongly agree"] &lt;- "Agree"
-lits2$q301a_rec[lits2$q301a == "Agree"] &lt;- "Agree"
-lits2$q301a_rec[lits2$q301a == "Strongly disagree"] &lt;- "Disagree"
-lits2$q301a_rec[lits2$q301a == "Disagree"] &lt;- "Disagree"
-lits2$q301a_rec[lits2$q301a == "Neither disagree nor agree"] &lt;- "Neither nor"
-lits2$q301a_rec[lits2$q301a == "Dont know"] &lt;- "Dont know"
-# set levels
-lits2$q301a_rec &lt;- factor(lits2$q301a_rec, levels=c("Agree","Neither nor","Disagree","Dont know"))
-######
-# Re-set the survey design
-d.df &lt;- svydesign(id = ~SerialID, 
-                  weights = ~weight, 
-                  data = lits2)
-##
-t2 &lt;- data.frame(prop.table(svytable(~q301a_rec+country, d.df),2)*100)
-t2 &lt;- t2[!is.na(t2$Freq), ]
-##
-ggplot(t2, aes(x=country, y=Freq, fill=q301a_rec)) + 
-  geom_bar(stat="identity") + 
-  theme(legend.position="top") + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
-</code></p>
-
-<p><img src="figure/quant_plot.png" alt="plot of chunk quant_plot" /> </p>
-
-<h3 id="share-agreeing">Share agreeing</h3>
-
-<p><code>r
-# Freq table
-## as data.frame of relative shares
-t3 &lt;- subset(t2, q301a_rec %in% 'Agree')
-t3$Freq &lt;- round(t3$Freq,1)
-# plot
-ggplot(t3, aes(x=reorder(country, Freq), y=Freq,label=Freq)) + 
-  geom_bar(stat="identity", position="dodge", fill="cadetblue") + 
-  coord_flip(ylim=c(0,100)) + geom_text(posistion=position_dodge(), hjust=-0.1)
-</code></p>
-
-<p><img src="figure/shareplot.png" alt="plot of chunk shareplot" /> </p>
-
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># manipulate string</span>
+library<span class="p">(</span>stringr<span class="p">)</span>
+lits2<span class="o">$</span>q301a <span class="o">&lt;-</span> as.factor<span class="p">(</span>str_replace<span class="p">(</span>lits2<span class="o">$</span>q301a<span class="p">,</span> <span class="s">&quot;Don&#39;t know&quot;</span><span class="p">,</span> <span class="s">&quot;Dont know&quot;</span><span class="p">))</span>
+<span class="c1"># recode</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Strongly agree&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Agree&quot;</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Agree&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Agree&quot;</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Strongly disagree&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Disagree&quot;</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Disagree&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Disagree&quot;</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Neither disagree nor agree&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Neither nor&quot;</span>
+lits2<span class="o">$</span>q301a_rec<span class="p">[</span>lits2<span class="o">$</span>q301a <span class="o">==</span> <span class="s">&quot;Dont know&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Dont know&quot;</span>
+<span class="c1"># set levels</span>
+lits2<span class="o">$</span>q301a_rec <span class="o">&lt;-</span> factor<span class="p">(</span>lits2<span class="o">$</span>q301a_rec<span class="p">,</span> levels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Agree&quot;</span><span class="p">,</span><span class="s">&quot;Neither nor&quot;</span><span class="p">,</span><span class="s">&quot;Disagree&quot;</span><span class="p">,</span><span class="s">&quot;Dont know&quot;</span><span class="p">))</span>
+<span class="c1">######</span>
+<span class="c1"># Re-set the survey design</span>
+d.df <span class="o">&lt;-</span> svydesign<span class="p">(</span>id <span class="o">=</span> <span class="o">~</span>SerialID<span class="p">,</span> 
+                  weights <span class="o">=</span> <span class="o">~</span>weight<span class="p">,</span> 
+                  data <span class="o">=</span> lits2<span class="p">)</span>
+<span class="c1">##</span>
+t2 <span class="o">&lt;-</span> data.frame<span class="p">(</span>prop.table<span class="p">(</span>svytable<span class="p">(</span><span class="o">~</span>q301a_rec<span class="o">+</span>country<span class="p">,</span> d.df<span class="p">),</span><span class="m">2</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">)</span>
+t2 <span class="o">&lt;-</span> t2<span class="p">[</span><span class="o">!</span>is.na<span class="p">(</span>t2<span class="o">$</span>Freq<span class="p">),</span> <span class="p">]</span>
+<span class="c1">##</span>
+ggplot<span class="p">(</span>t2<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>country<span class="p">,</span> y<span class="o">=</span>Freq<span class="p">,</span> fill<span class="o">=</span>q301a_rec<span class="p">))</span> <span class="o">+</span> 
+  geom_bar<span class="p">(</span>stat<span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">)</span> <span class="o">+</span> 
+  theme<span class="p">(</span>legend.position<span class="o">=</span><span class="s">&quot;top&quot;</span><span class="p">)</span> <span class="o">+</span> 
+  theme<span class="p">(</span>axis.text.x <span class="o">=</span> element_text<span class="p">(</span>angle <span class="o">=</span> <span class="m">90</span><span class="p">,</span> vjust <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</code></pre></div>
+<h3>Share agreeing</h3>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Freq table</span>
+<span class="c1">## as data.frame of relative shares</span>
+t3 <span class="o">&lt;-</span> subset<span class="p">(</span>t2<span class="p">,</span> q301a_rec <span class="o">%in%</span> <span class="s">&#39;Agree&#39;</span><span class="p">)</span>
+t3<span class="o">$</span>Freq <span class="o">&lt;-</span> round<span class="p">(</span>t3<span class="o">$</span>Freq<span class="p">,</span><span class="m">1</span><span class="p">)</span>
+<span class="c1"># plot</span>
+ggplot<span class="p">(</span>t3<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>reorder<span class="p">(</span>country<span class="p">,</span> Freq<span class="p">),</span> y<span class="o">=</span>Freq<span class="p">,</span>label<span class="o">=</span>Freq<span class="p">))</span> <span class="o">+</span> 
+  geom_bar<span class="p">(</span>stat<span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">,</span> position<span class="o">=</span><span class="s">&quot;dodge&quot;</span><span class="p">,</span> fill<span class="o">=</span><span class="s">&quot;cadetblue&quot;</span><span class="p">)</span> <span class="o">+</span> 
+  coord_flip<span class="p">(</span>ylim<span class="o">=</span>c<span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">100</span><span class="p">))</span> <span class="o">+</span> geom_text<span class="p">(</span>posistion<span class="o">=</span>position_dodge<span class="p">(),</span> hjust<span class="o">=</span><span class="m">-0.1</span><span class="p">)</span>
+</code></pre></div>
 
       <footer>
 

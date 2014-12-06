@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Värit</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- change the folder below to switch themes -->
+    <link rel="stylesheet" href="/css/lumen/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="/css/assets/css/bootswatch.min.css"> 
+
+
+<!-- to quickly try out themes, activate this and tweak the url!
+    <link rel="stylesheet" href="./bootstrap.css" media="screen">
+-->
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/footer.css">
+
+        <!-- Font avesome -->
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+  </head>
+  <body>
+    <script src="http://bootswatch.com/assets/js/bsa.js"></script>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">Etusivu</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav"><li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">R<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="R">
+                <li><a href="/R/lue.html">Datan lukeminen & kirjoittaminen</a></li>
+                <li><a href="/R/manipulointi.html">Manipuloiminen</a></li>
+                <li><a href="/R/funktiot.html">Funktiot</a></li>
+                <li><a href="/R/grafiikka.html">Grafiikka</a></li>
+                <li><a href="/R/survey.html">Survey</a></li>
+                <li><a href="/R/raavinta.html">Webin raapimista</a></li>
+                <li><a href="/R/varit.html">Värit</a></li>
+              </ul>         
+         </ul>
+         <ul class="nav navbar-nav"><li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Toistettava tutkimus<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="toistettava">
+                <li><a href="/toistettava/knitr.html">knitr</a></li>
+                <li><a href="/toistettava/kirjoita.html">Kirjoittaminen</a></li>
+              </ul>         
+         </ul>
+         <ul class="nav navbar-nav"><li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Versiohallinta<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="versio">
+                <li><a href="/versio/git.html">git</a></li>
+              </ul>         
+         </ul>
+         <ul class="nav navbar-nav"><li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Julkaiseminen<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="julkaisu">
+                <li><a href="/julkaisu/latex.html">latex</a></li>
+                <li><a href="/julkaisu/jekyll.html">jekyll</a></li>
+                <li><a href="/julkaisu/pandoc.html">Pandoc</a></li>
+              </ul>         
+         </ul>
+            <ul class="nav navbar-nav"><li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">misc<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="misc">
+                <li><a href="/misc/foto.html">foto</a></li>
+              </ul>         
+         </ul>
+
+
+
+         <ul class="nav navbar-nav navbar-right">
+<!--                        <li><a href="/feed.xml" title="Blog feed"><i class="fa fa-rss fa-2x"></i></a></li> -->
+            <li><a href="http://markuskainu.fi" title="Markus Kainu"><i class="fa fa-thumbs-o-up fa-2x"></i></a></li>
+
+            <li><a href="mailto:markuskainu@gmail.com?Subject=Lunttisivustosta!" title="Email!" target="_top"><i class="fa fa-envelope fa-2x"></i></a></li>                        
+
+                      <!--  <li><a href="https://github.com/vaphana" title="Github"><i class="fa fa-github fa-2x"></i></a></li>
+		        <li><a href="/index_en.html" title="In English"><i class="fa fa-language fa-2x"></i></a> -->
+            </li>
+
+                        
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+
+          <h1>Värit</h1>
+
+<h2>Color brewer</h2>
+
+<p><a href="http://blog.revolutionanalytics.com/2014/12/cindy-brewer-helping-you-choose-better-color-scales-for-maps.html">Cindy Brewer: helping you choose better color scales for maps</a></p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>RColorBrewer<span class="p">)</span>
+display.brewer.all<span class="p">()</span>
+</code></pre></div>
+<p><img src="../figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>ggplot2<span class="p">)</span>
+mtcars<span class="o">$</span>brands <span class="o">&lt;-</span> row.names<span class="p">(</span>mtcars<span class="p">)</span>     
+df <span class="o">&lt;-</span> mtcars<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,]</span>
+plot <span class="o">&lt;-</span> ggplot<span class="p">(</span>df<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>brands<span class="p">,</span>y<span class="o">=</span>cyl<span class="p">,</span>fill<span class="o">=</span>factor<span class="p">(</span>carb<span class="p">)))</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> geom_bar<span class="p">(</span>stat<span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">)</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> scale_fill_brewer<span class="p">(</span>palette<span class="o">=</span><span class="s">&quot;Set1&quot;</span><span class="p">)</span>
+plot
+</code></pre></div>
+<p><img src="../figure/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>ggplot2<span class="p">)</span>
+mtcars<span class="o">$</span>brands <span class="o">&lt;-</span> row.names<span class="p">(</span>mtcars<span class="p">)</span>     
+df <span class="o">&lt;-</span> mtcars<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">8</span><span class="p">,]</span>
+plot <span class="o">&lt;-</span> ggplot<span class="p">(</span>df<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>hp<span class="p">,</span>y<span class="o">=</span>qsec<span class="p">,</span>color<span class="o">=</span>brands<span class="p">,</span>label<span class="o">=</span>brands<span class="p">))</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> geom_point<span class="p">()</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> geom_text<span class="p">(</span>family <span class="o">=</span> <span class="s">&quot;Gentium&quot;</span><span class="p">,</span> hjust<span class="o">=</span><span class="m">-.1</span><span class="p">)</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> scale_color_brewer<span class="p">(</span>palette<span class="o">=</span><span class="s">&quot;Dark2&quot;</span><span class="p">)</span>
+plot <span class="o">&lt;-</span> plot <span class="o">+</span> theme<span class="p">(</span>legend.position <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">)</span>
+plot
+</code></pre></div>
+<p><img src="../figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+<h2>WesAnderson paletters</h2>
+
+<ul>
+<li><a href="https://github.com/karthik/wesanderson">A Wes Anderson color palette for R</a></li>
+<li><a href="http://wesandersonpalettes.tumblr.com/">Wes Anderson Palettes.</a></li>
+</ul>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>knitr<span class="p">)</span>
+library<span class="p">(</span>wesanderson<span class="p">)</span>
+kable<span class="p">(</span>namelist<span class="p">)</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th style="text-align: left">movies</th>
+<th style="text-align: right">wesnums</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">GrandBudapest</td>
+<td style="text-align: right">4</td>
+</tr>
+<tr>
+<td style="text-align: left">Moonrise1</td>
+<td style="text-align: right">4</td>
+</tr>
+<tr>
+<td style="text-align: left">Royal1</td>
+<td style="text-align: right">4</td>
+</tr>
+<tr>
+<td style="text-align: left">Moonrise2</td>
+<td style="text-align: right">4</td>
+</tr>
+<tr>
+<td style="text-align: left">Cavalcanti</td>
+<td style="text-align: right">5</td>
+</tr>
+<tr>
+<td style="text-align: left">Royal2</td>
+<td style="text-align: right">5</td>
+</tr>
+<tr>
+<td style="text-align: left">GrandBudapest2</td>
+<td style="text-align: right">4</td>
+</tr>
+<tr>
+<td style="text-align: left">Moonrise3</td>
+<td style="text-align: right">5</td>
+</tr>
+<tr>
+<td style="text-align: left">Chevalier</td>
+<td style="text-align: right">4</td>
+</tr>
+<tr>
+<td style="text-align: left">Zissou</td>
+<td style="text-align: right">5</td>
+</tr>
+<tr>
+<td style="text-align: left">FantasticFox</td>
+<td style="text-align: right">5</td>
+</tr>
+<tr>
+<td style="text-align: left">Darjeeling</td>
+<td style="text-align: right">5</td>
+</tr>
+<tr>
+<td style="text-align: left">Rushmore</td>
+<td style="text-align: right">5</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;GrandBudapest&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-1.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;GrandBudapest2&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-2.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;Moonrise1&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-3.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;Moonrise2&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-4.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;Moonrise3&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-5.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;Royal1&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-6.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;Royal2&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-7.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;Chevalier&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-8.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;Cavalcanti&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-9.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;Zissou&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-10.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;Darjeeling&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-11.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">#display.wes.palette(5, &quot;Darjeeling2&quot;)</span>
+display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;FantasticFox&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-12.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">display.wes.palette<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s">&quot;Rushmore&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="../figure/lifeaquatic-13.png" alt="plot of chunk lifeaquatic"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">ggplot<span class="p">(</span>iris<span class="p">,</span> aes<span class="p">(</span>Sepal.Length<span class="p">,</span> Sepal.Width<span class="p">,</span> color <span class="o">=</span> Species<span class="p">))</span> <span class="o">+</span> 
+geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span> <span class="o">+</span> 
+scale_color_manual<span class="p">(</span>values <span class="o">=</span> wes.palette<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s">&quot;GrandBudapest&quot;</span><span class="p">))</span> <span class="o">+</span> 
+theme_gray<span class="p">()</span>
+</code></pre></div>
+<p><img src="../figure/ggplot2-1.png" alt="plot of chunk ggplot2"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">qplot<span class="p">(</span>factor<span class="p">(</span>cyl<span class="p">),</span> data<span class="o">=</span>mtcars<span class="p">,</span> geom<span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="p">,</span> fill<span class="o">=</span>factor<span class="p">(</span>vs<span class="p">))</span> <span class="o">+</span> 
+scale_fill_manual<span class="p">(</span>values <span class="o">=</span> wes.palette<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="s">&quot;Royal1&quot;</span><span class="p">))</span>
+</code></pre></div>
+<p><img src="../figure/ggplot1-1.png" alt="plot of chunk ggplot1"> </p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">library<span class="p">(</span>wesanderson<span class="p">)</span>
+pal <span class="o">&lt;-</span> wes.palette<span class="p">(</span>name <span class="o">=</span> <span class="s">&quot;Zissou&quot;</span><span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;continuous&quot;</span><span class="p">)</span>
+<span class="c1"># heatmap is a local dataset</span>
+ggplot<span class="p">(</span>heatmap<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> X2<span class="p">,</span> y <span class="o">=</span> X1<span class="p">,</span> fill <span class="o">=</span> value<span class="p">))</span> <span class="o">+</span>
+ geom_tile<span class="p">()</span> <span class="o">+</span> 
+ scale_fill_gradientn<span class="p">(</span>colours <span class="o">=</span> pal<span class="p">(</span><span class="m">100</span><span class="p">))</span> <span class="o">+</span> 
+scale_x_discrete<span class="p">(</span>expand <span class="o">=</span> c<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="o">+</span>
+scale_y_discrete<span class="p">(</span>expand <span class="o">=</span> c<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="o">+</span> coord_equal<span class="p">()</span> 
+</code></pre></div>
+<p><img src="../figure/zissou_heatmap-1.png" alt="plot of chunk zissou_heatmap"> </p>
+
+
+      <footer>
+
+        <div class="row">
+          <div class="col-lg-12">
+
+            <ul class="list-unstyled">
+              <li class="pull-right"><a href="#top">Back to top</a></li>     
+            </ul>
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons -käyttölupa" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Tämä teos on lisensoitu <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Nimeä 4.0 Kansainvälinen -käyttöluvalla</a>.
+
+
+
+            
+
+            <p>Theme by <a href="http://thomaspark.me" rel="nofollow">Thomas Park</a>
+            <p>Code released under the <a href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
+            <p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+
+        </div>
+
+<!--
+<blockquote class="pull-left">
+  <p>Give a man a fish and you feed him for a day; teach a man to fish and you feed him for a lifetime</p>
+  <small>Anne Isabella Thackeray Ritchie <cite title="Source Title">Mrs. Dymond (1885)</cite></small>
+</blockquote>
+-->
+      </footer>
+
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="http://bootswatch.com/assets/js/bootswatch.js"></script>
+  </body>
+</html>
+
+
