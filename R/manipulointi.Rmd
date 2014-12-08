@@ -7,7 +7,6 @@ date: "24.08.2014"
 
 ```{r, echo=FALSE}
 library(knitr)
-setwd(paste0(base.dir,"R"))
 opts_chunk$set(list(echo=TRUE,eval=FALSE,cache=FALSE,warning=FALSE,message=FALSE,fig.dir= "figure/"))
 ```
 

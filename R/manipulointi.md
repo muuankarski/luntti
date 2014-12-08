@@ -6,9 +6,6 @@ date: "24.08.2014"
 ---
 
 
-```
-## Error in paste0(base.dir, "R"): object 'base.dir' not found
-```
 
 
 # Datan manipuloimista
