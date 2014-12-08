@@ -84,6 +84,8 @@ df$merkki <- row.names(df)
 head(df)
 # 
 df <- df[order(df$qsec),]
+# tai with ja useampi muuttuja
+df <- df[with(df, order(qsec, -hp)), ]
 head(df)
 # fatorilevelit jatkuvan muuttujan mukaan (order) 
 ## järjestämisdata voi myös olla toinen data (esim. maa-data lapsiköyhyyden mukaan, jolloin voi sortata dodge/stacked tolppakuvioita))
