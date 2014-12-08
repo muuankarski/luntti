@@ -6,6 +6,9 @@ date: "24.08.2014"
 ---
 
 
+```
+## Error in paste0(base.dir, "R"): object 'base.dir' not found
+```
 
 
 # Datan manipuloimista
@@ -74,6 +77,24 @@ df <- df[ with(df, grepl("phrase", var1), ]
 ```r
 rm(list=setdiff(ls(), "x"))
 ```
+
+## Järjestä data
+
+
+```r
+df <- mtcars
+df$merkki <- row.names(df)
+head(df)
+# 
+df <- df[order(df$qsec),]
+head(df)
+# fatorilevelit jatkuvan muuttujan mukaan (order) 
+## järjestämisdata voi myös olla toinen data (esim. maa-data lapsiköyhyyden mukaan, jolloin voi sortata dodge/stacked tolppakuvioita))
+df$merkki <- factor(df$merkki, levels=df[order(df$hp),]$merkki)
+#
+df$merkki <- factor(df$merkki, levels=df_subset[order(df_subset$hp),]$merkki)
+```
+
 
 [source](http://stackoverflow.com/questions/6190051/how-can-i-remove-all-objects-but-one-from-the-workspace-in-r)
 
