@@ -11,6 +11,9 @@ opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,
 ```
 
 
+- [tidyr & dplyr lunttilappu](http://www.rstudio.com/wp-content/uploads/2015/01/data-wrangling-cheatsheet.pd)
+- [Garrett Grolemund - Data Wrangling with R slaidit](https://dl.dropboxusercontent.com/u/5896466/wrangling-webinar.pdf)
+
 # tidyr
 
 ```{r}
