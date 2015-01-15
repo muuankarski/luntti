@@ -5,6 +5,8 @@ date: "14.01.2015"
 layout: default
 ---
 
+# tidyr & dplyr esimerkkejä
+
 
 
 

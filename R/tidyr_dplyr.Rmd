@@ -5,6 +5,8 @@ date: "14.01.2015"
 layout: default
 ---
 
+# tidyr & dplyr esimerkkejä
+
 ```{r, echo=FALSE}
 library(knitr)
 opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,fig.dir= "figure/"))
