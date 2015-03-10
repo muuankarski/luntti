@@ -527,11 +527,11 @@ left_join(songs, artists, by = "name")
 ```
 
 ```
-##    name                song  plays
-## 1  John Across the Universe guitar
-## 2  John       Come Together guitar
-## 3  Paul      Hello, Goodbye   bass
-## 4 Buddy           Peggy Sue   <NA>
+##                  song  name  plays
+## 1 Across the Universe  John guitar
+## 2       Come Together  John guitar
+## 3      Hello, Goodbye  Paul   bass
+## 4           Peggy Sue Buddy   <NA>
 ```
 
 ```r
@@ -539,10 +539,10 @@ inner_join(songs, artists, by = "name")
 ```
 
 ```
-##   name                song  plays
-## 1 John Across the Universe guitar
-## 2 John       Come Together guitar
-## 3 Paul      Hello, Goodbye   bass
+##                  song name  plays
+## 1 Across the Universe John guitar
+## 2       Come Together John guitar
+## 3      Hello, Goodbye Paul   bass
 ```
 
 ```r

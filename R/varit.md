@@ -69,23 +69,9 @@ library(wesanderson)
 kable(namelist)
 ```
 
-
-
-|movies         | wesnums|
-|:--------------|-------:|
-|GrandBudapest  |       4|
-|Moonrise1      |       4|
-|Royal1         |       4|
-|Moonrise2      |       4|
-|Cavalcanti     |       5|
-|Royal2         |       5|
-|GrandBudapest2 |       4|
-|Moonrise3      |       5|
-|Chevalier      |       4|
-|Zissou         |       5|
-|FantasticFox   |       5|
-|Darjeeling     |       5|
-|Rushmore       |       5|
+```
+## Error in is.data.frame(x): object 'namelist' not found
+```
 
 
 
@@ -93,80 +79,106 @@ kable(namelist)
 display.wes.palette(4, "GrandBudapest")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-1.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(4, "GrandBudapest2")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-2.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(4, "Moonrise1")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-3.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(4, "Moonrise2")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-4.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(5, "Moonrise3")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-5.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(4, "Royal1")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-6.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(5, "Royal2")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-7.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(4, "Chevalier")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-8.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(5, "Cavalcanti")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-9.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(5, "Zissou")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-10.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(5, "Darjeeling")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-11.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 #display.wes.palette(5, "Darjeeling2")
 display.wes.palette(4, "FantasticFox")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-12.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 ```r
 display.wes.palette(4, "Rushmore")
 ```
 
-![plot of chunk lifeaquatic](figure/lifeaquatic-13.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "display.wes.palette"
+```
 
 
 ```r
@@ -176,7 +188,9 @@ scale_color_manual(values = wes.palette(3, "GrandBudapest")) +
 theme_gray()
 ```
 
-![plot of chunk ggplot2](figure/ggplot2-1.png) 
+```
+## Error in scale$palette(n): could not find function "wes.palette"
+```
 
 
 
@@ -185,13 +199,22 @@ qplot(factor(cyl), data=mtcars, geom="bar", fill=factor(vs)) +
 scale_fill_manual(values = wes.palette(2, "Royal1"))
 ```
 
-![plot of chunk ggplot1](figure/ggplot1-1.png) 
+```
+## Error in scale$palette(n): could not find function "wes.palette"
+```
 
 
 
 ```r
 library(wesanderson)
 pal <- wes.palette(name = "Zissou", type = "continuous")
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "wes.palette"
+```
+
+```r
 # heatmap is a local dataset
 ggplot(heatmap, aes(x = X2, y = X1, fill = value)) +
  geom_tile() + 
@@ -200,7 +223,9 @@ scale_x_discrete(expand = c(0, 0)) +
 scale_y_discrete(expand = c(0, 0)) + coord_equal() 
 ```
 
-![plot of chunk zissou_heatmap](figure/zissou_heatmap-1.png) 
+```
+## Error in match(x, table, nomatch = 0L): could not find function "pal"
+```
 
 
 

@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "Grafiikka"
+title: "Bar graphs & Reordering"
 author: "Markus Kainu"
-date: "05.09.2014"
+date: "10.03.2015"
 ---
 
 ```{r, echo=FALSE}
