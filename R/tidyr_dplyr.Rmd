@@ -16,8 +16,6 @@ opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,
 - [tidyr & dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/01/data-wrangling-cheatsheet.pd)
 - [Garrett Grolemund - Data Wrangling with R slaidit](https://dl.dropboxusercontent.com/u/5896466/wrangling-webinar.pdf)
 
-# tidyr
-
 ##  Create the data sets
 ```{r}
 library(tidyr)
@@ -25,26 +23,32 @@ library(dplyr)
 # cases
 df <- data.frame(country = c("FR", "DE", "US", "FR", "DE", "US", "FR", "DE", "US"),
                  year = c(2011,2011,2011,2012,2012,2012,2013,2013,2013),
-                 n = c(7000,5800,15000,6900,6000,14000,7000,6200,13000), stringsAsFactors = FALSE)
+                 n = c(7000,5800,15000,6900,6000,14000,7000,6200,13000),
+                 stringsAsFactors = FALSE)
 cases <- spread(df, year, n)
 #                      
 df <- data.frame(city = c("New York", "New York", "London", "London", "Beijing", "Beijing"),
                  size = c("large", "small", "large", "small", "large", "small"),
-                 amount = c(23,14,22,16,121,56), stringsAsFactors = FALSE)
+                 amount = c(23,14,22,16,121,56),
+                 stringsAsFactors = FALSE)
 pollution <- df
 # storms
 storms <- data.frame(storm = c("Alberto", "Alex", "Allison", "Ana", "Arlene", "Arthur"),
                      wind = c(110,45,65,40,50,45),
                      pressure = c(1007,1009,1005,1013,1010,1010),
-                     date = as.Date(c("2000-08-03", "1998-07-27", "1995-06-03", "1997-06-30", "1999-06-11", "1996-06-17")), stringsAsFactors = FALSE)
+                     date = as.Date(c("2000-08-03", "1998-07-27", "1995-06-03", "1997-06-30", "1999-06-11", "1996-06-17")),
+                     stringsAsFactors = FALSE)
 # songs
 songs <- data.frame(song = c("Across the Universe", "Come Together", "Hello, Goodbye", "Peggy Sue"),
-                    name = c("John", "John", "Paul", "Buddy"), stringsAsFactors = FALSE)
+                    name = c("John", "John", "Paul", "Buddy"),
+                    stringsAsFactors = FALSE)
 # artists
 artists <- data.frame(name = c("George", "John", "Paul", "Ringo"),
-                    plays = c("sitar", "guitar", "bass", "drums"), stringsAsFactors = FALSE)
+                    plays = c("sitar", "guitar", "bass", "drums"),
+                    stringsAsFactors = FALSE)
 ```
 
+# tidyr
 
 ```{r}
 cases
