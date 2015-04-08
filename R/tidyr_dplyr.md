@@ -5,29 +5,54 @@ date: "14.01.2015"
 layout: default
 ---
 
-# tidyr & dplyr esimerkkejä
+# tidyr & dplyr examples
 
 
 
 
-- [tidyr & dplyr lunttilappu](http://www.rstudio.com/wp-content/uploads/2015/01/data-wrangling-cheatsheet.pd)
+- [tidyr & dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/01/data-wrangling-cheatsheet.pd)
 - [Garrett Grolemund - Data Wrangling with R slaidit](https://dl.dropboxusercontent.com/u/5896466/wrangling-webinar.pdf)
 
 # tidyr
 
+##  Create the data sets
 
 ```r
 library(tidyr)
 library(dplyr)
-library(EDAWR)
+# cases
+df <- data.frame(country = c("FR", "DE", "US", "FR", "DE", "US", "FR", "DE", "US"),
+                 year = c(2011,2011,2011,2012,2012,2012,2013,2013,2013),
+                 n = c(7000,5800,15000,6900,6000,14000,7000,6200,13000), stringsAsFactors = FALSE)
+cases <- spread(df, year, n)
+#                      
+df <- data.frame(city = c("New York", "New York", "London", "London", "Beijing", "Beijing"),
+                 size = c("large", "small", "large", "small", "large", "small"),
+                 amount = c(23,14,22,16,121,56), stringsAsFactors = FALSE)
+pollution <- df
+# storms
+storms <- data.frame(storm = c("Alberto", "Alex", "Allison", "Ana", "Arlene", "Arthur"),
+                     wind = c(110,45,65,40,50,45),
+                     pressure = c(1007,1009,1005,1013,1010,1010),
+                     date = as.Date(c("2000-08-03", "1998-07-27", "1995-06-03", "1997-06-30", "1999-06-11", "1996-06-17")), stringsAsFactors = FALSE)
+# songs
+songs <- data.frame(song = c("Across the Universe", "Come Together", "Hello, Goodbye", "Peggy Sue"),
+                    name = c("John", "John", "Paul", "Buddy"), stringsAsFactors = FALSE)
+# artists
+artists <- data.frame(name = c("George", "John", "Paul", "Ringo"),
+                    plays = c("sitar", "guitar", "bass", "drums"), stringsAsFactors = FALSE)
+```
 
+
+
+```r
 cases
 ```
 
 ```
 ##   country  2011  2012  2013
-## 1      FR  7000  6900  7000
-## 2      DE  5800  6000  6200
+## 1      DE  5800  6000  6200
+## 2      FR  7000  6900  7000
 ## 3      US 15000 14000 13000
 ```
 
@@ -40,14 +65,14 @@ gather(cases, # data
 
 ```
 ##   country year     n
-## 1      FR 2011  7000
-## 2      DE 2011  5800
+## 1      DE 2011  5800
+## 2      FR 2011  7000
 ## 3      US 2011 15000
-## 4      FR 2012  6900
-## 5      DE 2012  6000
+## 4      DE 2012  6000
+## 5      FR 2012  6900
 ## 6      US 2012 14000
-## 7      FR 2013  7000
-## 8      DE 2013  6200
+## 7      DE 2013  6200
+## 8      FR 2013  7000
 ## 9      US 2013 13000
 ```
 
@@ -69,8 +94,8 @@ pollution
 
 ```r
 spread(pollution, # data
-       size, # luokka-muuttuja
-       amount) # määrä
+       size, # class-var
+       amount) # amount
 ```
 
 ```
@@ -87,8 +112,6 @@ storms
 ```
 
 ```
-## Source: local data frame [6 x 4]
-## 
 ##     storm wind pressure       date
 ## 1 Alberto  110     1007 2000-08-03
 ## 2    Alex   45     1009 1998-07-27
@@ -104,8 +127,6 @@ storms2
 ```
 
 ```
-## Source: local data frame [6 x 6]
-## 
 ##     storm wind pressure year month day
 ## 1 Alberto  110     1007 2000    08  03
 ## 2    Alex   45     1009 1998    07  27
@@ -120,8 +141,6 @@ unite(storms2, "date", year, month, day, sep = "-")
 ```
 
 ```
-## Source: local data frame [6 x 4]
-## 
 ##     storm wind pressure       date
 ## 1 Alberto  110     1007 2000-08-03
 ## 2    Alex   45     1009 1998-07-27
@@ -170,23 +189,23 @@ diamonds$x %>%
 ## [1] 5.73
 ```
 
-## select() - valitse rivejä
+## select() - subset rows
 
 
 ```r
 storms
-# puduota muuttuja
+# drop vars
 select(storms, -storm)
-# valitse rivit
+# subset rows
 filter(storms, wind >= 50)
-# valitse rivit - useampi ehto
+# subset rows - multiple conditions
 filter(storms,
        wind >= 50,
        storm %in% c("Alberto", "Alex", "Allison"))
 ```
 
 
-### Lisää select-komentoja
+### More select-commands
 
 
 ```r
@@ -202,7 +221,7 @@ starts_with() # Select columns whose name starts with a character string
 ```
 
 
-## mutate () - Tee uusia muuttujia
+## mutate () - create new vars
 
 
 ```r
@@ -210,8 +229,6 @@ mutate(storms, ratio = pressure / wind)
 ```
 
 ```
-## Source: local data frame [6 x 5]
-## 
 ##     storm wind pressure       date     ratio
 ## 1 Alberto  110     1007 2000-08-03  9.154545
 ## 2    Alex   45     1009 1998-07-27 22.422222
@@ -227,8 +244,6 @@ mutate(storms,ratio = pressure / wind,
 ```
 
 ```
-## Source: local data frame [6 x 6]
-## 
 ##     storm wind pressure       date     ratio    inverse
 ## 1 Alberto  110     1007 2000-08-03  9.154545 0.10923535
 ## 2    Alex   45     1009 1998-07-27 22.422222 0.04459861
@@ -238,7 +253,7 @@ mutate(storms,ratio = pressure / wind,
 ## 6  Arthur   45     1010 1996-06-17 22.444444 0.04455446
 ```
 
-### Lisää mutate funktiooita
+### More mutate fuctions
 
 >All take a vector of values and return a vector of values
 
@@ -257,7 +272,7 @@ dense_rank(), min_rank(), percent_rank(), row_number() # Various ranking methods
 ```
 
 
-## summarise() - vaihda yksikköä
+## summarise() - Change unit
 
 
 ```r
@@ -271,7 +286,7 @@ pollution %>%
 ## 1   22.5   1731.6
 ```
 
-### Hyviä summary funktioita
+### Good summary functions
 
 > All take a vector of values and return a single value
 
@@ -291,7 +306,7 @@ n_distinct() # The number of distinct values in a vector
 
 
 
-## ryhmittäiset analyysit
+## Grouped analysis
 
 
 ```r
@@ -398,8 +413,6 @@ arrange(storms, wind)
 ```
 
 ```
-## Source: local data frame [6 x 4]
-## 
 ##     storm wind pressure       date
 ## 1     Ana   40     1013 1997-06-30
 ## 2    Alex   45     1009 1998-07-27
@@ -414,8 +427,6 @@ arrange(storms, -wind)
 ```
 
 ```
-## Source: local data frame [6 x 4]
-## 
 ##     storm wind pressure       date
 ## 1 Alberto  110     1007 2000-08-03
 ## 2 Allison   65     1005 1995-06-03
@@ -430,8 +441,6 @@ arrange(storms, desc(wind), desc(date))
 ```
 
 ```
-## Source: local data frame [6 x 4]
-## 
 ##     storm wind pressure       date
 ## 1 Alberto  110     1007 2000-08-03
 ## 2 Allison   65     1005 1995-06-03
@@ -451,12 +460,7 @@ storms %>%
 ```
 
 ```
-## Source: local data frame [3 x 2]
-## 
-##     storm pressure
-## 1 Alberto     1007
-## 2 Allison     1005
-## 3  Arlene     1010
+## Error in select(., storm, pressure): unused arguments (storm, pressure)
 ```
 
 ```r
@@ -482,18 +486,30 @@ storms %>%
 ```
 
 ```
-## Source: local data frame [6 x 2]
-## 
-##     storm     ratio
-## 1 Alberto  9.154545
-## 2    Alex 22.422222
-## 3 Allison 15.461538
-## 4     Ana 25.325000
-## 5  Arlene 20.200000
-## 6  Arthur 22.444444
+## Error in select(., storm, ratio): unused arguments (storm, ratio)
 ```
 
-# join() - datojen yhdistäminen
+```r
+pollution  %>% group_by(city) %>%
+  mutate(mean = mean(amount),
+            sum = sum(amount),
+            n = n())
+```
+
+```
+## Source: local data frame [6 x 6]
+## Groups: city
+## 
+##       city  size amount mean sum n
+## 1 New York large     23 18.5  37 2
+## 2 New York small     14 18.5  37 2
+## 3   London large     22 19.0  38 2
+## 4   London small     16 19.0  38 2
+## 5  Beijing large    121 88.5 177 2
+## 6  Beijing small     56 88.5 177 2
+```
+
+# join() - merging data.frames
 
 
 ```r

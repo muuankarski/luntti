@@ -5,7 +5,7 @@ date: "14.01.2015"
 layout: default
 ---
 
-# tidyr & dplyr esimerkkejä
+# tidyr & dplyr examples
 
 ```{r, echo=FALSE}
 library(knitr)
@@ -13,16 +13,40 @@ opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,
 ```
 
 
-- [tidyr & dplyr lunttilappu](http://www.rstudio.com/wp-content/uploads/2015/01/data-wrangling-cheatsheet.pd)
+- [tidyr & dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/01/data-wrangling-cheatsheet.pd)
 - [Garrett Grolemund - Data Wrangling with R slaidit](https://dl.dropboxusercontent.com/u/5896466/wrangling-webinar.pdf)
 
 # tidyr
 
+##  Create the data sets
 ```{r}
 library(tidyr)
 library(dplyr)
-library(EDAWR)
+# cases
+df <- data.frame(country = c("FR", "DE", "US", "FR", "DE", "US", "FR", "DE", "US"),
+                 year = c(2011,2011,2011,2012,2012,2012,2013,2013,2013),
+                 n = c(7000,5800,15000,6900,6000,14000,7000,6200,13000), stringsAsFactors = FALSE)
+cases <- spread(df, year, n)
+#                      
+df <- data.frame(city = c("New York", "New York", "London", "London", "Beijing", "Beijing"),
+                 size = c("large", "small", "large", "small", "large", "small"),
+                 amount = c(23,14,22,16,121,56), stringsAsFactors = FALSE)
+pollution <- df
+# storms
+storms <- data.frame(storm = c("Alberto", "Alex", "Allison", "Ana", "Arlene", "Arthur"),
+                     wind = c(110,45,65,40,50,45),
+                     pressure = c(1007,1009,1005,1013,1010,1010),
+                     date = as.Date(c("2000-08-03", "1998-07-27", "1995-06-03", "1997-06-30", "1999-06-11", "1996-06-17")), stringsAsFactors = FALSE)
+# songs
+songs <- data.frame(song = c("Across the Universe", "Come Together", "Hello, Goodbye", "Peggy Sue"),
+                    name = c("John", "John", "Paul", "Buddy"), stringsAsFactors = FALSE)
+# artists
+artists <- data.frame(name = c("George", "John", "Paul", "Ringo"),
+                    plays = c("sitar", "guitar", "bass", "drums"), stringsAsFactors = FALSE)
+```
 
+
+```{r}
 cases
 
 gather(cases, # data
@@ -37,8 +61,8 @@ gather(cases, # data
 pollution
 
 spread(pollution, # data
-       size, # luokka-muuttuja
-       amount) # määrä
+       size, # class-var
+       amount) # amount
 
 ```
 
@@ -67,15 +91,15 @@ diamonds$x %>%
   round(2)
 ```
 
-## select() - valitse rivejä
+## select() - subset rows
 
 ```{r, eval=FALSE}
 storms
-# puduota muuttuja
+# drop vars
 select(storms, -storm)
-# valitse rivit
+# subset rows
 filter(storms, wind >= 50)
-# valitse rivit - useampi ehto
+# subset rows - multiple conditions
 filter(storms,
        wind >= 50,
        storm %in% c("Alberto", "Alex", "Allison"))
@@ -83,7 +107,7 @@ filter(storms,
 ```
 
 
-### Lisää select-komentoja
+### More select-commands
 
 ```{r, eval=FALSE}
 - # Select everything but
@@ -98,7 +122,7 @@ starts_with() # Select columns whose name starts with a character string
 ```
 
 
-## mutate () - Tee uusia muuttujia
+## mutate () - create new vars
 
 ```{r}
 mutate(storms, ratio = pressure / wind)
@@ -107,7 +131,7 @@ mutate(storms,ratio = pressure / wind,
        inverse = ratio^-1)
 ```
 
-### Lisää mutate funktiooita
+### More mutate fuctions
 
 >All take a vector of values and return a vector of values
 
@@ -125,7 +149,7 @@ dense_rank(), min_rank(), percent_rank(), row_number() # Various ranking methods
 ```
 
 
-## summarise() - vaihda yksikköä
+## summarise() - Change unit
 
 ```{r}
 pollution %>% 
@@ -134,7 +158,7 @@ pollution %>%
 
 ```
 
-### Hyviä summary funktioita
+### Good summary functions
 
 > All take a vector of values and return a single value
 
@@ -153,7 +177,7 @@ n_distinct() # The number of distinct values in a vector
 
 
 
-## ryhmittäiset analyysit
+## Grouped analysis
 
 ```{r}
 h <- pollution %>% group_by(city)
@@ -211,14 +235,20 @@ pollution  %>% group_by(city) %>%
             sum = sum(amount),
             n = n())
 
-
 storms %>% 
   mutate(ratio = pressure / wind) %>%
   select(storm, ratio)
 
+
+pollution  %>% group_by(city) %>%
+  mutate(mean = mean(amount),
+            sum = sum(amount),
+            n = n())
+
+
 ```
 
-# join() - datojen yhdistäminen
+# join() - merging data.frames
 
 ```{r}
 library(dplyr)

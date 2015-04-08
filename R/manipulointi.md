@@ -94,6 +94,17 @@ df$merkki <- factor(df$merkki, levels=df[order(df$hp),]$merkki)
 df$merkki <- factor(df$merkki, levels=df_subset[order(df_subset$hp),]$merkki)
 ```
 
+**Tulosta pilkulla erotettu vektori**
+
+
+```r
+vector <- c("one","two","three")
+cat(paste(shQuote(vector, type="cmd"), collapse=", "))
+
+vector <- c(1,2,3)
+cat(paste(vector, collapse=","))
+```
+
 
 [source](http://stackoverflow.com/questions/6190051/how-can-i-remove-all-objects-but-one-from-the-workspace-in-r)
 
