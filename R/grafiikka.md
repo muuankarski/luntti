@@ -11,7 +11,7 @@ date: "10.03.2015"
 # Graphics using with ggplot2
 
 - [Beautiful plotting in R: A ggplot2 cheatsheet](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/)
-
+- [Various position adjustments of legend in ggplot2](https://kohske.wordpress.com/2010/12/25/various-position-adjustments-of-legend-in-ggplot2/)
 
 ## Moniulotteinen hajontakuvio
 

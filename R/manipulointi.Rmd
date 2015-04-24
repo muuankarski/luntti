@@ -67,11 +67,20 @@ df <- df[ with(df, grepl("phrase", var1), ]
 
 ```
 
-## Remove all objects but
+## Remove objects
 
 ```{r}
-rm(list=setdiff(ls(), "x"))
+# Remove all objects but
+rm(list=setdiff(ls(), c("x","y")))
+# Remove all
+rm(list=ls(all=TRUE)) 
+# Remove a list
+rm(list = c('x','y'))
+## or
+rm(x,y)
 ```
+
+[source](http://stackoverflow.com/questions/6190051/how-can-i-remove-all-objects-but-one-from-the-workspace-in-r)
 
 ## Järjestä data
 
@@ -103,7 +112,6 @@ cat(paste(vector, collapse=","))
 ```
 
 
-[source](http://stackoverflow.com/questions/6190051/how-can-i-remove-all-objects-but-one-from-the-workspace-in-r)
 
 
 ## Satunnaisia linkkejä
