@@ -17,5 +17,6 @@ for (dir in dirlist) {
   file.copy(list.files(from, full.names = T), to, recursive = TRUE)
 }
 
-
+# git add .
+# git commit -am "new updates"
 

@@ -7,6 +7,21 @@ date: "24.08.2014"
 
 
 
+# Jekyll
+
+
+
+Start a new site
+
+
+```r
+jekyll new site
+cd site
+jekyll serve
+# => Now browse to http://localhost:4000
+```
+
+
 Asetukset ko. dokkariin
 
 
