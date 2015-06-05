@@ -19,4 +19,5 @@ for (dir in dirlist) {
 
 # git add .
 # git commit -am "new updates"
+# git push
 

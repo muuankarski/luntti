@@ -7,6 +7,12 @@ date: "24.08.2014"
 
 
 
+# Git
+
+- Pro Git
+    - [Suomeksi v1](https://git-scm.com/book/fi/v1)
+    - [Englanniksi v2](https://git-scm.com/book/en/v2)
+
 
 ```r
 git init
