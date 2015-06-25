@@ -9,7 +9,14 @@ date: "24.08.2014"
 opts_chunk$set(list(echo=TRUE,eval=FALSE,cache=TRUE,warning=FALSE,message=FALSE))
 ```
 
-Asetukset ko. dokkariin
+# Reproducible documents with R & knitr
+
+- [knitr](http://yihui.name/knitr/)-package
+
+
+
+# Case 1: Academic paper with pdf/html output
+
 
 ```{r}
 library(knitr)
@@ -22,5 +29,7 @@ opts_chunk$set(list(echo=FALSE,eval=TRUE,cache=TRUE,warning=FALSE,message=FALSE,
 
 ```
 
+
+# Case 2: Jekyll povered website
 
 

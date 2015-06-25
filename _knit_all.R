@@ -1,7 +1,7 @@
 
 library(knitr)
 
-dirlist <- c("R/","julkaisu/","toistettava/","versio/","misc/")
+dirlist <- c("R/","julkaisu/","toistettava/","atk/","misc/")
 
 for (dir in dirlist) {
   files <- list.files(dir, pattern=".Rmd")
