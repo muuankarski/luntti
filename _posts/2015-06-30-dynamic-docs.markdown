@@ -5,7 +5,7 @@ date:   2015-05-04 08:23:45
 categories: R
 ---
 
-Click the link: [/toistettava/dynamic_docs.html](/toistettava/dynamic_docs.html)
+Click the link: [http://muuankarski.github.io/luntti/toistettava/dynamic_docs.html](http://muuankarski.github.io/luntti/toistettava/dynamic_docs.html)
 
 
 

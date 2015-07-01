@@ -10,18 +10,24 @@ date: "24.08.2015"
 
 # Reproducible documents with R & knitr
 
-**This summary is created for FAO R-user group meeting on July 1, 2015**
+**This summary is prepared for FAO R-user group meeting on July 1, 2015**
 
 
 - [knitr](http://yihui.name/knitr/)-package
 
-## Books
+## Resources
+
+### Books
 
 - [Dynamic Documents with R and knitr](https://www.crcpress.com/product/isbn/9781482203530)
     - [Github-repo](https://github.com/yihui/knitr-book/)
 - [Reproducible Research with R and R Studio](https://www.crcpress.com/product/isbn/9781466572843)
     - [Github-repo](https://github.com/christophergandrud/Rep-Res-Book)
 
+### Rstudio
+
+- [Rmarkdown cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+- [R Markdown — Dynamic Documents for R](http://rmarkdown.rstudio.com/)
 
 # Introduction
 
@@ -35,24 +41,20 @@ date: "24.08.2015"
 
 ## Tools
 
-R-packages
+### R-packages
 
 - [Sweave](https://www.statistik.lmu.de/~leisch/Sweave/)
 - [knitr](http://yihui.name/knitr/)
+- [rmarkdown](http://yihui.name/knitr/)
 
-Rstudio integration
+### Other
 
-- markdown
-
-
-Standalone tools 
-
-- Pandoc
+- [Pandoc](http://pandoc.org/)
 
 ## Glossary
 
 - .Rmd -> R Markdown
-- .Rnw -> R 
+- .Rnw -> R Sweave
 
 # The Workflow
 
@@ -75,37 +77,36 @@ Standalone tools
 
 # Case 1: Simple standalone docs
 
-## R script
+## R script / notebook format
 
-- [script.R](script.R)
+- Example file: [script.R](script.R)
+- [Compiling Notebooks from R Scripts](http://rmarkdown.rstudio.com/r_notebook_format.html)
+- [Build a report based on an R script](http://yihui.name/knitr/demo/stitch/)
+- [Example](https://github.com/yihui/knitr/blob/master/inst/examples/knitr-spin.R)
 
 
 ```r
 knitr::spin("script.R")
+rmarkdown::render("script.R")
+rmarkdown::render("script.R", "pdf_document")
 ```
 
 
 ## R Markdown 
 
-- [rmarkdown.Rmd](rmarkdown.Rmd)
+- Example file: [rmarkdown.Rmd](rmarkdown.Rmd)
 
 
 
 ```r
 # into html
-knitr::knit2html("rmarkdown.Rmd")
-# into latex pdf
-knitr::knit2latex("rmarkdown.Rmd")
-# into docx
-knitr::knit2latex("rmarkdown.Rmd")
-# into odt
-knitr::knit2latex("rmarkdown.Rmd")
+rmarkdown::render('rmarkdown.Rmd')
 ```
 
 
 ## R Sweave
 
-- [rsweave.Rnw](rsweave.Rnw)
+- Example file: [rsweave.Rnw](rsweave.Rnw)
 
 
 
@@ -124,12 +125,9 @@ knitr::knit2latex("rmarkdown.Rmd")
 - [This website](http://muuankarski.github.io/luntti/)
 - [source](https://github.com/muuankarski/luntti)
 
-# Case 4: FAO Statistical Pocketbnook
+# Case 4: FAO Statistical Pocketbook
 
-
-
-
-
+- [source](https://github.com/UNFAOstatistics/regional15) - will be updated later today
 
 
 [^1]: <https://en.wikipedia.org/wiki/Literate_programming>
@@ -165,13 +163,12 @@ sessionInfo()
 ## [13] ggplot2_1.0.1      knitr_1.10.5      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.11.6      highr_0.5        formatR_1.2      plyr_1.8.3      
-##  [5] tools_3.2.1      digest_0.6.8     evaluate_0.7     gtable_0.1.2    
-##  [9] DBI_0.3.1        yaml_2.1.13      parallel_3.2.1   proto_0.3-10    
-## [13] Rttf2pt1_1.3.3   R6_2.0.1         rmarkdown_0.7    reshape2_1.4.1  
-## [17] extrafontdb_1.0  magrittr_1.5     codetools_0.2-11 scales_0.2.5    
-## [21] htmltools_0.2.6  rsconnect_0.3.79 assertthat_0.1   colorspace_1.2-6
-## [25] labeling_0.3     stringi_0.5-5    lazyeval_0.1.10  munsell_0.4.2
+##  [1] Rcpp_0.11.6      formatR_1.2      plyr_1.8.3       tools_3.2.1     
+##  [5] digest_0.6.8     evaluate_0.7     gtable_0.1.2     DBI_0.3.1       
+##  [9] yaml_2.1.13      parallel_3.2.1   proto_0.3-10     Rttf2pt1_1.3.3  
+## [13] R6_2.0.1         reshape2_1.4.1   extrafontdb_1.0  magrittr_1.5    
+## [17] scales_0.2.5     rsconnect_0.3.79 assertthat_0.1   colorspace_1.2-6
+## [21] labeling_0.3     stringi_0.5-5    lazyeval_0.1.10  munsell_0.4.2
 ```
 
 
