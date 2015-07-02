@@ -48,7 +48,7 @@ date: "24.08.2015"
 - [Build a report based on an R script](http://yihui.name/knitr/demo/stitch/)
 - [Example](https://github.com/yihui/knitr/blob/master/inst/examples/knitr-spin.R)
 
-script.R looks like this:
+**`script.R` looks like this:**
 
 
 ```r
@@ -68,18 +68,22 @@ ggplot(cars, aes(x=speed, y=dist, color=speed)) +
   geom_point() + geom_smooth(method="loess")
 ```
 
-Use following commands for conversion:
+**Use following commands for conversion in R:**
 
 
 ```r
 knitr::spin("script.R")
+# Or
 rmarkdown::render("script.R")
-rmarkdown::render("script.R", "pdf_document")
+# Or
+rmarkdown::render("script.R", "html_document")
 ```
 
-or in Rstudio simply press `Crtl+Shift+k`
+**or in Rstudio simply press `Crtl+Shift+k` (or click the icon above the script editor)**
 
-Download the docs here:
+***
+
+**Demo files are here:**
 
 - input: [script.R](script.R)
 - pdf output: [script.pdf](script.pdf)
@@ -102,7 +106,7 @@ To see different formats *rendered* click the links from below:
 
 **Templates**
 
-. pdf: <https://github.com/muuankarski/faosyb_paper/blob/master/faosyb.pdf.template>
+- pdf: <https://github.com/muuankarski/faosyb_paper/blob/master/faosyb.pdf.template>
 - html <https://github.com/muuankarski/faosyb_paper/blob/master/faosyb.html.template>
 - css for html: <https://github.com/muuankarski/faosyb_paper/blob/master/faosyb.css>
 
@@ -116,6 +120,13 @@ To see different formats *rendered* click the links from below:
 
 - [source](https://github.com/UNFAOstatistics/regional15) - constantly updated
     - see also [wiki](https://github.com/unfaostatistics/regional15/wiki) for documentation
+
+
+# Workflow
+
+![](knitr_gif/knitr.gif)
+
+- [underlaying svg](knitr_gif/analyysi_gif.svg)
 
 
 
