@@ -152,29 +152,9 @@ ggplot(tbl, aes(x=Var2,y=Freq,label=Freq,fill=Var1)) +
 
 ```r
 df <- read.csv("http://vincentarelbundock.github.com/Rdatasets/csv/Ecdat/Cigarette.csv")
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
 df$year <- as.numeric(df$year)
-```
 
-```
-## Error in `$<-.data.frame`(`*tmp*`, "year", value = numeric(0)): replacement has 0 rows, data has 14827
-```
-
-```r
 cnames <- subset(df, year == 1995)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'year' not found
-```
-
-```r
 ggplot(df, 
        aes(x=year,y=packpc,group=state,color=state)) +
   geom_line() + 
@@ -187,9 +167,7 @@ ggplot(df,
   theme(legend.position="none")
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'year' not found
-```
+![plot of chunk viiva1](figure/viiva1-1.png) 
 
 ## Scatter plots
 

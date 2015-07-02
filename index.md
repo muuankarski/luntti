@@ -23,7 +23,7 @@ Latest updates
 <div id="posts">
     {% for post in site.posts offset: 0 limit: 6 %}
         <small style="color: #999;">{{ post.date | date: "%b %d, %Y" }}</small> 
-        <a href="{{ post.url }}">{{ post.title }}</a>
+        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         <br />
         {% if post.summary %}
             <small>{{ post.summary }}</small>
