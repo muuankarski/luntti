@@ -4,4 +4,5 @@ markdown: redcarpet
 redcarpet:
    extensions: ["tables"]
 pygments: false
-baseurl: http://muuankarski.github.io/luntti
+baseurl: http://muuankarski.github.io/luntti/
+url: http://muuankarski.github.io/luntti/
