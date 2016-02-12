@@ -1579,13 +1579,13 @@
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="404.2209"
-     inkscape:cy="-52.596611"
+     inkscape:cx="299.2209"
+     inkscape:cy="175.97482"
      inkscape:document-units="px"
-     inkscape:current-layer="g8207"
+     inkscape:current-layer="g6193"
      inkscape:window-width="1200"
      inkscape:window-height="1893"
      inkscape:window-x="1600"
@@ -1600,7 +1600,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -3323,13 +3323,13 @@
       </g>
     </g>
     <image
-       sodipodi:absref="/home/markus/btsync/mk/workspace/luntti/toistettava/knitr_gif/knit-logo.png"
-       xlink:href="knit-logo.png"
-       y="306.534"
-       x="295.1265"
-       id="image6967"
+       sodipodi:absref="/home/markus/btsync/mk/workspace/luntti/toistettava/knitr_gif/../../../courses/teaching/openroadshow2013_tku/figures/knit-logo.png"
+       xlink:href="../../../courses/teaching/openroadshow2013_tku/figures/knit-logo.png"
+       width="152.85715"
        height="105.08929"
-       width="152.85715" />
+       id="image6967"
+       x="295.1265"
+       y="306.534" />
     <text
        inkscape:export-ydpi="114.72272"
        inkscape:export-xdpi="114.72272"
@@ -3970,13 +3970,13 @@
       </g>
     </g>
     <image
-       sodipodi:absref="/home/markus/btsync/mk/workspace/luntti/toistettava/knitr_gif/knit-logo.png"
-       xlink:href="knit-logo.png"
-       width="152.85715"
-       height="105.08929"
-       id="image7277"
+       sodipodi:absref="/home/markus/btsync/mk/workspace/luntti/toistettava/knitr_gif/../../../courses/teaching/openroadshow2013_tku/figures/knit-logo.png"
+       xlink:href="../../../courses/teaching/openroadshow2013_tku/figures/knit-logo.png"
+       y="306.534"
        x="295.1265"
-       y="306.534" />
+       id="image7277"
+       height="105.08929"
+       width="152.85715" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-stretch:normal;font-size:49.24462128px;line-height:125%;font-family:'URW Gothic L';-inkscape-font-specification:'URW Gothic L Book';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
@@ -4710,7 +4710,7 @@
      inkscape:groupmode="layer"
      id="g8207"
      inkscape:label="output3"
-     style="display:inline">
+     style="display:none">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-stretch:normal;font-size:49.24462128px;line-height:125%;font-family:'URW Gothic L';-inkscape-font-specification:'URW Gothic L Book';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
@@ -4979,7 +4979,7 @@
          id="tspan5790-8-4">for print</tspan></text>
   </g>
   <g
-     style="display:none"
+     style="display:inline"
      inkscape:label="output4"
      id="g6422"
      inkscape:groupmode="layer">

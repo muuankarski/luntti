@@ -20,7 +20,7 @@ library(RColorBrewer)
 display.brewer.all()
 ```
 
-![plot of chunk vari1](figure/vari1-1.png) 
+![plot of chunk vari1](figure/vari1-1.png)
 
 
 
@@ -34,7 +34,7 @@ plot <- plot + scale_fill_brewer(palette="Set1")
 plot
 ```
 
-![plot of chunk vari2](figure/vari2-1.png) 
+![plot of chunk vari2](figure/vari2-1.png)
 
 
 
@@ -50,7 +50,7 @@ plot <- plot + theme(legend.position = "none")
 plot
 ```
 
-![plot of chunk vari3](figure/vari3-1.png) 
+![plot of chunk vari3](figure/vari3-1.png)
 
 
 ## WesAnderson paletters
@@ -70,7 +70,7 @@ kable(namelist)
 ```
 
 ```
-## Error in is.data.frame(x): object 'namelist' not found
+## Error in inherits(x, "list"): object 'namelist' not found
 ```
 
 
@@ -189,8 +189,10 @@ theme_gray()
 ```
 
 ```
-## Error in scale$palette(n): could not find function "wes.palette"
+## Error in f(...): could not find function "wes.palette"
 ```
+
+![plot of chunk ggplot2](figure/ggplot2-1.png)
 
 
 
@@ -200,8 +202,10 @@ scale_fill_manual(values = wes.palette(2, "Royal1"))
 ```
 
 ```
-## Error in scale$palette(n): could not find function "wes.palette"
+## Error in f(...): could not find function "wes.palette"
 ```
+
+![plot of chunk ggplot1](figure/ggplot1-1.png)
 
 
 
@@ -224,7 +228,7 @@ scale_y_discrete(expand = c(0, 0)) + coord_equal()
 ```
 
 ```
-## Error in match(x, table, nomatch = 0L): could not find function "pal"
+## Error in scale_fill_gradientn(colours = pal(100)): could not find function "pal"
 ```
 
 

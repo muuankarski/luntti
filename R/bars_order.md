@@ -70,7 +70,7 @@ ggplot(data=df,
   scale_fill_manual(values=fill_palette)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
 ## Manual ordering
 
@@ -90,7 +90,7 @@ ggplot(data=df,
   scale_fill_manual(values=fill_palette)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
 ### Manually match the fills with the fruits
 
@@ -111,7 +111,7 @@ ggplot(data=df,
   scale_fill_manual(values=fill_palette)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 
 ### Reorder the legend to match the order of the fill
@@ -131,9 +131,13 @@ ggplot(data=df,
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
 ### Reorder the fills manually
+
+**2.0 version of ggplot2 was introduced in late 2015 and `order`aesthetics was depracated.** The new approach is to order the dataset by the grouping variable you want to order by as described in the **2nd** or newest answer for this question: <http://stackoverflow.com/questions/15251816/how-do-you-order-the-fill-colours-within-ggplot2-geom-bar>
+
+**the old `order` way**
 
 
 ```r
@@ -144,14 +148,53 @@ ggplot(data=df,
        aes(x=basket,
            y=value,
            fill=fruits,
-           order=fruits)) + # This is important!!
+           order=fruits)) + # This WAS important!!
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette, 
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+**With `dplyr`**
+
+
+```r
+library(ggplot2)
+df$fruits <- factor(df$fruits, c("bananas","pears","oranges","apples"))
+
+library(dplyr)
+ggplot(data=dplyr::arrange(df,fruits), 
+       aes(x=basket,
+           y=value,
+           fill=fruits)) + 
+    geom_bar(stat="identity", 
+             position = "stack") +
+  scale_fill_manual(values=fill_palette, 
+                    guide = guide_legend(reverse=TRUE))
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+
+**With base R**
+
+
+```r
+library(ggplot2)
+df$fruits <- factor(df$fruits, c("bananas","pears","oranges","apples"))
+
+ggplot(data=df[order(df$fruits),], 
+       aes(x=basket,
+           y=value,
+           fill=fruits)) + 
+    geom_bar(stat="identity", 
+             position = "stack") +
+  scale_fill_manual(values=fill_palette, 
+                    guide = guide_legend(reverse=TRUE))
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
+
+
 
 ## Automatic reordering
 
@@ -163,18 +206,17 @@ library(ggplot2)
 df$basket <- factor(df$basket, 
                     levels=df[order(df[df$fruits == "pears",]$value),]$basket)
 
-ggplot(data=df, 
+ggplot(data=df[order(df$fruits),], 
        aes(x=basket,
            y=value,
-           fill=fruits,
-           order=fruits)) + # This is important!!
+           fill=fruits)) + 
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette, 
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
 
 
 ### Reverse order bars according to oranges share
@@ -189,14 +231,14 @@ ggplot(data=df,
        aes(x=basket,
            y=value,
            fill=fruits,
-           order=fruits)) + # This is important!!
+           order=fruits)) + 
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette, 
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
 
 
 
@@ -213,18 +255,17 @@ df$bar_order[df$fruits == "pears"]   <- 2
 df$bar_order[df$fruits == "bananas"] <- 3
 df$bar_order[df$fruits == "apples"]  <- 4
 
-ggplot(data=df, 
+ggplot(data=df[order(df$bar_order),], 
        aes(x=basket,
            y=value,
-           fill=fruits,
-           order=bar_order)) + # This is important!!
+           fill=fruits)) +
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette, 
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
 
 
 ### Match the colors with the fruits
@@ -239,34 +280,32 @@ fill_palette2 <- c("#FF9900", # orange for orange
                   "#FF0000" # red for apple
                   )
 
-ggplot(data=df, 
+ggplot(data=df[order(df$bar_order),], 
        aes(x=basket,
            y=value,
-           fill=fruits,
-           order=bar_order)) + # This is important!!
+           fill=fruits)) + # This is important!!
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette2)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png)
 
 
-## title
+## ....
 
 
 ```r
-ggplot(data=df, 
+ggplot(data=df[order(-as.numeric(df$value)),], 
        aes(x=basket,
            y=value,
-           fill=fruits,
-           order=-as.numeric(value))) + # This is important!!
+           fill=fruits)) + # This is important!!
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette2)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
 
 
 # Links to Stack Overflow etc. on bar ordering

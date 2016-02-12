@@ -169,18 +169,19 @@ tbl_df(diamonds)
 ```
 ## Source: local data frame [53,940 x 10]
 ## 
-##    carat       cut color clarity depth table price    x    y    z
-## 1   0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
-## 2   0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
-## 3   0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
-## 4   0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
-## 5   0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
-## 6   0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48
-## 7   0.24 Very Good     I    VVS1  62.3    57   336 3.95 3.98 2.47
-## 8   0.26 Very Good     H     SI1  61.9    55   337 4.07 4.11 2.53
-## 9   0.22      Fair     E     VS2  65.1    61   337 3.87 3.78 2.49
-## 10  0.23 Very Good     H     VS1  59.4    61   338 4.00 4.05 2.39
-## ..   ...       ...   ...     ...   ...   ...   ...  ...  ...  ...
+##    carat       cut  color clarity depth table price     x     y     z
+##    (dbl)    (fctr) (fctr)  (fctr) (dbl) (dbl) (int) (dbl) (dbl) (dbl)
+## 1   0.23     Ideal      E     SI2  61.5    55   326  3.95  3.98  2.43
+## 2   0.21   Premium      E     SI1  59.8    61   326  3.89  3.84  2.31
+## 3   0.23      Good      E     VS1  56.9    65   327  4.05  4.07  2.31
+## 4   0.29   Premium      I     VS2  62.4    58   334  4.20  4.23  2.63
+## 5   0.31      Good      J     SI2  63.3    58   335  4.34  4.35  2.75
+## 6   0.24 Very Good      J    VVS2  62.8    57   336  3.94  3.96  2.48
+## 7   0.24 Very Good      I    VVS1  62.3    57   336  3.95  3.98  2.47
+## 8   0.26 Very Good      H     SI1  61.9    55   337  4.07  4.11  2.53
+## 9   0.22      Fair      E     VS2  65.1    61   337  3.87  3.78  2.49
+## 10  0.23 Very Good      H     VS1  59.4    61   338  4.00  4.05  2.39
+## ..   ...       ...    ...     ...   ...   ...   ...   ...   ...   ...
 ```
 
 ```r
@@ -320,9 +321,10 @@ h
 
 ```
 ## Source: local data frame [6 x 3]
-## Groups: city
+## Groups: city [3]
 ## 
 ##       city  size amount
+##      (chr) (chr)  (dbl)
 ## 1 New York large     23
 ## 2 New York small     14
 ## 3   London large     22
@@ -339,6 +341,7 @@ ungroup(h)
 ## Source: local data frame [6 x 3]
 ## 
 ##       city  size amount
+##      (chr) (chr)  (dbl)
 ## 1 New York large     23
 ## 2 New York small     14
 ## 3   London large     22
@@ -373,10 +376,11 @@ pollution  %>% group_by(city) %>%
 ```
 ## Source: local data frame [3 x 4]
 ## 
-##       city mean sum n
-## 1  Beijing 88.5 177 2
-## 2   London 19.0  38 2
-## 3 New York 18.5  37 2
+##       city  mean   sum     n
+##      (chr) (dbl) (dbl) (int)
+## 1  Beijing  88.5   177     2
+## 2   London  19.0    38     2
+## 3 New York  18.5    37     2
 ```
 
 
@@ -390,10 +394,11 @@ pollution %>%
 ```
 ## Source: local data frame [3 x 4]
 ## 
-##       city mean sum n
-## 1  Beijing 88.5 177 2
-## 2   London 19.0  38 2
-## 3 New York 18.5  37 2
+##       city  mean   sum     n
+##      (chr) (dbl) (dbl) (int)
+## 1  Beijing  88.5   177     2
+## 2   London  19.0    38     2
+## 3 New York  18.5    37     2
 ```
 
 
@@ -464,10 +469,7 @@ storms %>%
 ```
 
 ```
-##     storm pressure
-## 1 Alberto     1007
-## 2 Allison     1005
-## 3  Arlene     1010
+## Error in select(., storm, pressure): unused arguments (storm, pressure)
 ```
 
 ```r
@@ -480,10 +482,11 @@ pollution  %>% group_by(city) %>%
 ```
 ## Source: local data frame [3 x 4]
 ## 
-##       city mean sum n
-## 1  Beijing 88.5 177 2
-## 2   London 19.0  38 2
-## 3 New York 18.5  37 2
+##       city  mean   sum     n
+##      (chr) (dbl) (dbl) (int)
+## 1  Beijing  88.5   177     2
+## 2   London  19.0    38     2
+## 3 New York  18.5    37     2
 ```
 
 ```r
@@ -493,13 +496,7 @@ storms %>%
 ```
 
 ```
-##     storm     ratio
-## 1 Alberto  9.154545
-## 2    Alex 22.422222
-## 3 Allison 15.461538
-## 4     Ana 25.325000
-## 5  Arlene 20.200000
-## 6  Arthur 22.444444
+## Error in select(., storm, ratio): unused arguments (storm, ratio)
 ```
 
 ```r
@@ -511,15 +508,16 @@ pollution  %>% group_by(city) %>%
 
 ```
 ## Source: local data frame [6 x 6]
-## Groups: city
+## Groups: city [3]
 ## 
-##       city  size amount mean sum n
-## 1 New York large     23 18.5  37 2
-## 2 New York small     14 18.5  37 2
-## 3   London large     22 19.0  38 2
-## 4   London small     16 19.0  38 2
-## 5  Beijing large    121 88.5 177 2
-## 6  Beijing small     56 88.5 177 2
+##       city  size amount  mean   sum     n
+##      (chr) (chr)  (dbl) (dbl) (dbl) (int)
+## 1 New York large     23  18.5    37     2
+## 2 New York small     14  18.5    37     2
+## 3   London large     22  19.0    38     2
+## 4   London small     16  19.0    38     2
+## 5  Beijing large    121  88.5   177     2
+## 6  Beijing small     56  88.5   177     2
 ```
 
 # join() - merging data.frames

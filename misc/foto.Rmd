@@ -61,6 +61,20 @@ cd ..
 
 
 
-## Gallerioiden tekemistä
+## PDF to bitmap
+
+
+```{r, eval=FALSE}
+#!/bin/bash
+
+# create dir for the burst pdf pages
+mkdir pdfs
+# burst source pdf
+pdftk  file.pdf  burst  output  pdfs/page_%03d.pdf
+# convert all pdfs witihin the folder into jpf
+for i in pdfs/*.pdf ; do convert -density 200 "$i" "${i%.*}.jpg" ; done
+
+```
+
 
 

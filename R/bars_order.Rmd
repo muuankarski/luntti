@@ -107,7 +107,11 @@ ggplot(data=df,
 
 ### Reorder the fills manually
 
-```{r}
+**2.0 version of ggplot2 was introduced in late 2015 and `order`aesthetics was depracated.** The new approach is to order the dataset by the grouping variable you want to order by as described in the **2nd** or newest answer for this question: <http://stackoverflow.com/questions/15251816/how-do-you-order-the-fill-colours-within-ggplot2-geom-bar>
+
+**the old `order` way**
+
+```{r, eval=FALSE}
 library(ggplot2)
 df$fruits <- factor(df$fruits, c("bananas","pears","oranges","apples"))
 
@@ -115,13 +119,50 @@ ggplot(data=df,
        aes(x=basket,
            y=value,
            fill=fruits,
-           order=fruits)) + # This is important!!
+           order=fruits)) + # This WAS important!!
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette, 
                     guide = guide_legend(reverse=TRUE))
   
 ```
+
+**With `dplyr`**
+
+```{r}
+library(ggplot2)
+df$fruits <- factor(df$fruits, c("bananas","pears","oranges","apples"))
+
+library(dplyr)
+ggplot(data=dplyr::arrange(df,fruits), 
+       aes(x=basket,
+           y=value,
+           fill=fruits)) + 
+    geom_bar(stat="identity", 
+             position = "stack") +
+  scale_fill_manual(values=fill_palette, 
+                    guide = guide_legend(reverse=TRUE))
+  
+```
+
+**With base R**
+
+```{r}
+library(ggplot2)
+df$fruits <- factor(df$fruits, c("bananas","pears","oranges","apples"))
+
+ggplot(data=df[order(df$fruits),], 
+       aes(x=basket,
+           y=value,
+           fill=fruits)) + 
+    geom_bar(stat="identity", 
+             position = "stack") +
+  scale_fill_manual(values=fill_palette, 
+                    guide = guide_legend(reverse=TRUE))
+  
+```
+
+
 
 ## Automatic reordering
 
@@ -132,11 +173,10 @@ library(ggplot2)
 df$basket <- factor(df$basket, 
                     levels=df[order(df[df$fruits == "pears",]$value),]$basket)
 
-ggplot(data=df, 
+ggplot(data=df[order(df$fruits),], 
        aes(x=basket,
            y=value,
-           fill=fruits,
-           order=fruits)) + # This is important!!
+           fill=fruits)) + 
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette, 
@@ -155,7 +195,7 @@ ggplot(data=df,
        aes(x=basket,
            y=value,
            fill=fruits,
-           order=fruits)) + # This is important!!
+           order=fruits)) + 
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette, 
@@ -176,11 +216,10 @@ df$bar_order[df$fruits == "pears"]   <- 2
 df$bar_order[df$fruits == "bananas"] <- 3
 df$bar_order[df$fruits == "apples"]  <- 4
 
-ggplot(data=df, 
+ggplot(data=df[order(df$bar_order),], 
        aes(x=basket,
            y=value,
-           fill=fruits,
-           order=bar_order)) + # This is important!!
+           fill=fruits)) +
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette, 
@@ -199,25 +238,23 @@ fill_palette2 <- c("#FF9900", # orange for orange
                   "#FF0000" # red for apple
                   )
 
-ggplot(data=df, 
+ggplot(data=df[order(df$bar_order),], 
        aes(x=basket,
            y=value,
-           fill=fruits,
-           order=bar_order)) + # This is important!!
+           fill=fruits)) + # This is important!!
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette2)
 ```
 
 
-## title
+## ....
 
-```{r}
-ggplot(data=df, 
+```{r, eval=TRUE}
+ggplot(data=df[order(-as.numeric(df$value)),], 
        aes(x=basket,
            y=value,
-           fill=fruits,
-           order=-as.numeric(value))) + # This is important!!
+           fill=fruits)) + # This is important!!
     geom_bar(stat="identity", 
              position = "stack") +
   scale_fill_manual(values=fill_palette2)
