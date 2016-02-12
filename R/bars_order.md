@@ -227,7 +227,7 @@ library(ggplot2)
 df$basket <- factor(df$basket, 
                     levels=df[order(df[df$fruits == "oranges",]$value),]$basket)
 
-ggplot(data=df, 
+ggplot(data=df[order(df$fruits),], 
        aes(x=basket,
            y=value,
            fill=fruits,
@@ -274,9 +274,9 @@ ggplot(data=df[order(df$bar_order),],
 ```r
 library(ggplot2)
 
-fill_palette2 <- c("#FF9900", # orange for orange
+fill_palette2 <- c("#FFFF00", # yellow for bananas
                   "#66FF33", # green for pears
-                  "#FFFF00", # yellow for bananas
+                  "#FF9900", # orange for orange
                   "#FF0000" # red for apple
                   )
 
