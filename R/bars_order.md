@@ -3,6 +3,7 @@ layout: default
 title: "Bar graphs & Reordering"
 author: "Markus Kainu"
 date: "10.0.2015"
+group: "R"
 ---
 
 

@@ -14,7 +14,7 @@ Linkkejä muihin hyviin lunttisaitteihin:
 - [Advanced R development: making reusable code - Hadley Wickham](https://github.com/hadley/devtools/wiki)
 - [Cookbook for R - Winston Chang](http://www.cookbook-r.com/)
 - [Resources to help you learn and use R - UCLA](http://www.ats.ucla.edu/stat/r/)
-
+- [Cheatsheets - Rstudio](https://www.rstudio.com/resources/cheatsheets/)
 
 
 Latest updates

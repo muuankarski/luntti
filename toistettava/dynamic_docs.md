@@ -156,16 +156,16 @@ sessionInfo()
 ##  [1] tidyr_0.3.1        wesanderson_0.3.2  survey_3.30-3     
 ##  [4] stringr_1.0.0      RColorBrewer_1.1-2 laeken_0.4.6      
 ##  [7] MASS_7.3-44        KernSmooth_2.23-15 foreign_0.8-66    
-## [10] extrafont_0.17     boot_1.3-17        knitr_1.12        
-## [13] dplyr_0.4.3        ggplot2_2.0.0     
+## [10] extrafont_0.17     boot_1.3-17        dplyr_0.4.3       
+## [13] ggplot2_2.0.0      knitr_1.12        
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.3      Rttf2pt1_1.3.3   magrittr_1.5     munsell_0.4.2   
 ##  [5] colorspace_1.2-6 R6_2.1.1         plyr_1.8.3       tools_3.2.3     
 ##  [9] parallel_3.2.3   gtable_0.1.2     DBI_0.3.1        extrafontdb_1.0 
-## [13] htmltools_0.3    yaml_2.1.13      lazyeval_0.1.10  assertthat_0.1  
-## [17] digest_0.6.9     reshape2_1.4.1   formatR_1.2.1    evaluate_0.8    
-## [21] rmarkdown_0.9.2  labeling_0.3     stringi_1.0-1    scales_0.3.0
+## [13] lazyeval_0.1.10  digest_0.6.9     assertthat_0.1   reshape2_1.4.1  
+## [17] formatR_1.2.1    evaluate_0.8     labeling_0.3     stringi_1.0-1   
+## [21] scales_0.3.0
 ```
 
 
