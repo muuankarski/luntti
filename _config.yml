@@ -1,8 +1,8 @@
 name: Avoimien menetelmien lunttisivusto
 description: Something here
-markdown: kramdown
+markdown: redcarpet
 redcarpet:
    extensions: ["tables"]
 pygments: false
-baseurl: "http://muuankarski.github.io/luntti/"
-url: "http://muuankarski.github.io/luntti/"
+baseurl: "http://muuankarski.kapsi.fi/luntti/"
+url: "http://muuankarski.kapsi.fi/luntti/"
