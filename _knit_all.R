@@ -1,21 +1,47 @@
 
 library(knitr)
 
-dirlist <- c("R/","julkaisu/","toistettava/","atk/","misc/")
+rmds <- list.files(path="./", pattern = ".Rmd")
+rmds <- gsub(pattern = ".Rmd", replacement = "", x = rmds)
 
-for (dir in dirlist) {
-  files <- list.files(dir, pattern=".Rmd")
-  files <- gsub(".Rmd","",files)
-  for (i in files) {
-    knit(paste0(dir,paste0(i,".Rmd")),
-                paste0(dir,paste0(i,".md")))
-  }
-  # Kopioidaan kuvat kuhunkin kansioon (knitr hakki)
-  from = "figure"
-  to = paste0(dir,"figure")
-  dir.create(to, recursive = TRUE)
-  file.copy(list.files(from, full.names = T), to, recursive = TRUE)
+for (i in rmds){
+  knit(paste0(i,".Rmd"),
+       paste0(i,".md"))  
 }
+
+
+
+
+# for (dir in dirlist) {
+#   files <- list.files(dir, pattern=".Rmd")
+#   files <- gsub(".Rmd","",files)
+#   for (i in files) {
+#     knit(paste0(dir,paste0(i,".Rmd")),
+#          paste0(dir,paste0(i,".md")))
+#   }
+#   # Kopioidaan kuvat kuhunkin kansioon (knitr hakki)
+#   from = "figure"
+#   to = paste0(dir,"figure")
+#   dir.create(to, recursive = TRUE)
+#   file.copy(list.files(from, full.names = T), to, recursive = TRUE)
+# }
+
+
+# dirlist <- c("R/","julkaisu/","toistettava/","atk/","misc/")
+# 
+# for (dir in dirlist) {
+#   files <- list.files(dir, pattern=".Rmd")
+#   files <- gsub(".Rmd","",files)
+#   for (i in files) {
+#     knit(paste0(dir,paste0(i,".Rmd")),
+#                 paste0(dir,paste0(i,".md")))
+#   }
+#   # Kopioidaan kuvat kuhunkin kansioon (knitr hakki)
+#   from = "figure"
+#   to = paste0(dir,"figure")
+#   dir.create(to, recursive = TRUE)
+#   file.copy(list.files(from, full.names = T), to, recursive = TRUE)
+# }
 
 # git add .
 # git commit -am "new updates"

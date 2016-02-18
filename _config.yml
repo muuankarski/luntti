@@ -1,6 +1,6 @@
 name: Avoimien menetelmien lunttisivusto
 description: Something here
-markdown: redcarpet
+markdown: kramdown
 redcarpet:
    extensions: ["tables"]
 pygments: false

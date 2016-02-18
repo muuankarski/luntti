@@ -15,6 +15,8 @@ Linkkejä muihin hyviin lunttisaitteihin:
 - [Cookbook for R - Winston Chang](http://www.cookbook-r.com/)
 - [Resources to help you learn and use R - UCLA](http://www.ats.ucla.edu/stat/r/)
 - [Cheatsheets - Rstudio](https://www.rstudio.com/resources/cheatsheets/)
+- [A Stargazer Cheatsheet - for model outputs in latex & html](http://jakeruss.com/cheatsheets/stargazer.html)
+
 
 
 Latest updates
