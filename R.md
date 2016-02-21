@@ -471,10 +471,7 @@ storms %>%
 ```
 
 ```
-##     storm pressure
-## 1 Alberto     1007
-## 2 Allison     1005
-## 3  Arlene     1010
+## Error in select(., storm, pressure): unused arguments (storm, pressure)
 ```
 
 ```r
@@ -501,13 +498,7 @@ storms %>%
 ```
 
 ```
-##     storm     ratio
-## 1 Alberto  9.154545
-## 2    Alex 22.422222
-## 3 Allison 15.461538
-## 4     Ana 25.325000
-## 5  Arlene 20.200000
-## 6  Arthur 22.444444
+## Error in select(., storm, ratio): unused arguments (storm, ratio)
 ```
 
 ```r

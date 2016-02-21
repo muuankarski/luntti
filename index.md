@@ -18,7 +18,7 @@ Linkkejä muihin hyviin lunttisaitteihin:
 - [A Stargazer Cheatsheet - for model outputs in latex & html](http://jakeruss.com/cheatsheets/stargazer.html)
 
 
-
+<!--
 Latest updates
 -------------------
 
@@ -32,3 +32,4 @@ Latest updates
         {% endif %}
     {% endfor %}
     </div>
+    -->

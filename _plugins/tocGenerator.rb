@@ -18,7 +18,7 @@ module Jekyll
       config = @context.registers[:site].config
 
       # Minimum number of items needed to show TOC, default 0 (0 means no minimum)
-      min_items_to_show_toc = config["minItemsToShowToc"] || 0
+      min_items_to_show_toc = config["minItemsToShowToc"] || 1
 
       anchor_prefix = config["anchorPrefix"] || 'tocAnchor-'
 

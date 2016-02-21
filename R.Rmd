@@ -219,6 +219,26 @@ Error in FUN(X[[1L]], ...) :
   only defined on a data frame with all numeric variable
 ```
 
+### Rank groups
+
+rank by which "cylinder group" highest total hp. (makes no sense, but was useful)
+
+```{r}
+mtcars %>% 
+  slice(1:10) %>% 
+  select(cyl,hp) %>% 
+  group_by(cyl) %>% 
+  mutate(sum_hp = sum(hp, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  arrange(sum_hp) %>% 
+  mutate(rank = dense_rank(sum_hp))
+
+
+
+```
+
+
+
 ### Järjestä data
 
 ```{r}
