@@ -3,20 +3,24 @@ layout: default
 title: "R-kieli"
 author: "Markus Kainu"
 date: "18.02.2016"
+output: 
+ html_document: 
+   toc: true
+   toc_float: true
+   number_sections: yes
 ---
 
 
 
 
-# Datan manipuloiminen
+`Last time updated: **2016-03-03 16:19:23**`
 
-## tidyr & dplyr examples
-
+# Data manipulation
 
 - [tidyr & dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/01/data-wrangling-cheatsheet.pd)
 - [Garrett Grolemund - Data Wrangling with R slaidit](https://dl.dropboxusercontent.com/u/5896466/wrangling-webinar.pdf)
 
-###  Create the data sets
+##  Create the data sets
 
 ```r
 library(tidyr)
@@ -49,7 +53,7 @@ artists <- data.frame(name = c("George", "John", "Paul", "Ringo"),
                     stringsAsFactors = FALSE)
 ```
 
-### tidyr
+## tidyr
 
 
 ```r
@@ -376,13 +380,7 @@ pollution  %>% group_by(city) %>%
 ```
 
 ```
-## Source: local data frame [3 x 4]
-## 
-##       city  mean   sum     n
-##      (chr) (dbl) (dbl) (int)
-## 1  Beijing  88.5   177     2
-## 2   London  19.0    38     2
-## 3 New York  18.5    37     2
+## Error in n(): This function should not be called directly
 ```
 
 
@@ -394,13 +392,7 @@ pollution %>%
 ```
 
 ```
-## Source: local data frame [3 x 4]
-## 
-##       city  mean   sum     n
-##      (chr) (dbl) (dbl) (int)
-## 1  Beijing  88.5   177     2
-## 2   London  19.0    38     2
-## 3 New York  18.5    37     2
+## Error in n(): This function should not be called directly
 ```
 
 
@@ -415,6 +407,28 @@ pollution %>%
 Error in FUN(X[[1L]], ...) : 
   only defined on a data frame with all numeric variable
 ```
+
+### Rank groups
+
+rank by which "cylinder group" highest total hp. (makes no sense, but was useful)
+
+
+```r
+library(dplyr)
+mtcars %>% 
+  slice(1:10) %>% 
+  select(cyl,hp) %>% 
+  group_by(cyl) %>% 
+  mutate(sum_hp = sum(hp, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  arrange(sum_hp) %>% 
+  mutate(rank = dense_rank(sum_hp))
+```
+
+```
+## Error in select(., cyl, hp): unused arguments (cyl, hp)
+```
+
 
 ### Järjestä data
 
@@ -482,13 +496,7 @@ pollution  %>% group_by(city) %>%
 ```
 
 ```
-## Source: local data frame [3 x 4]
-## 
-##       city  mean   sum     n
-##      (chr) (dbl) (dbl) (int)
-## 1  Beijing  88.5   177     2
-## 2   London  19.0    38     2
-## 3 New York  18.5    37     2
+## Error in n(): This function should not be called directly
 ```
 
 ```r
@@ -509,20 +517,10 @@ pollution  %>% group_by(city) %>%
 ```
 
 ```
-## Source: local data frame [6 x 6]
-## Groups: city [3]
-## 
-##       city  size amount  mean   sum     n
-##      (chr) (chr)  (dbl) (dbl) (dbl) (int)
-## 1 New York large     23  18.5    37     2
-## 2 New York small     14  18.5    37     2
-## 3   London large     22  19.0    38     2
-## 4   London small     16  19.0    38     2
-## 5  Beijing large    121  88.5   177     2
-## 6  Beijing small     56  88.5   177     2
+## Error in n(): This function should not be called directly
 ```
 
-## join() - merging data.frames
+### join() - merging data.frames
 
 
 ```r
@@ -775,6 +773,21 @@ dplyr::rename(d, newName2=wind, newName3=pressure)
 ## 12  Arthur       45     1010 1996-06-17
 ```
 
+### Rename factor levels
+
+
+```r
+# built-in
+levels(x)[levels(x)=="one"] <- "uno"
+levels(x)[3] <- "three"
+levels(x) <- c("one","two","three")
+
+# plyr
+library(plyr)
+revalue(x, c("beta"="two", "gamma"="three"))
+mapvalues(x, from = c("beta", "gamma"), to = c("two", "three"))
+```
+
 ### Subset data
 
 
@@ -957,7 +970,7 @@ ggplot(data=df,
   scale_fill_manual(values=fill_palette)
 ```
 
-![plot of chunk unnamed-chunk-30](figure/unnamed-chunk-30-1.png)
+![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-32-1.png)
 
 ### Manual ordering
 
@@ -977,7 +990,7 @@ ggplot(data=df,
   scale_fill_manual(values=fill_palette)
 ```
 
-![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-31-1.png)
+![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-33-1.png)
 
 #### Manually match the fills with the fruits
 
@@ -998,7 +1011,7 @@ ggplot(data=df,
   scale_fill_manual(values=fill_palette)
 ```
 
-![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-32-1.png)
+![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-34-1.png)
 
 
 #### Reorder the legend to match the order of the fill
@@ -1018,7 +1031,7 @@ ggplot(data=df,
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-33-1.png)
+![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-35-1.png)
 
 #### Reorder the fills manually
 
@@ -1060,7 +1073,7 @@ ggplot(data=dplyr::arrange(df,fruits),
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-35-1.png)
+![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37-1.png)
 
 **With base R**
 
@@ -1079,7 +1092,7 @@ ggplot(data=df[order(df$fruits),],
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.png)
+![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-38-1.png)
 
 
 
@@ -1103,7 +1116,7 @@ ggplot(data=df[order(df$fruits),],
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37-1.png)
+![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39-1.png)
 
 
 #### Reverse order bars according to oranges share
@@ -1125,7 +1138,7 @@ ggplot(data=df[order(df$fruits),],
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-38-1.png)
+![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40-1.png)
 
 
 
@@ -1152,7 +1165,7 @@ ggplot(data=df[order(df$bar_order),],
                     guide = guide_legend(reverse=TRUE))
 ```
 
-![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39-1.png)
+![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41-1.png)
 
 
 #### Match the colors with the fruits
@@ -1176,7 +1189,7 @@ ggplot(data=df[order(df$bar_order),],
   scale_fill_manual(values=fill_palette2)
 ```
 
-![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40-1.png)
+![plot of chunk unnamed-chunk-42](figure/unnamed-chunk-42-1.png)
 
 
 ### ....

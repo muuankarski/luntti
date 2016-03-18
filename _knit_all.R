@@ -9,11 +9,15 @@ for (i in rmds){
        paste0(i,".md"))  
 }
 
+system("jekyll serve --watch --baseurl''")
 system("jekyll build")
 
 system("rsync -arv  ~/btsync/mk/workspace/luntti/_site/ muuankarski@kapsi.fi:sites/muuankarski.kapsi.fi/www/luntti/")
   
 
+# git add .
+# git commit -am "new updates"
+# git push
 
 # for (dir in dirlist) {
 #   files <- list.files(dir, pattern=".Rmd")

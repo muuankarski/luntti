@@ -3,6 +3,11 @@ layout: default
 title: "R-kieli"
 author: "Markus Kainu"
 date: "18.02.2016"
+# output: 
+#  html_document: 
+#    toc: true
+#    toc_float: true
+#    number_sections: yes
 ---
 
 ```{r, echo=FALSE}
@@ -11,15 +16,14 @@ opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,
 ```
 
 
-# Datan manipuloiminen
+`Last time updated: **`r Sys.time()`**`
 
-## tidyr & dplyr examples
-
+# Data manipulation
 
 - [tidyr & dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/01/data-wrangling-cheatsheet.pd)
 - [Garrett Grolemund - Data Wrangling with R slaidit](https://dl.dropboxusercontent.com/u/5896466/wrangling-webinar.pdf)
 
-###  Create the data sets
+##  Create the data sets
 ```{r}
 library(tidyr)
 library(dplyr)
@@ -51,7 +55,7 @@ artists <- data.frame(name = c("George", "John", "Paul", "Ringo"),
                     stringsAsFactors = FALSE)
 ```
 
-### tidyr
+## tidyr
 
 ```{r}
 cases
@@ -224,6 +228,8 @@ Error in FUN(X[[1L]], ...) :
 rank by which "cylinder group" highest total hp. (makes no sense, but was useful)
 
 ```{r}
+
+library(dplyr)
 mtcars %>% 
   slice(1:10) %>% 
   select(cyl,hp) %>% 
@@ -236,7 +242,6 @@ mtcars %>%
 
 
 ```
-
 
 
 ### Järjestä data
@@ -274,7 +279,7 @@ pollution  %>% group_by(city) %>%
 
 ```
 
-## join() - merging data.frames
+### join() - merging data.frames
 
 ```{r}
 library(dplyr)
@@ -353,6 +358,20 @@ plyr::rename(d, c("wind"="newName2", "pressure"="newName3"))
 # using dplyr
 dplyr::rename(d, newName2=wind, newName3=pressure)
 
+```
+
+### Rename factor levels
+
+```{r, eval=FALSE}
+# built-in
+levels(x)[levels(x)=="one"] <- "uno"
+levels(x)[3] <- "three"
+levels(x) <- c("one","two","three")
+
+# plyr
+library(plyr)
+revalue(x, c("beta"="two", "gamma"="three"))
+mapvalues(x, from = c("beta", "gamma"), to = c("two", "three"))
 ```
 
 ### Subset data
