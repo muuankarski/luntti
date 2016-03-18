@@ -28,3 +28,4 @@ leaflet
 metricsgraphics
 texreg
 stargazer
+rdsmx

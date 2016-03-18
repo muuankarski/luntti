@@ -18,6 +18,20 @@ opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,
 
 `Last time updated: **`r Sys.time()`**`
 
+# Install.packages
+
+
+To get started install at least these: [r-paketit.txt](http://muuankarski.kapsi.fi/luntti/r-paketit.txt)
+
+```{r, eval=FALSE}
+PACKAGES <- scan(url("http://muuankarski.kapsi.fi/luntti/r-paketit.txt"), what="character")
+inst <- match(PACKAGES, .packages(all=TRUE))
+need <- which(is.na(inst))
+if (length(need) > 0) install.packages(PACKAGES[need])
+```
+
+
+
 # Data manipulation
 
 - [tidyr & dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/01/data-wrangling-cheatsheet.pd)
